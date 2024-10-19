@@ -21,7 +21,6 @@
   </form>
 </div>
 <hr>
-<strong>Pencarian Data</strong><br/><br/>
 <div class="row">
   <form method="get" action="/superadmin/pilkada/filter">
     @csrf
@@ -127,6 +126,92 @@
       </div>
 </div>
 
+<div class="row">
+  <div class="col-md-3">
+    <div class="box box-success box-solid">
+      <div class="box-header with-border">
+        <h3 class="box-title">Pendukung/Total DPT</h3>
+        <!-- /.box-tools -->
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <span style="font-size:16px; font-weight:bold">{{number_format(pendukung())}} / {{number_format(totalDPT())}}</span>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+  <div class="col-md-3">
+    <div class="box box-success box-solid">
+      <div class="box-header with-border">
+        <h3 class="box-title">Banjarmasin Timur</h3>
+        <!-- /.box-tools -->
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <span style="font-size:16px; font-weight:bold">{{number_format(pendukungTimur())}} / {{number_format(totalBjmTimur())}}</span>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+  <div class="col-md-3">
+    <div class="box box-success box-solid">
+      <div class="box-header with-border">
+        <h3 class="box-title">Banjarmasin Barat</h3>
+        <!-- /.box-tools -->
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <span style="font-size:16px; font-weight:bold">{{number_format(pendukungBarat())}} / {{number_format(totalBjmBarat())}}</span>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+  <div class="col-md-3">
+    <div class="box box-success box-solid">
+      <div class="box-header with-border">
+        <h3 class="box-title">Banjarmasin Tengah</h3>
+        <!-- /.box-tools -->
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <span style="font-size:16px; font-weight:bold">{{number_format(pendukungTengah())}} /{{number_format(totalBjmTengah())}}</span>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+  <div class="col-md-3">
+    <div class="box box-success box-solid">
+      <div class="box-header with-border">
+        <h3 class="box-title">Banjarmasin Utara</h3>
+        <!-- /.box-tools -->
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <span style="font-size:16px; font-weight:bold">{{number_format(pendukungUtara())}} /{{number_format(totalBjmUtara())}}</span>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+  <div class="col-md-3">
+    <div class="box box-success box-solid">
+      <div class="box-header with-border">
+        <h3 class="box-title">Banjarmasin Selatan</h3>
+        <!-- /.box-tools -->
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <span style="font-size:16px; font-weight:bold">{{number_format(pendukungSelatan())}} /{{number_format(totalBjmSelatan())}}</span>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>
 
 @endsection
 @push('js')
