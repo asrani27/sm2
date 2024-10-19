@@ -80,6 +80,7 @@
                 <th>Kelurahan</th>
                 <th>NIK</th>
                 <th>Nama</th>
+                <th>Usia</th>
                 <th>RT</th>
                 <th>RW</th>
                 <th>TPS</th>
@@ -99,6 +100,7 @@
                 <td>{{$item->kelurahan}}</td>
                 <td>{{$item->nik}}</td>
                 <td>{{$item->nama}}</td>
+                <td>{{$item->usia}}</td>
                 <td>{{$item->rt}}</td>
                 <td>{{$item->rw}}</td>
                 <td>{{$item->tps}}</td>
