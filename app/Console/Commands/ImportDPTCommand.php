@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Pilkada;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
@@ -40,45 +41,165 @@ class ImportDPTCommand extends Command
      */
     public function handle()
     {
-        $files = File::allFiles(public_path('dptpilkada'));
+        $selatan = File::allFiles(public_path('dptselatan'));
+        $timur = File::allFiles(public_path('dpttimur'));
+        $barat = File::allFiles(public_path('dptbarat'));
+        $tengah = File::allFiles(public_path('dpttengah'));
+        $utara = File::allFiles(public_path('dptutara'));
+        foreach ($selatan as $file) {
 
-        foreach ($files as $file) {
-
-            $path = base_path('public/dptpilkada/' . $file->getRelativePathname());
+            $path = base_path('public/dptselatan/' . $file->getRelativePathname());
             $spreadsheet = IOFactory::load($path);
             $worksheet = $spreadsheet->getActiveSheet();
             $data = $worksheet->toArray();
-
             $kecamatan = str_replace(': ', '', $data[8][0]);
             $kelurahan = str_replace(': ', '', $data[9][0]);
             $tps = str_replace(': ', '', $data[10][0]);
-            foreach (array_slice($data, 13) as $key => $item) {
-                if (strlen($item[0]) === 4) {
-                    $nama = $item[1];
-                    $jkel = $item[3];
-                    $usia = substr($item[4], 2);
-                    $alamat = $item[5];
-                    $rt = substr($item[7], 3);
-                    $rw = substr($item[8], 3);
 
-                    $check = Pilkada::where('nama', $nama)->where('jkel', $jkel)->where('usia', $usia)->where('alamat', $alamat)->where('rt', $rt)->where('rw', $rw)->first();
-                    if ($check == null) {
-                        $n = new Pilkada();
-                        $n->kecamatan = $kecamatan;
-                        $n->kelurahan = $kelurahan;
-                        $n->tps = $tps;
-                        $n->nama = $nama;
-                        $n->jkel = $jkel;
-                        $n->usia = $usia;
-                        $n->alamat = $alamat;
-                        $n->rt = $rt;
-                        $n->rw = $rw;
-                        $n->save();
-                    } else {
-                    }
+            foreach (array_slice($data, 13) as $key => $item) {
+
+                if (strlen($item[0]) === 4) {
+                    $param = [
+                        'kecamatan' => $kecamatan,
+                        'kelurahan' => $kelurahan,
+                        'tps' => $tps,
+                        'nama' => $item[1],
+                        'jkel' => $item[3],
+                        'usia' => substr($item[4], 2),
+                        'alamat' => $item[5],
+                        'rt' => substr($item[7], 3),
+                        'rw' => substr($item[8], 3),
+                    ];
+
+                    Pilkada::create($param);
                 } else {
                 }
             }
         }
+        
+        foreach ($timur as $file) {
+
+            $path = base_path('public/dpttimur/' . $file->getRelativePathname());
+            $spreadsheet = IOFactory::load($path);
+            $worksheet = $spreadsheet->getActiveSheet();
+            $data = $worksheet->toArray();
+            $kecamatan = str_replace(': ', '', $data[8][0]);
+            $kelurahan = str_replace(': ', '', $data[9][0]);
+            $tps = str_replace(': ', '', $data[10][0]);
+
+            foreach (array_slice($data, 13) as $key => $item) {
+
+                if (strlen($item[0]) === 4) {
+                    $param = [
+                        'kecamatan' => $kecamatan,
+                        'kelurahan' => $kelurahan,
+                        'tps' => $tps,
+                        'nama' => $item[1],
+                        'jkel' => $item[3],
+                        'usia' => substr($item[4], 2),
+                        'alamat' => $item[5],
+                        'rt' => substr($item[7], 3),
+                        'rw' => substr($item[8], 3),
+                    ];
+
+                    Pilkada::create($param);
+                } else {
+                }
+            }
+        }
+
+        foreach ($barat as $file) {
+
+            $path = base_path('public/dptbarat/' . $file->getRelativePathname());
+            $spreadsheet = IOFactory::load($path);
+            $worksheet = $spreadsheet->getActiveSheet();
+            $data = $worksheet->toArray();
+            $kecamatan = str_replace(': ', '', $data[8][0]);
+            $kelurahan = str_replace(': ', '', $data[9][0]);
+            $tps = str_replace(': ', '', $data[10][0]);
+
+            foreach (array_slice($data, 13) as $key => $item) {
+
+                if (strlen($item[0]) === 4) {
+                    $param = [
+                        'kecamatan' => $kecamatan,
+                        'kelurahan' => $kelurahan,
+                        'tps' => $tps,
+                        'nama' => $item[1],
+                        'jkel' => $item[3],
+                        'usia' => substr($item[4], 2),
+                        'alamat' => $item[5],
+                        'rt' => substr($item[7], 3),
+                        'rw' => substr($item[8], 3),
+                    ];
+
+                    Pilkada::create($param);
+                } else {
+                }
+            }
+        }
+
+        foreach ($tengah as $file) {
+
+            $path = base_path('public/dpttengah/' . $file->getRelativePathname());
+            $spreadsheet = IOFactory::load($path);
+            $worksheet = $spreadsheet->getActiveSheet();
+            $data = $worksheet->toArray();
+            $kecamatan = str_replace(': ', '', $data[8][0]);
+            $kelurahan = str_replace(': ', '', $data[9][0]);
+            $tps = str_replace(': ', '', $data[10][0]);
+
+            foreach (array_slice($data, 13) as $key => $item) {
+
+                if (strlen($item[0]) === 4) {
+                    $param = [
+                        'kecamatan' => $kecamatan,
+                        'kelurahan' => $kelurahan,
+                        'tps' => $tps,
+                        'nama' => $item[1],
+                        'jkel' => $item[3],
+                        'usia' => substr($item[4], 2),
+                        'alamat' => $item[5],
+                        'rt' => substr($item[7], 3),
+                        'rw' => substr($item[8], 3),
+                    ];
+
+                    Pilkada::create($param);
+                } else {
+                }
+            }
+        }
+
+        foreach ($utara as $file) {
+
+            $path = base_path('public/dptutara/' . $file->getRelativePathname());
+            $spreadsheet = IOFactory::load($path);
+            $worksheet = $spreadsheet->getActiveSheet();
+            $data = $worksheet->toArray();
+            $kecamatan = str_replace(': ', '', $data[8][0]);
+            $kelurahan = str_replace(': ', '', $data[9][0]);
+            $tps = str_replace(': ', '', $data[10][0]);
+
+            foreach (array_slice($data, 13) as $key => $item) {
+
+                if (strlen($item[0]) === 4) {
+                    $param = [
+                        'kecamatan' => $kecamatan,
+                        'kelurahan' => $kelurahan,
+                        'tps' => $tps,
+                        'nama' => $item[1],
+                        'jkel' => $item[3],
+                        'usia' => substr($item[4], 2),
+                        'alamat' => $item[5],
+                        'rt' => substr($item[7], 3),
+                        'rw' => substr($item[8], 3),
+                    ];
+
+                    Pilkada::create($param);
+                } else {
+                }
+            }
+        }
+        dd('sukses');
     }
 }
