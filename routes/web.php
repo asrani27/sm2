@@ -189,7 +189,6 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::post('superadmin/koordinatortps/edit/{id}', [AdminController::class, 'koordinatortps_update']);
     Route::get('superadmin/koordinatortps/delete/{id}', [AdminController::class, 'koordinatortps_delete']);
 
-
     Route::get('superadmin/ketuart', [AdminController::class, 'rt']);
     Route::get('superadmin/ketuart/create', [AdminController::class, 'rt_create']);
     Route::post('superadmin/ketuart/create', [AdminController::class, 'rt_store']);
@@ -209,6 +208,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::post('superadmin/pendukung/store', [PendukungController::class, 'store']);
 
     Route::get('superadmin/laporan', [AdminController::class, 'laporan']);
+    Route::get('superadmin/laporan/filter', [AdminController::class, 'filter']);
     Route::get('laporan/print', [AdminController::class, 'print']);
     Route::get('laporan/print2', [AdminController::class, 'print2']);
 });

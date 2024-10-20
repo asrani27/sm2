@@ -14,6 +14,7 @@ use App\Models\Arsip;
 use App\Models\Surat;
 use App\Models\Kepala;
 use App\Models\Petugas;
+use App\Models\Pilkada;
 use App\Models\Kategori;
 use App\Models\Penyedia;
 use App\Models\Kecamatan;
@@ -555,15 +556,89 @@ class AdminController extends Controller
         return redirect('/superadmin/koordinatortps');
     }
 
-
-
     public function laporan()
     {
         Session::forget('success');
         Session::forget('error');
         $kelurahan = Kelurahan::get();
         $koordinator = Pendaftar::get();
-        return view('admin.laporan.index', compact('kelurahan', 'koordinator'));
+        $data = Pilkada::orderBy('id', 'DESC')->paginate(10);
+        $kecamatan = Kecamatan::get();
+        $gt = null;
+        return view('admin.laporan.index3', compact('kelurahan', 'koordinator', 'kecamatan', 'data', 'gt'));
+    }
+    public function filter()
+    {
+        $kecamatan = request()->get('kecamatan');
+        $kelurahan = request()->get('kelurahan');
+        $list = (int)request()->get('list');
+        $rt = request()->get('rt');
+        $tps = request()->get('tps');
+        $nama = request()->get('nama');
+
+        $query = Pilkada::query(); // Ganti dengan model yang sesuai
+
+        // Jika ada input kecamatan, tambahkan filter kecamatan
+        if ($kecamatan) {
+            $query->where('kecamatan', 'like', '%' . $kecamatan . '%');
+        }
+
+        // Filter berdasarkan kelurahan jika ada input kelurahan
+        if ($kelurahan) {
+            $query->where('kelurahan', 'like', '%' . $kelurahan . '%');
+        }
+        // Filter berdasarkan kelurahan jika ada input rt
+        if ($rt) {
+            $query->where('rt', 'like', '%' . $rt . '%');
+        }
+        // Filter berdasarkan kelurahan jika ada input tps
+        if ($tps) {
+            $query->where('tps', 'like', '%' . $tps . '%');
+        }
+
+        // Filter berdasarkan nama jika ada input nama
+        if ($nama) {
+            $query->where('nama', 'like', '%' . $nama . '%');
+        }
+
+
+        // Eksekusi query dan ambil hasil
+        $data = $query->paginate($list);
+
+
+        $gquery = Pilkada::query(); // Ganti dengan model yang sesuai
+
+        // Jika ada input kecamatan, tambahkan filter kecamatan
+        if ($kecamatan) {
+            $gquery->where('kecamatan', 'like', '%' . $kecamatan . '%');
+        }
+
+        // Filter berdasarkan kelurahan jika ada input kelurahan
+        if ($kelurahan) {
+            $gquery->where('kelurahan', 'like', '%' . $kelurahan . '%');
+        }
+        // Filter berdasarkan kelurahan jika ada input rt
+        if ($rt) {
+            $gquery->where('rt', 'like', '%' . $rt . '%');
+        }
+        // Filter berdasarkan kelurahan jika ada input tps
+        if ($tps) {
+            $gquery->where('tps', 'like', '%' . $tps . '%');
+        }
+
+        // Filter berdasarkan nama jika ada input nama
+        if ($nama) {
+            $gquery->where('nama', 'like', '%' . $nama . '%');
+        }
+
+        $gg = $gquery->groupBy('pengumpul_id');
+
+        $gt = $gquery->selectRaw('pengumpul_id, COUNT(*) as total');
+        $tc = $gquery->get()->count();
+
+        // $group = $query->groupBy('pengumpul_id');
+        //dd($data);
+        return view('admin.laporan.index3', compact('data', 'kecamatan', 'gt', 'tc'));
     }
 
     public function print()
