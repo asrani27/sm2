@@ -13,7 +13,7 @@ class PilkadaController extends Controller
 {
     public function index()
     {
-        $data = Pilkada::orderBy('id', 'DESC')->paginate(10);
+        $data = Pilkada::orderBy('id', 'DESC')->paginate(25);
         $kecamatan = Kecamatan::get();
         return view('admin.pilkada.index', compact('data', 'kecamatan'));
     }
@@ -45,6 +45,8 @@ class PilkadaController extends Controller
     {
         $kecamatan = request()->get('kecamatan');
         $kelurahan = request()->get('kelurahan');
+        $rt = request()->get('rt');
+        $tps = request()->get('tps');
         $nama = request()->get('nama');
 
         $query = Pilkada::query(); // Ganti dengan model yang sesuai
@@ -58,6 +60,14 @@ class PilkadaController extends Controller
         if ($kelurahan) {
             $query->where('kelurahan', 'like', '%' . $kelurahan . '%');
         }
+        // Filter berdasarkan kelurahan jika ada input rt
+        if ($rt) {
+            $query->where('rt', 'like', '%' . $rt . '%');
+        }
+        // Filter berdasarkan kelurahan jika ada input tps
+        if ($tps) {
+            $query->where('tps', 'like', '%' . $tps . '%');
+        }
 
         // Filter berdasarkan nama jika ada input nama
         if ($nama) {
@@ -65,7 +75,7 @@ class PilkadaController extends Controller
         }
 
         // Eksekusi query dan ambil hasil
-        $data = $query->paginate(10);
+        $data = $query->paginate(25);
 
 
         return view('admin.pilkada.index', compact('data', 'kecamatan'));
