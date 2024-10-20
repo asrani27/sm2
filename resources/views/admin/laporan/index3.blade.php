@@ -149,6 +149,10 @@
                   <td>{{number_format($item->total)}}</td>
                 </tr>
             @endforeach
+            <tr>
+              <td colspan="3">JUMLAH DPT</td>
+              <td>{{$gt->get()->sum('total')}}</td>
+            </tr>
           </table>
         </div>
       </div>
