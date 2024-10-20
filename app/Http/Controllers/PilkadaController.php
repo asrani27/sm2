@@ -13,7 +13,7 @@ class PilkadaController extends Controller
 {
     public function index()
     {
-        $data = Pilkada::orderBy('id', 'DESC')->paginate(25);
+        $data = Pilkada::orderBy('id', 'DESC')->paginate(20);
         $kecamatan = Kecamatan::get();
         return view('admin.pilkada.index', compact('data', 'kecamatan'));
     }
@@ -75,7 +75,7 @@ class PilkadaController extends Controller
         }
 
         // Eksekusi query dan ambil hasil
-        $data = $query->paginate(25);
+        $data = $query->paginate(20);
 
 
         return view('admin.pilkada.index', compact('data', 'kecamatan'));
