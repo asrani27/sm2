@@ -151,7 +151,7 @@
             @endforeach
             <tr>
               <td colspan="3">JUMLAH DPT</td>
-              <td>{{$gt->get()->sum('total')}}</td>
+              <td>{{number_format($gt->get()->sum('total'))}}</td>
             </tr>
           </table>
         </div>
