@@ -144,7 +144,7 @@
             @foreach ($gt->get() as $key => $item)
                 <tr>
                   <td>{{$key +1}}</td>
-                  <td>{{$item->pengumpul_id == null ? 'Belum di data' : $item->pengumpul->nama}}</td>
+                  <td>{{($item->pengumpul_id == null ? 'Belum di data' : $item->pengumpul->nama) == null ? '':'-'}}</td>
                   <td>{{$item->pengumpul_id == null ? '-' : $item->pengumpul->telp}}</td>
                   <td>{{number_format($item->total)}}</td>
                 </tr>
