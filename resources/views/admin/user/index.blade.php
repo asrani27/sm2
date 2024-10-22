@@ -31,8 +31,12 @@
                 <td>{{$item->username}}</td>
                 <td>{{$item->roles->first()->name}}</td>
                 <td>
+                  @if ($item->name === 'admin')
+                      
+                  @else
                   <a href="/superadmin/user/edit/{{$item->id}}" class="btn btn-flat btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>
                   <a href="/superadmin/user/delete/{{$item->id}}" class="btn btn-flat btn-sm btn-danger" onclick="return confirm('Yakin ingin dihapus?');"><i class="fa fa-trash"></i> Delete</a>
+                  @endif
                 </td>
               </tr>
               @endforeach
