@@ -4,28 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengumpul;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class PengumpulController extends Controller
 {
     public function set_pengumpul(Request $req)
     {
-        if (Pengumpul::where('is_aktif', 1)->first() == null) {
-            $set = Pengumpul::find($req->pengumpul_id);
-            $set->is_aktif = 1;
-            $set->save();
-            Session::flash('success', 'berhasil');
-            return back();
-        } else {
-            Pengumpul::where('is_aktif', 1)->first()->update([
-                'is_aktif' => null,
-            ]);
-            $set = Pengumpul::find($req->pengumpul_id);
-            $set->is_aktif = 1;
-            $set->save();
-            Session::flash('success', 'berhasil');
-            return back();
-        }
+        Auth::user()->update(['pengumpul_id' => $req->pengumpul_id]);
+        Session::flash('success', 'berhasil');
+        return back();
+        // if (Pengumpul::where('is_aktif', 1)->first() == null) {
+        //     $set = Pengumpul::find($req->pengumpul_id);
+        //     $set->is_aktif = 1;
+        //     $set->save();
+        //     Session::flash('success', 'berhasil');
+        //     return back();
+        // } else {
+        //     Pengumpul::where('is_aktif', 1)->first()->update([
+        //         'is_aktif' => null,
+        //     ]);
+        //     $set = Pengumpul::find($req->pengumpul_id);
+        //     $set->is_aktif = 1;
+        //     $set->save();
+        //     Session::flash('success', 'berhasil');
+        //     return back();
+        // }
     }
     public function index()
     {

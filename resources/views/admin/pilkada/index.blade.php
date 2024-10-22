@@ -11,7 +11,7 @@
       <select class="form-control" name="pengumpul_id" required>
         <option value="">-petugas-</option>
         @foreach (pengumpul() as $item)
-            <option value="{{$item->id}}" {{pengumpul_aktif() == $item->id ? 'selected':''}}>{{$item->nama}}</option>
+            <option value="{{$item->id}}" {{Auth::user()->pengumpul_id == $item->id ? 'selected':''}}>{{$item->nama}}</option>
         @endforeach
       </select>
     </div>
@@ -101,8 +101,8 @@
                 {{-- <th>Aksi</th> --}}
               </tr>
               @foreach ($data as $key => $item)
-              @if ($item->sahabat == 1)
-              <tr style="background-color: #b0deb0">
+              @if ($item->pengumpul_id != null)
+              <tr style="background-color: #d9f3d9">
               @else
               <tr>
               @endif

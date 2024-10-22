@@ -50,10 +50,10 @@
                         <label class="col-sm-2 control-label">Role/Hak Akses</label>
                         <div class="col-sm-10">
                             <select name="role" class="form-control" required>
-                                <option value="">-pilih-</option>
+                                {{-- <option value="">-pilih-</option> --}}
                                 <option value="superadmin">Superadmin</option>
-                                <option value="user">user</option>
-                                <option value="admin_wa">admin_wa</option>
+                                {{-- <option value="user">user</option>
+                                <option value="admin_wa">admin_wa</option> --}}
                             </select>
                         </div>
                     </div>

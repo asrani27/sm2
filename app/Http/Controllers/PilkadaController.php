@@ -7,6 +7,7 @@ use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use Smalot\PdfParser\Parser;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class PilkadaController extends Controller
@@ -35,7 +36,7 @@ class PilkadaController extends Controller
         } else {
             Pilkada::find($id)->update([
                 'pendukung' => 1,
-                'pengumpul_id' => pengumpul_aktif(),
+                'pengumpul_id' => Auth::user()->pengumpul_id,
             ]);
             return back();
         }
