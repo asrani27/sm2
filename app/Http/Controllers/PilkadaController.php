@@ -30,7 +30,7 @@ class PilkadaController extends Controller
     public function pendukung($id)
     {
 
-        if (pengumpul_aktif() == null) {
+        if (Auth::user()->pengumpul_id == null) {
             Session::flash('error', 'harap pilih petugas/pengumpul data');
             return back();
         } else {

@@ -7,23 +7,19 @@ use App\Models\RT;
 use App\Models\SM;
 use Carbon\Carbon;
 use App\Models\TPS;
-use App\Models\Kasi;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\Arsip;
-use App\Models\Surat;
-use App\Models\Kepala;
 use App\Models\Petugas;
 use App\Models\Pilkada;
-use App\Models\Kategori;
-use App\Models\Penyedia;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Pendaftar;
 use App\Models\Registrasi;
 use App\Models\Pemeriksaan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\KoordinatorTPS;
+use App\Exports\PendukungExport;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -569,76 +565,89 @@ class AdminController extends Controller
     }
     public function filter()
     {
-        $kecamatan = request()->get('kecamatan');
-        $kelurahan = request()->get('kelurahan');
-        $list = (int)request()->get('list');
-        $rt = request()->get('rt');
-        $tps = request()->get('tps');
-        $nama = request()->get('nama');
 
-        $query = Pilkada::query(); // Ganti dengan model yang sesuai
+        if (request()->get('button') == 'csv') {
 
-        // Jika ada input kecamatan, tambahkan filter kecamatan
-        if ($kecamatan) {
-            $query->where('kecamatan', 'like', '%' . $kecamatan . '%');
+            $kelurahan = request()->get('kelurahan');
+            if ($kelurahan == null) {
+                Session::flash('info', 'Harap Pilih Kelurahan');
+                return back();
+            } else {
+                $filename = str_replace(' ', '', strtoupper(Kelurahan::where('nama', $kelurahan)->first()->kecamatan->nama)) . '_' . str_replace(' ', '', strtoupper($kelurahan)) . '.csv';
+                return Excel::download(new PendukungExport, $filename, \Maatwebsite\Excel\Excel::CSV);
+            }
+        } else {
+            $kecamatan = request()->get('kecamatan');
+            $kelurahan = request()->get('kelurahan');
+            $list = (int)request()->get('list');
+            $rt = request()->get('rt');
+            $tps = request()->get('tps');
+            $nama = request()->get('nama');
+
+            $query = Pilkada::query(); // Ganti dengan model yang sesuai
+
+            // Jika ada input kecamatan, tambahkan filter kecamatan
+            if ($kecamatan) {
+                $query->where('kecamatan', 'like', '%' . $kecamatan . '%');
+            }
+
+            // Filter berdasarkan kelurahan jika ada input kelurahan
+            if ($kelurahan) {
+                $query->where('kelurahan', 'like', '%' . $kelurahan . '%');
+            }
+            // Filter berdasarkan kelurahan jika ada input rt
+            if ($rt) {
+                $query->where('rt', 'like', '%' . $rt . '%');
+            }
+            // Filter berdasarkan kelurahan jika ada input tps
+            if ($tps) {
+                $query->where('tps', 'like', '%' . $tps . '%');
+            }
+
+            // Filter berdasarkan nama jika ada input nama
+            if ($nama) {
+                $query->where('nama', 'like', '%' . $nama . '%');
+            }
+
+
+            // Eksekusi query dan ambil hasil
+            $data = $query->paginate($list);
+
+
+            $gquery = Pilkada::query(); // Ganti dengan model yang sesuai
+
+            // Jika ada input kecamatan, tambahkan filter kecamatan
+            if ($kecamatan) {
+                $gquery->where('kecamatan', 'like', '%' . $kecamatan . '%');
+            }
+
+            // Filter berdasarkan kelurahan jika ada input kelurahan
+            if ($kelurahan) {
+                $gquery->where('kelurahan', 'like', '%' . $kelurahan . '%');
+            }
+            // Filter berdasarkan kelurahan jika ada input rt
+            if ($rt) {
+                $gquery->where('rt', 'like', '%' . $rt . '%');
+            }
+            // Filter berdasarkan kelurahan jika ada input tps
+            if ($tps) {
+                $gquery->where('tps', 'like', '%' . $tps . '%');
+            }
+
+            // Filter berdasarkan nama jika ada input nama
+            if ($nama) {
+                $gquery->where('nama', 'like', '%' . $nama . '%');
+            }
+
+            $gg = $gquery->groupBy('pengumpul_id');
+
+            $gt = $gquery->selectRaw('pengumpul_id, COUNT(*) as total');
+            $tc = $gquery->get()->count();
+
+            // $group = $query->groupBy('pengumpul_id');
+            //dd($data);
+            return view('admin.laporan.index3', compact('data', 'kecamatan', 'gt', 'tc'));
         }
-
-        // Filter berdasarkan kelurahan jika ada input kelurahan
-        if ($kelurahan) {
-            $query->where('kelurahan', 'like', '%' . $kelurahan . '%');
-        }
-        // Filter berdasarkan kelurahan jika ada input rt
-        if ($rt) {
-            $query->where('rt', 'like', '%' . $rt . '%');
-        }
-        // Filter berdasarkan kelurahan jika ada input tps
-        if ($tps) {
-            $query->where('tps', 'like', '%' . $tps . '%');
-        }
-
-        // Filter berdasarkan nama jika ada input nama
-        if ($nama) {
-            $query->where('nama', 'like', '%' . $nama . '%');
-        }
-
-
-        // Eksekusi query dan ambil hasil
-        $data = $query->paginate($list);
-
-
-        $gquery = Pilkada::query(); // Ganti dengan model yang sesuai
-
-        // Jika ada input kecamatan, tambahkan filter kecamatan
-        if ($kecamatan) {
-            $gquery->where('kecamatan', 'like', '%' . $kecamatan . '%');
-        }
-
-        // Filter berdasarkan kelurahan jika ada input kelurahan
-        if ($kelurahan) {
-            $gquery->where('kelurahan', 'like', '%' . $kelurahan . '%');
-        }
-        // Filter berdasarkan kelurahan jika ada input rt
-        if ($rt) {
-            $gquery->where('rt', 'like', '%' . $rt . '%');
-        }
-        // Filter berdasarkan kelurahan jika ada input tps
-        if ($tps) {
-            $gquery->where('tps', 'like', '%' . $tps . '%');
-        }
-
-        // Filter berdasarkan nama jika ada input nama
-        if ($nama) {
-            $gquery->where('nama', 'like', '%' . $nama . '%');
-        }
-
-        $gg = $gquery->groupBy('pengumpul_id');
-
-        $gt = $gquery->selectRaw('pengumpul_id, COUNT(*) as total');
-        $tc = $gquery->get()->count();
-
-        // $group = $query->groupBy('pengumpul_id');
-        //dd($data);
-        return view('admin.laporan.index3', compact('data', 'kecamatan', 'gt', 'tc'));
     }
 
     public function print()

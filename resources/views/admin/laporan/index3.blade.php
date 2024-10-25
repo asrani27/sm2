@@ -50,9 +50,11 @@
         
       </select>
     </div>
-    <div class="col-lg-1">
+    <div class="col-lg-2">
       <div class="input-group input-group-md hidden-xs">
-        <button tpe="submit" class="btn btn-md btn-primary"><i class="fa fa-search"></i> FILTER</button>
+        <button tpe="submit" class="btn btn-md btn-primary" name="button" value="filter"><i class="fa fa-search"></i> FILTER</button>
+        &nbsp;
+        <button tpe="submit" class="btn btn-md btn-primary" name="button" value="csv"><i class="fa fa-file"></i> CSV</button>
        </div>
     </div>
     
@@ -97,8 +99,8 @@
                 {{-- <th>Aksi</th> --}}
               </tr>
               @foreach ($data as $key => $item)
-              @if ($item->sahabat == 1)
-              <tr style="background-color: #b0deb0">
+              @if ($item->pengumpul != null)
+              <tr style="background-color: #d9f3d9">
               @else
               <tr>
               @endif
