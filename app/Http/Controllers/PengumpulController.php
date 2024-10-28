@@ -33,7 +33,7 @@ class PengumpulController extends Controller
     }
     public function index()
     {
-        $data = Pengumpul::orderBy('id', 'DESC')->paginate(15);
+        $data = Pengumpul::orderBy('id', 'DESC')->get();
         return view('admin.pengumpul.index', compact('data'));
     }
     public function create()
