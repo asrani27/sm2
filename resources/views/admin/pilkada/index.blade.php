@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @push('css')
 
+  <!-- Select2 -->
+  <link rel="stylesheet" href="/assets/bower_components/select2/dist/css/select2.min.css">
 
 @endpush
 @section('content')
@@ -8,7 +10,7 @@
   <form method="post" action="/superadmin/pilkada/pengumpul">
     @csrf
     <div class="col-lg-3">
-      <select class="form-control" name="pengumpul_id" required>
+      <select class="form-control select2" name="pengumpul_id" required>
         <option value="">-petugas-</option>
         @foreach (pengumpul() as $item)
             <option value="{{$item->id}}" {{Auth::user()->pengumpul_id == $item->id ? 'selected':''}}>{{$item->nama}}</option>
@@ -25,7 +27,7 @@
   <form method="get" action="/superadmin/pilkada/filter">
     @csrf
     <div class="col-lg-3">
-      <select class="form-control" name="kecamatan">
+      <select class="form-control select2" name="kecamatan">
         <option value="">-kecamatan-</option>
         @foreach (kecamatan() as $item)
             <option value="{{$item->nama}}" {{request('kecamatan') == $item->nama ? 'selected':''}}>{{$item->nama}}</option>
@@ -33,7 +35,7 @@
       </select>
     </div>
     <div class="col-lg-3">
-      <select class="form-control" name="kelurahan">
+      <select class="form-control select2" name="kelurahan">
         <option value="">-kelurahan-</option>
         @foreach (kelurahan() as $item)
             <option value="{{$item->nama}}"  {{request('kelurahan') == $item->nama ? 'selected':''}}>{{$item->nama}}</option>
@@ -232,4 +234,13 @@
 @endsection
 @push('js')
 
+<!-- Select2 -->
+<script src="/assets/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+  })
+</script>
 @endpush
