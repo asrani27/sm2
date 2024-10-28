@@ -41,15 +41,18 @@ class ImportDPTCommand extends Command
      */
     public function handle()
     {
+        $this->info("Proses impor data dimulai...");
         $selatan = File::allFiles(public_path('dptselatan'));
         $timur = File::allFiles(public_path('dpttimur'));
         $barat = File::allFiles(public_path('dptbarat'));
         $tengah = File::allFiles(public_path('dpttengah'));
         $utara = File::allFiles(public_path('dptutara'));
         $basirihselatan = File::allFiles(public_path('basirihselatan'));
-        foreach ($utara as $utara) {
+        $sungaiandai = File::allFiles(public_path('sungaiandai'));
+        foreach ($sungaiandai as $file) {
 
-            $path = base_path('public/dptutara/' . $file->getRelativePathname());
+            $this->info("Memproses file: " . $file->getFilename());
+            $path = base_path('public/sungaiandai/' . $file->getRelativePathname());
             $spreadsheet = IOFactory::load($path);
             $worksheet = $spreadsheet->getActiveSheet();
             $data = $worksheet->toArray();
@@ -82,12 +85,15 @@ class ImportDPTCommand extends Command
 
                     if (!$exists) {
                         Pilkada::create($param);
+                        $this->info("Data disimpan untuk: " . $item[1]);
+                    } else {
+                        $this->info("Data sudah ada untuk: " . $item[1]);
                     }
                 } else {
                 }
             }
         }
 
-        dd('sukses');
+        $this->info("Proses impor data selesai.");
     }
 }
