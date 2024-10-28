@@ -50,7 +50,7 @@ class PilkadaController extends Controller
         $rt = request()->get('rt');
         $tps = request()->get('tps');
         $nama = request()->get('nama');
-        // dd($list);
+
         $query = Pilkada::query(); // Ganti dengan model yang sesuai
 
         // Jika ada input kecamatan, tambahkan filter kecamatan

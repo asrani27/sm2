@@ -47,9 +47,9 @@ class ImportDPTCommand extends Command
         $tengah = File::allFiles(public_path('dpttengah'));
         $utara = File::allFiles(public_path('dptutara'));
         $basirihselatan = File::allFiles(public_path('basirihselatan'));
-        foreach ($basirihselatan as $file) {
+        foreach ($utara as $utara) {
 
-            $path = base_path('public/basirihselatan/' . $file->getRelativePathname());
+            $path = base_path('public/dptutara/' . $file->getRelativePathname());
             $spreadsheet = IOFactory::load($path);
             $worksheet = $spreadsheet->getActiveSheet();
             $data = $worksheet->toArray();
@@ -72,7 +72,17 @@ class ImportDPTCommand extends Command
                         'rw' => substr($item[8], 3),
                     ];
 
-                    Pilkada::create($param);
+                    // Cek apakah data sudah ada
+                    $exists = Pilkada::where('kecamatan', $kecamatan)
+                        ->where('kelurahan', $kelurahan)
+                        ->where('tps', $tps)
+                        ->where('nama', $item[1])
+                        ->where('usia', substr($item[4], 2))
+                        ->exists();
+
+                    if (!$exists) {
+                        Pilkada::create($param);
+                    }
                 } else {
                 }
             }
