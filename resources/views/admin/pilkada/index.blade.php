@@ -41,19 +41,22 @@
       </select>
     </div>
     <div class="col-lg-1">
-      <div class="input-group input-group-md hidden-xs">
         <input type="text" name="rt" class="form-control pull-right" placeholder="RT" value="{{request('rt')}}">
-      </div>
     </div>
     <div class="col-lg-1">
-      <div class="input-group input-group-md hidden-xs">
         <input type="text" name="tps" class="form-control pull-right" placeholder="TPS" value="{{request('tps')}}">
-
-       </div>
     </div>
-    <div class="col-lg-2">
-      <div class="input-group input-group-md hidden-xs" style="width: 350px;">
-        <input type="text" name="nama" class="form-control pull-right" placeholder="Cari Nama" value="{{request('nama')}}">
+    <div class="col-lg-1">
+      <select class="form-control" name="list">
+        <option value="10" {{request('list') == '10' ? 'selected':''}}>10</option>
+        <option value="25" {{request('list') == '25' ? 'selected':''}}>25</option>
+        <option value="50" {{request('list') == '50' ? 'selected':''}}>50</option>
+        <option value="100" {{request('list') == '100' ? 'selected':''}}>100</option>
+      </select>
+    </div>
+    <div class="col-lg-3">
+      <div class="input-group input-group-md">
+        <input type="text" name="nama" class="form-control pull-right" placeholder="Nama/NIK" value="{{request('nama')}}">
 
         <div class="input-group-btn">
             <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>

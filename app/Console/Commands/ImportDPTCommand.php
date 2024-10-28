@@ -46,9 +46,10 @@ class ImportDPTCommand extends Command
         $barat = File::allFiles(public_path('dptbarat'));
         $tengah = File::allFiles(public_path('dpttengah'));
         $utara = File::allFiles(public_path('dptutara'));
-        foreach ($utara as $file) {
+        $basirihselatan = File::allFiles(public_path('basirihselatan'));
+        foreach ($basirihselatan as $file) {
 
-            $path = base_path('public/dptutara/' . $file->getRelativePathname());
+            $path = base_path('public/basirihselatan/' . $file->getRelativePathname());
             $spreadsheet = IOFactory::load($path);
             $worksheet = $spreadsheet->getActiveSheet();
             $data = $worksheet->toArray();

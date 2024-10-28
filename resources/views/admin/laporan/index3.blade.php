@@ -31,12 +31,12 @@
       </select>
     </div>
     <div class="col-lg-1">
-      <div class="input-group input-group-md hidden-xs">
+      <div class="input-group input-group-md">
         <input type="text" name="rt" class="form-control pull-right" placeholder="RT" value="{{request('rt')}}">
       </div>
     </div>
     <div class="col-lg-1">
-      <div class="input-group input-group-md hidden-xs">
+      <div class="input-group input-group-md">
         <input type="text" name="tps" class="form-control pull-right" placeholder="TPS" value="{{request('tps')}}">
 
        </div>
@@ -51,7 +51,7 @@
       </select>
     </div>
     <div class="col-lg-2">
-      <div class="input-group input-group-md hidden-xs">
+      <div class="input-group input-group-md">
         <button tpe="submit" class="btn btn-md btn-primary" name="button" value="filter"><i class="fa fa-search"></i> FILTER</button>
         &nbsp;
         <button tpe="submit" class="btn btn-md btn-primary" name="button" value="csv"><i class="fa fa-file"></i> CSV</button>
@@ -69,7 +69,7 @@
 
             {{-- <div class="box-tools">
               <form class="form" method="get" action="/superadmin/dpt/cari">
-                  <div class="input-group input-group-sm hidden-xs" style="width: 350px;">
+                  <div class="input-group input-group-sm" style="width: 350px;">
                   <input type="text" name="cari" class="form-control pull-right" placeholder="Cari NIK/Nama" value="{{old('cari')}}">
       
                   <div class="input-group-btn">
