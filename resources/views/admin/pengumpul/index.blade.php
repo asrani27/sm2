@@ -60,10 +60,10 @@
               </tr>
               </thead>
               <tbody>
-              
+                
                 @foreach ($data as $key => $item)
                 <tr>
-                  <td>{{$data->firstItem() + $key}}</td>
+                  <td>{{1 + $key}}</td>
                   <td>{{$item->nama}}</td>
                   <td>{{$item->telp}}</td>
                   <td>{{$item->pilkada->count()}}</td>
