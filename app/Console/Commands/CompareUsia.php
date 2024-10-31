@@ -13,7 +13,7 @@ class CompareUsia extends Command
      *
      * @var string
      */
-    protected $signature = 'commpareusia';
+    protected $signature = 'compareusia';
 
     /**
      * The console command description.
@@ -39,13 +39,14 @@ class CompareUsia extends Command
      */
     public function handle()
     {
-        $total = DB::table('your_table_name')->whereNotNull('tanggal_lahir')->count();
+        $total = DB::table('dpt')->whereNotNull('tanggal_lahir')->count();
         $this->info("Total records to process: $total");
 
         $counter = 0;
 
         DB::table('dpt')
             ->whereNotNull('tanggal_lahir')
+            ->orderBy('id')
             ->chunk(100, function ($records) use ($total, &$counter) {
                 foreach ($records as $record) {
                     list($tanggal, $bulan, $tahun) = explode('|', $record->tanggal_lahir);
@@ -53,7 +54,7 @@ class CompareUsia extends Command
                     $usia = $tanggal_lahir_carbon->age;
 
                     // Update usia di database
-                    DB::table('your_table_name')
+                    DB::table('dpt')
                         ->where('id', $record->id)
                         ->update(['usia' => $usia]);
 
