@@ -108,6 +108,7 @@
                 <th>Kelurahan</th>
                 <th>NIK</th>
                 <th>Nama</th>
+                <th>Usia</th>
                 <th>Tempat Lahir</th>
                 <th>RT</th>
                 <th>RW</th>
@@ -126,6 +127,7 @@
                 <td>{{$item->kelurahan}}</td>
                 <td>{{$item->nik}}</td>
                 <td>{{$item->nama}}</td>
+                <td>{{$item->usia}}</td>
                 <td>{{$item->tempat_lahir}}</td>
                 <td>{{$item->rt}}</td>
                 <td>{{$item->rw}}</td>
