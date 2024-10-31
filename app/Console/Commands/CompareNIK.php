@@ -85,7 +85,7 @@ class CompareNIK extends Command
                     $this->info("Updated nik for ID {$item->id}: {$nikMapping[$key]}");
                 }
             }
-            $this->info("Processed a batch of 100 records.");
+            $this->info("Processed a batch of 500 records.");
         });
 
         $this->info('Update completed!');
