@@ -72,7 +72,7 @@ class CompareNIK extends Command
                 $nikMapping[$key] = $item->nik;
             }
         }
-        // Proses data dpt_pilkada dalam batch menggunakan chunk
+
         DB::table('dpt_pilkada')->whereNull('nik')->orderBy('id')->chunk(100, function ($dpt_pilkada) use ($nikMapping) {
             foreach ($dpt_pilkada as $item) {
                 $key = "{$item->nama}_{$item->kelurahan}_{$item->rt}";
