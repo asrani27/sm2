@@ -38,29 +38,56 @@ class CompareNIK extends Command
      */
     public function handle()
     {
-        $dpt_pilkada = DB::table('dpt_pilkada')->whereNull('nik')->get();
+        // $dpt_pilkada = DB::table('dpt_pilkada')->whereNull('nik')->get();
 
-        $total = $dpt_pilkada->count();
-        $this->info("Total records to process: $total");
-        foreach ($dpt_pilkada as $key => $item) {
-            $data = DB::table('dpt')
-                ->where('nama', $item->nama)
-                ->where('kelurahan', $item->kelurahan)
-                ->where('rt', $item->rt)
-                ->get();
-            if (count($data) === 1) {
-                DB::table('dpt_pilkada')
-                    ->where('id', $item->id)
-                    ->update(['nik' => $data->first()->nik]);
+        // $total = $dpt_pilkada->count();
+        // $this->info("Total records to process: $total");
+        // foreach ($dpt_pilkada as $key => $item) {
+        //     $data = DB::table('dpt')
+        //         ->where('nama', $item->nama)
+        //         ->where('kelurahan', $item->kelurahan)
+        //         ->where('rt', $item->rt)
+        //         ->get();
+        //     if (count($data) === 1) {
+        //         DB::table('dpt_pilkada')
+        //             ->where('id', $item->id)
+        //             ->update(['nik' => $data->first()->nik]);
 
-                $this->info("Updated nik untuk {$item->nama}");
-            }
+        //         $this->info("Updated nik untuk {$item->nama}");
+        //     }
 
-            // Menampilkan progres setiap 100 item
-            if (($key + 1) % 100 === 0 || $key + 1 === $total) {
-                $this->info("Processed $key of $total records.");
+        //     // Menampilkan progres setiap 100 item
+        //     if (($key + 1) % 100 === 0 || $key + 1 === $total) {
+        //         $this->info("Processed $key of $total records.");
+        //     }
+        // }
+        // $this->info('Update completed!');
+
+        $dataDpt = DB::table('dpt')->select('nama', 'kelurahan', 'rt', 'nik')->get();
+        $nikMapping = [];
+        foreach ($dataDpt as $item) {
+            $key = "{$item->nama}_{$item->kelurahan}_{$item->rt}";
+            // Pastikan hanya ada satu nik untuk setiap kombinasi nama, kelurahan, rt
+            if (!isset($nikMapping[$key])) {
+                $nikMapping[$key] = $item->nik;
             }
         }
+        // Proses data dpt_pilkada dalam batch menggunakan chunk
+        DB::table('dpt_pilkada')->whereNull('nik')->orderBy('id')->chunk(100, function ($dpt_pilkada) use ($nikMapping) {
+            foreach ($dpt_pilkada as $item) {
+                $key = "{$item->nama}_{$item->kelurahan}_{$item->rt}";
+
+
+                if (isset($nikMapping[$key])) {
+                    DB::table('dpt_pilkada')
+                        ->where('id', $item->id)
+                        ->update(['nik' => $nikMapping[$key]]);
+                    $this->info("Updated nik for ID {$item->id}: {$nikMapping[$key]}");
+                }
+            }
+            $this->info("Processed a batch of 100 records.");
+        });
+
         $this->info('Update completed!');
     }
 }
