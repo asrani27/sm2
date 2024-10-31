@@ -10,13 +10,34 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 class PendukungExport implements FromCollection, WithHeadings, WithMapping
 {
 
+    protected $kelurahan;
+    protected $tps;
     private $number = 0;
+
+    // Konstruktor untuk menerima parameter pencarian
+    public function __construct($kelurahan, $tps = null)
+    {
+        $this->kelurahan = $kelurahan;
+        $this->tps = $tps;
+    }
+
     /**
      * @return \Illuminate\Support\Collection
      */
     public function collection()
     {
-        return Pilkada::where('pengumpul_id', '!=', null)->select('nama', 'nik', 'tps')->get();
+
+        $query = Pilkada::select('nama', 'nik', 'tps')
+            ->where('kelurahan', strtoupper($this->kelurahan))
+            ->orderBy('tps');
+
+        if (!empty($this->tps)) {
+            $query->where('tps', $this->tps);
+        }
+
+        $results = $query->get();
+        return $results;
+        // return Pilkada::where('pengumpul_id', '!=', null)->select('nama', 'nik', 'tps')->get();
     }
     public function headings(): array
     {

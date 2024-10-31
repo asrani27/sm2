@@ -63,10 +63,10 @@ class CompareNIK extends Command
         // }
         // $this->info('Update completed!');
 
-        $dataDpt = DB::table('dpt')->select('nama', 'kelurahan', 'rt', 'nik')->get();
+        $dataDpt = DB::table('dpt')->select('nama', 'kelurahan', 'usia', 'nik')->get();
         $nikMapping = [];
         foreach ($dataDpt as $item) {
-            $key = "{$item->nama}_{$item->kelurahan}_{$item->rt}";
+            $key = "{$item->nama}_{$item->kelurahan}_{$item->usia}";
             // Pastikan hanya ada satu nik untuk setiap kombinasi nama, kelurahan, rt
             if (!isset($nikMapping[$key])) {
                 $nikMapping[$key] = $item->nik;
@@ -75,7 +75,7 @@ class CompareNIK extends Command
 
         DB::table('dpt_pilkada')->whereNull('nik')->orderBy('id')->chunk(100, function ($dpt_pilkada) use ($nikMapping) {
             foreach ($dpt_pilkada as $item) {
-                $key = "{$item->nama}_{$item->kelurahan}_{$item->rt}";
+                $key = "{$item->nama}_{$item->kelurahan}_{$item->usia}";
 
 
                 if (isset($nikMapping[$key])) {

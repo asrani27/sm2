@@ -569,12 +569,14 @@ class AdminController extends Controller
         if (request()->get('button') == 'csv') {
 
             $kelurahan = request()->get('kelurahan');
+            $tps = request()->get('tps');
             if ($kelurahan == null) {
                 Session::flash('info', 'Harap Pilih Kelurahan');
                 return back();
             } else {
+
                 $filename = str_replace(' ', '', strtoupper(Kelurahan::where('nama', $kelurahan)->first()->kecamatan->nama)) . '_' . str_replace(' ', '', strtoupper($kelurahan)) . '.csv';
-                return Excel::download(new PendukungExport, $filename, \Maatwebsite\Excel\Excel::CSV);
+                return Excel::download(new PendukungExport($kelurahan, $tps), $filename, \Maatwebsite\Excel\Excel::CSV);
             }
         } else {
             $kecamatan = request()->get('kecamatan');
