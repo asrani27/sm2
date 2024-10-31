@@ -73,7 +73,7 @@ class PilkadaController extends Controller
 
         // Filter berdasarkan nama jika ada input nama
         if ($nama) {
-            $query->where('nama', 'like', '%' . $nama . '%')->where('nik', 'like', '%' . $nama . '%');
+            $query->where('nama', 'like', '%' . $nama . '%')->orWhere('nik', 'like', '%' . $nama . '%');
         }
 
         // Eksekusi query dan ambil hasil
