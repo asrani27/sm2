@@ -68,6 +68,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::get('superadmin/pilkada/pendukung/delete/{id}', [PilkadaController::class, 'deletePendukung']);
 
     Route::get('superadmin/refresh', [DPTController::class, 'refresh']);
+    Route::get('superadmin/dpt/filter', [DPTController::class, 'filter']);
     Route::get('superadmin/dpt', [DPTController::class, 'index']);
     Route::get('superadmin/dpt/add', [DPTController::class, 'add']);
     Route::post('superadmin/dpt/add', [DPTController::class, 'store']);

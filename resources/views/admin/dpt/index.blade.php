@@ -3,7 +3,7 @@
     
 @endpush
 @section('content')
-<div class="row">
+{{-- <div class="row">
   
   <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="info-box">
@@ -34,14 +34,60 @@
   </div>
   @endforeach
   
+</div> --}}
+<hr/>
+<div class="row">
+  <form method="get" action="/superadmin/dpt/filter">
+    @csrf
+    <div class="col-lg-3">
+      <select class="form-control select2" name="kecamatan">
+        <option value="">-kecamatan-</option>
+        @foreach (kecamatan() as $item)
+            <option value="{{$item->nama}}" {{request('kecamatan') == $item->nama ? 'selected':''}}>{{$item->nama}}</option>
+        @endforeach
+      </select>
+    </div>
+    <div class="col-lg-3">
+      <select class="form-control select2" name="kelurahan">
+        <option value="">-kelurahan-</option>
+        @foreach (kelurahan() as $item)
+            <option value="{{$item->nama}}"  {{request('kelurahan') == $item->nama ? 'selected':''}}>{{$item->nama}}</option>
+        @endforeach
+      </select>
+    </div>
+    <div class="col-lg-1">
+        <input type="text" name="rt" class="form-control pull-right" placeholder="RT" value="{{request('rt')}}">
+    </div>
+    <div class="col-lg-1">
+        <input type="text" name="tps" class="form-control pull-right" placeholder="TPS" value="{{request('tps')}}">
+    </div>
+    <div class="col-lg-1">
+      <select class="form-control" name="list">
+        <option value="10" {{request('list') == '10' ? 'selected':''}}>10</option>
+        <option value="25" {{request('list') == '25' ? 'selected':''}}>25</option>
+        <option value="50" {{request('list') == '50' ? 'selected':''}}>50</option>
+        <option value="100" {{request('list') == '100' ? 'selected':''}}>100</option>
+      </select>
+    </div>
+    <div class="col-lg-3">
+      <div class="input-group input-group-md">
+        <input type="text" name="nama" class="form-control pull-right" placeholder="NIK / Nama" value="{{request('nama')}}">
+
+        <div class="input-group-btn">
+            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+        </div>
+        </div>
+    </div>
+  </form>
 </div>
+<hr>
 <div class="row">
     <div class="col-md-12">
         <div class="box box-primary">
           <div class="box-header">
             <i class="ion ion-clipboard"></i><h3 class="box-title">Data DPT </h3>
 
-            <div class="box-tools">
+            {{-- <div class="box-tools">
               <form class="form" method="get" action="/superadmin/dpt/cari">
                   <div class="input-group input-group-sm hidden-xs" style="width: 350px;">
                   <input type="text" name="cari" class="form-control pull-right" placeholder="Cari NIK/Nama" value="{{old('cari')}}">
@@ -51,7 +97,7 @@
                   </div>
                   </div>
               </form>
-            </div>
+            </div> --}}
           </div>
           <!-- /.box-header -->
           <div class="box-body table-responsive no-padding">
