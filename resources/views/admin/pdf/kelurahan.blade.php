@@ -28,9 +28,9 @@
             </tr>
         @endforeach
         <tr style="font-weight: bold; background-color:rgb(245, 179, 132)">
-            <td></td>
-            <td></td>
             <td>TOTAL</td>
+            <td>{{$data->sum('jumlah_terdata')}}</td>
+            <td>{{$data->sum('jumlah_belum_terdata')}}</td>
             <td>{{$data->sum('total')}}</td>
         </tr>
     </table>
