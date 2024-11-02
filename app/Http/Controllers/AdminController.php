@@ -17,10 +17,12 @@ use App\Models\Pendaftar;
 use App\Models\Registrasi;
 use App\Models\Pemeriksaan;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Models\KoordinatorTPS;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Exports\PendukungExport;
+use App\Models\Pengumpul;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
@@ -652,6 +654,21 @@ class AdminController extends Controller
         }
     }
 
+    public function perpetugas()
+    {
+        $petugas = Pengumpul::find(request()->get('pengumpul'));
+        $collection = Pilkada::where('pengumpul_id', request()->get('pengumpul'))->get(); // Ganti $petugasId dengan nilai yang sesuai
+
+        $data = $collection->groupBy('kelurahan')->map(function ($items) {
+            return $items->groupBy('rt')->map(function ($groupedByRT) {
+                return $groupedByRT->count();
+            })->sortKeys();
+        });
+
+        $pdf = Pdf::loadView('admin.pdf.petugas', compact('data', 'petugas'));
+        return $pdf->stream();
+        //        dd($petugas);
+    }
     public function print()
     {
         $kelurahan = Kelurahan::get();

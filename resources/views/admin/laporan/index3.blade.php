@@ -1,21 +1,50 @@
 @extends('layouts.app')
 @push('css')
-
-
+  <!-- Select2 -->
+  <link rel="stylesheet" href="/assets/bower_components/select2/dist/css/select2.min.css">
 @endpush
 @section('content')
 <div class="row">
-  
     <div class="col-lg-3">
       <h2>LAPORAN</h2>
     </div>
 </div>
 <hr>
 <div class="row">
+  <form method="get" action="/superadmin/laporan/perpetugas" target="_blank">
+    @csrf
+
+    {{-- <div class="col-lg-3">
+      <select class="form-control select2" name="kelurahan" required>
+        <option value="">-pilih kelurahan-</option>
+        @foreach (kelurahan() as $item)
+            <option value="{{$item->nama}}"  {{request('kelurahan') == $item->nama ? 'selected':''}}>{{$item->nama}}</option>
+        @endforeach
+      </select>
+    </div> --}}
+    <div class="col-lg-3">
+      <select class="form-control select2" name="pengumpul" required>
+        <option value="">-Laporan Per Petugas-</option>
+        @foreach (pengumpul() as $item)
+            <option value="{{$item->id}}" {{request('pengumpul') == $item->nama ? 'selected':''}}>{{$item->nama}}</option>
+        @endforeach
+      </select>
+    </div>
+    <div class="col-lg-2">
+      <div class="input-group input-group-md">
+        <button tpe="submit" class="btn btn-md btn-primary" name="button" value="filter"><i class="fa fa-search"></i> PREVIEW</button>
+        
+       </div>
+    </div>
+    
+  </form>
+</div>
+<hr>
+<div class="row">
   <form method="get" action="/superadmin/laporan/filter">
     @csrf
     <div class="col-lg-3">
-      <select class="form-control" name="kecamatan">
+      <select class="form-control select2" name="kecamatan">
         <option value="">-kecamatan-</option>
         @foreach (kecamatan() as $item)
             <option value="{{$item->nama}}" {{request('kecamatan') == $item->nama ? 'selected':''}}>{{$item->nama}}</option>
@@ -23,7 +52,7 @@
       </select>
     </div>
     <div class="col-lg-3">
-      <select class="form-control" name="kelurahan">
+      <select class="form-control select2" name="kelurahan">
         <option value="">-kelurahan-</option>
         @foreach (kelurahan() as $item)
             <option value="{{$item->nama}}"  {{request('kelurahan') == $item->nama ? 'selected':''}}>{{$item->nama}}</option>
@@ -164,4 +193,13 @@
 @endsection
 @push('js')
 
+<!-- Select2 -->
+<script src="/assets/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+  })
+</script>
 @endpush
