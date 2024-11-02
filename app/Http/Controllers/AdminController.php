@@ -685,6 +685,7 @@ class AdminController extends Controller
             )
             ->where('kelurahan', $kelurahan)
             ->groupBy('kelurahan', 'rt')
+            ->orderBy('rt')
             ->get();
 
         $pdf = Pdf::loadView('admin.pdf.kelurahan', compact('data', 'kelurahan'));
