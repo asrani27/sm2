@@ -11,6 +11,27 @@
 </div>
 <hr>
 <div class="row">
+  <form method="get" action="/superadmin/laporan/perkelurahan" target="_blank">
+    @csrf
+    <div class="col-lg-3">
+      <select class="form-control select2" name="kelurahan" required>
+        <option value="">-Laporan Per Kelurahan-</option>
+        @foreach (kelurahan() as $item)
+            <option value="{{$item->nama}}" {{request('kelurahan') == $item->nama ? 'selected':''}}>{{$item->nama}}</option>
+        @endforeach
+      </select>
+    </div>
+    <div class="col-lg-2">
+      <div class="input-group input-group-md">
+        <button tpe="submit" class="btn btn-md btn-primary" name="button" value="filter"><i class="fa fa-search"></i> PREVIEW</button>
+        
+       </div>
+    </div>
+    
+  </form>
+</div>
+<hr>
+<div class="row">
   <form method="get" action="/superadmin/laporan/perpetugas" target="_blank">
     @csrf
 

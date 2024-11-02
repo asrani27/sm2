@@ -14,13 +14,14 @@ use App\Models\Pilkada;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Pendaftar;
+use App\Models\Pengumpul;
 use App\Models\Registrasi;
 use App\Models\Pemeriksaan;
 use Illuminate\Http\Request;
 use App\Models\KoordinatorTPS;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Exports\PendukungExport;
-use App\Models\Pengumpul;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
@@ -668,6 +669,26 @@ class AdminController extends Controller
         $pdf = Pdf::loadView('admin.pdf.petugas', compact('data', 'petugas'));
         return $pdf->stream();
         //        dd($petugas);
+    }
+
+    public function perkelurahan()
+    {
+        $kelurahan = strtoupper(request()->get('kelurahan'));
+
+        $data = DB::table('dpt_pilkada')
+            ->select(
+                'kelurahan',
+                'rt',
+                DB::raw('COUNT(*) as total'),
+                DB::raw('SUM(CASE WHEN pengumpul_id IS NOT NULL THEN 1 ELSE 0 END) as jumlah_terdata'),
+                DB::raw('SUM(CASE WHEN pengumpul_id IS NULL THEN 1 ELSE 0 END) as jumlah_belum_terdata')
+            )
+            ->where('kelurahan', $kelurahan)
+            ->groupBy('kelurahan', 'rt')
+            ->get();
+
+        $pdf = Pdf::loadView('admin.pdf.kelurahan', compact('data', 'kelurahan'));
+        return $pdf->stream();
     }
     public function print()
     {
