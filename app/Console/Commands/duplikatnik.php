@@ -49,7 +49,7 @@ class duplikatnik extends Command
                 ->groupBy('nik')
                 ->havingRaw('COUNT(nik) > 1')
                 ->pluck('nik'); // Ambil hanya nilai NIK
-
+            dd($duplicateNiks->count());
             if ($duplicateNiks->isEmpty()) {
                 $this->info('Tidak ada NIK yang duplikat.');
                 DB::rollBack();
