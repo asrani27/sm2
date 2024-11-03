@@ -42,6 +42,7 @@ class duplikatnik extends Command
             ->select('nik', DB::raw('COUNT(*) as count'))
             ->groupBy('nik')
             ->having('count', '>', 1)
+            ->orderBy('id')
             ->chunk(100, function ($duplicateNiks) {
                 foreach ($duplicateNiks as $duplicateNik) {
                     $this->info("Proses NIK: {$duplicateNik->nik}");
