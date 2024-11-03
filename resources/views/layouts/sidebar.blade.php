@@ -32,7 +32,7 @@
       @else
       <li class="{{ (request()->is('superadmin/pengumpul*')) ? 'active' : '' }}"><a href="/superadmin/pengumpul"><i class="fa fa-users"></i> <span>Petugas Pengumpul Data</span></a></li>
         <li class="{{ (request()->is('superadmin/pilkada*')) ? 'active' : '' }}"><a href="/superadmin/pilkada"><i class="fa fa-users"></i> <span>Data DPT Pilkada</span></a></li>
-        <li class="{{ (request()->is('superadmin/laporan*')) ? 'active' : '' }}"><a href="/superadmin/laporan"><i class="fa fa-file"></i> <span>Laporan</span></a></li>
+        
         <li><a href="/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
       @endif
     @else
