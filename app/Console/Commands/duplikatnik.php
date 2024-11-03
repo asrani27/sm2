@@ -49,20 +49,23 @@ class duplikatnik extends Command
                 ->groupBy('nik')
                 ->havingRaw('COUNT(nik) > 1')
                 ->pluck('nik'); // Ambil hanya nilai NIK
-            dd($duplicateNiks->count());
+
             if ($duplicateNiks->isEmpty()) {
                 $this->info('Tidak ada NIK yang duplikat.');
                 DB::rollBack();
                 return;
             }
-
+            $this->info('NIK yang duplikat:');
+            foreach ($duplicateNiks as $nik) {
+                $this->line($nik);
+            }
             // Step 2: Update semua NIK yang terduplikasi menjadi NULL
-            DB::table('dpt_pilkada')
-                ->whereIn('nik', $duplicateNiks)
-                ->update(['nik' => null]);
+            // DB::table('dpt_pilkada')
+            //     ->whereIn('nik', $duplicateNiks)
+            //     ->update(['nik' => null]);
 
-            DB::commit();
-            $this->info("Semua NIK duplikat telah di-NULL-kan.");
+            // DB::commit();
+            // $this->info("Semua NIK duplikat telah di-NULL-kan.");
         } catch (\Exception $e) {
             DB::rollBack(); // Batalkan jika ada kesalahan
             $this->error("Terjadi kesalahan: " . $e->getMessage());
