@@ -681,7 +681,9 @@ class AdminController extends Controller
                 'rt',
                 DB::raw('COUNT(*) as total'),
                 DB::raw('SUM(CASE WHEN pengumpul_id IS NOT NULL THEN 1 ELSE 0 END) as jumlah_terdata'),
-                DB::raw('SUM(CASE WHEN pengumpul_id IS NULL THEN 1 ELSE 0 END) as jumlah_belum_terdata')
+                DB::raw('SUM(CASE WHEN pengumpul_id IS NULL THEN 1 ELSE 0 END) as jumlah_belum_terdata'),
+                DB::raw('ROUND(SUM(CASE WHEN pengumpul_id IS NOT NULL THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) as persentase_terdata'),
+                DB::raw('ROUND(SUM(CASE WHEN pengumpul_id IS NULL THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) as persentase_belum_terdata')
             )
             ->where('kelurahan', $kelurahan)
             ->groupBy('kelurahan', 'rt')

@@ -11,10 +11,16 @@
     <h3>KELURAHAN : {{strtoupper($kelurahan)}}</h3>
     <table width="100%" border="1" cellpadding="5" cellspacing="0">
         <tr>
-            <td>No RT</td>
-            <td>Jumlah Terdata</td>
-            <td>Jumlah Belum Di Data</td>
-            <td>Total</td>
+            <td rowspan="2">No RT</td>
+            <td colspan="2">Terdata</td>
+            <td colspan="2">Belum Di Data</td>
+            <td rowspan="2">Total</td>
+        </tr>
+        <tr>
+            <td>Jumlah</td>
+            <td>Persentase</td>
+            <td>Jumlah</td>
+            <td>Persentase</td>
         </tr>
         @php
             $no =1;
@@ -23,14 +29,18 @@
             <tr>
                 <td>{{$item->rt}}</td>
                 <td>{{$item->jumlah_terdata}}</td>
+                <td>{{(int)$item->persentase_terdata}} %</td>
                 <td>{{$item->jumlah_belum_terdata}}</td>
+                <td>{{(int)$item->persentase_belum_terdata}} %</td>
                 <td>{{$item->total}}</td>
             </tr>
         @endforeach
         <tr style="font-weight: bold; background-color:rgb(245, 179, 132)">
             <td>TOTAL</td>
             <td>{{$data->sum('jumlah_terdata')}}</td>
+            <td>{{($data->sum('jumlah_terdata')/$data->sum('jumlah_belum_terdata')) * 100}}</td>
             <td>{{$data->sum('jumlah_belum_terdata')}}</td>
+            <td>{{($data->sum('jumlah_belum_terdata')/$data->sum('jumlah_belum_terdata')) * 100}}</td>
             <td>{{$data->sum('total')}}</td>
         </tr>
     </table>
