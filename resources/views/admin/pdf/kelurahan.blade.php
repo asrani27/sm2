@@ -44,7 +44,7 @@
         <tr style="font-weight: bold; background-color:rgb(182, 170, 162)">
             <td>TOTAL</td>
             <td>{{$data->sum('jumlah_terdata')}}</td>
-            <td>{{($data->sum('jumlah_terdata')/$data->sum('total')) * 100}}</td>
+            <td>{{ROUND(($data->sum('jumlah_terdata')/$data->sum('total')) * 100)}}</td>
             <td>{{$data->sum('jumlah_belum_terdata')}}</td>
             <td>{{($data->sum('jumlah_belum_terdata')/$data->sum('total')) * 100}}</td>
             <td>{{$data->sum('total')}}</td>
