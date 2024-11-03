@@ -38,11 +38,9 @@ class duplikatnik extends Command
      */
     public function handle()
     {
-        $duplicateNiks = DB::table('dpt_pilkada')
-            ->select('nik', DB::raw('COUNT(*) as count'))
-            ->groupBy('nik')
-            ->having('count', '>', 1)
-            ->orderBy('id')
+        $duplicateNiks = DB::table(DB::raw('(SELECT nik, COUNT(*) as count FROM dpt_pilkada GROUP BY nik HAVING count > 1) as duplicates'))
+
+            ->orderBy('nik')
             ->chunk(100, function ($duplicateNiks) {
                 foreach ($duplicateNiks as $duplicateNik) {
                     $this->info("Proses NIK: {$duplicateNik->nik}");
