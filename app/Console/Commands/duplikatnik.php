@@ -42,21 +42,22 @@ class duplikatnik extends Command
             ->select('nik', DB::raw('COUNT(*) as count'))
             ->groupBy('nik')
             ->having('count', '>', 1)
-            ->get();
+            ->chunkById(100, function ($duplicateNiks) {
+                foreach ($duplicateNiks as $duplicateNik) {
+                    $this->info("Proses NIK: {$duplicateNik->nik}");
 
-        if ($duplicateNiks->isEmpty()) {
-            $this->info('Tidak ada NIK yang duplikat.');
-        } else {
-            $this->info('Daftar NIK yang duplikat:');
-            foreach ($duplicateNiks as $duplicateNik) {
-                $this->line("NIK: {$duplicateNik->nik} - Jumlah: {$duplicateNik->count}");
+                    $ids = DB::table('dpt_pilkada')
+                        ->where('nik', $duplicateNik->nik)
+                        ->pluck('id')
+                        ->toArray();
 
-                DB::table('dpt_pilkada')
-                    ->where('nik', $duplicateNik->nik)
-                    ->update(['nik' => null]);
+                    // Batasi update ke ID selain yang pertama
+                    $keepFirstId = array_shift($ids);
 
-                $this->info("NIK {$duplicateNik->nik} telah di-NULL-kan.");
-            }
-        }
+                    DB::table('dpt_pilkada')
+                        ->whereIn('id', $ids)
+                        ->update(['nik' => null]);
+                }
+            });
     }
 }

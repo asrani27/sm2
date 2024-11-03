@@ -144,6 +144,8 @@
       </div>
 </div>
 
+@if (Auth::user()->username == 'admin')
+    
 <div class="row">
   <div class="col-md-3">
     <div class="box box-success box-solid">
@@ -230,6 +232,7 @@
     <!-- /.box -->
   </div>
 </div>
+@endif
 
 @endsection
 @push('js')
