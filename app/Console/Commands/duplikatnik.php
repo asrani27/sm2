@@ -38,34 +38,11 @@ class duplikatnik extends Command
      */
     public function handle()
     {
-
-        DB::beginTransaction();
-
-        try {
-            // Step 1: Ambil NIK yang duplikat beserta salah satu ID yang akan dipertahankan
-
-            $duplicateNiks = DB::table('dpt_pilkada')
-                ->select('nik')
-                ->groupBy('nik')
-                ->havingRaw('COUNT(nik) > 1')
-                ->pluck('nik'); // Ambil hanya nilai NIK
-
-            if ($duplicateNiks->isEmpty()) {
-                $this->info('Tidak ada NIK yang duplikat.');
-                DB::rollBack();
-                return;
-            }
-
-            // Step 2: Update semua NIK yang terduplikasi menjadi NULL
-            DB::table('dpt_pilkada')
-                ->whereIn('nik', $duplicateNiks)
-                ->update(['nik' => null]);
-
-            DB::commit();
-            $this->info("Semua NIK duplikat telah di-NULL-kan.");
-        } catch (\Exception $e) {
-            DB::rollBack(); // Batalkan jika ada kesalahan
-            $this->error("Terjadi kesalahan: " . $e->getMessage());
-        }
+        $duplicateNiks = DB::table('dpt_pilkada')
+            ->select('nik')
+            ->groupBy('nik')
+            ->havingRaw('COUNT(nik) > 1')
+            ->pluck('nik'); // Ambil hanya nilai NIK
+        dd($duplicateNiks->count());
     }
 }
