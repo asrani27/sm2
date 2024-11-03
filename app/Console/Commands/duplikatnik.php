@@ -50,6 +50,12 @@ class duplikatnik extends Command
             $this->info('Daftar NIK yang duplikat:');
             foreach ($duplicateNiks as $duplicateNik) {
                 $this->line("NIK: {$duplicateNik->nik} - Jumlah: {$duplicateNik->count}");
+
+                DB::table('dpt_pilkada')
+                    ->where('nik', $duplicateNik->nik)
+                    ->update(['nik' => null]);
+
+                $this->info("NIK {$duplicateNik->nik} telah di-NULL-kan.");
             }
         }
     }
