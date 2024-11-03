@@ -38,25 +38,34 @@ class duplikatnik extends Command
      */
     public function handle()
     {
-        $duplicateNiks = DB::table('dpt_pilkada')
-            ->select('nik', DB::raw('COUNT(*) as count'))
-            ->groupBy('nik')
-            ->having('count', '>', 1)
-            ->get();
 
-        if ($duplicateNiks->isEmpty()) {
-            $this->info('Tidak ada NIK yang duplikat.');
-        } else {
-            $this->info('Daftar NIK yang duplikat:');
-            foreach ($duplicateNiks as $duplicateNik) {
-                $this->line("NIK: {$duplicateNik->nik} - Jumlah: {$duplicateNik->count}");
+        DB::beginTransaction();
 
-                DB::table('dpt_pilkada')
-                    ->where('nik', $duplicateNik->nik)
-                    ->update(['nik' => null]);
+        try {
+            // Step 1: Ambil NIK yang duplikat beserta salah satu ID yang akan dipertahankan
 
-                $this->info("NIK {$duplicateNik->nik} telah di-NULL-kan.");
+            $duplicateNiks = DB::table('dpt_pilkada')
+                ->select('nik')
+                ->groupBy('nik')
+                ->havingRaw('COUNT(nik) > 1')
+                ->pluck('nik'); // Ambil hanya nilai NIK
+
+            if ($duplicateNiks->isEmpty()) {
+                $this->info('Tidak ada NIK yang duplikat.');
+                DB::rollBack();
+                return;
             }
+
+            // Step 2: Update semua NIK yang terduplikasi menjadi NULL
+            DB::table('dpt_pilkada')
+                ->whereIn('nik', $duplicateNiks)
+                ->update(['nik' => null]);
+
+            DB::commit();
+            $this->info("Semua NIK duplikat telah di-NULL-kan.");
+        } catch (\Exception $e) {
+            DB::rollBack(); // Batalkan jika ada kesalahan
+            $this->error("Terjadi kesalahan: " . $e->getMessage());
         }
     }
 }
