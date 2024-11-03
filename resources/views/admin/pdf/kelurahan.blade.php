@@ -28,7 +28,7 @@
         @foreach ($data as $key => $item)
         @if ((int)$item->persentase_terdata < 40)
             
-        <tr style="font-weight: bold; background-color:rgb(245, 179, 132)">
+        <tr style="font-weight: bold; background-color:rgb(249, 190, 179)">
         @else
             
         <tr>
@@ -41,7 +41,7 @@
                 <td>{{$item->total}}</td>
             </tr>
         @endforeach
-        <tr style="font-weight: bold; background-color:rgb(245, 179, 132)">
+        <tr style="font-weight: bold; background-color:rgb(182, 170, 162)">
             <td>TOTAL</td>
             <td>{{$data->sum('jumlah_terdata')}}</td>
             <td>{{(int)($data->sum('jumlah_terdata')/$data->sum('total')) * 100}}</td>
