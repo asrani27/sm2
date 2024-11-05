@@ -123,10 +123,10 @@
                 <td>{{$item->pengumpul == null ? null : $item->pengumpul->nama}}</td>
                 <td class="text-center">
                   @if ($item->pengumpul_id === null)
-                      <a href="/superadmin/pilkada/pendukung/{{$item->id}}" class="btn btn-xs btn-default pilih"><i class="fa fa-check"></i></a>
+                      <a href="/superadmin/pilkada/pendukung/{{$item->id}}" class="btn btn-xs btn-default"><i class="fa fa-check"></i></a>
                   @else
-                  <a href="/superadmin/pilkada/pendukung/{{$item->id}}" class="btn btn-xs btn-success pilih"><i class="fa fa-check"></i></a>
-                  <a href="/superadmin/pilkada/pendukung/delete/{{$item->id}}" class="btn btn-xs btn-danger pilih" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fa fa-trash"></i></a>
+                  <a href="/superadmin/pilkada/pendukung/{{$item->id}}" class="btn btn-xs btn-success" onclick="return confirm('data ini sudah terisi, apakah anda ingin mengubah?');"><i class="fa fa-check"></i></a>
+                  <a href="/superadmin/pilkada/pendukung/delete/{{$item->id}}" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fa fa-trash"></i></a>
                   @endif
                 </td>
                 {{-- <td>
