@@ -675,9 +675,9 @@ class AdminController extends Controller
         });
 
         //dd($data);
-
-        $pdf = Pdf::loadView('admin.pdf.petugas', compact('data', 'petugas'));
-        return $pdf->stream();
+        return view('admin.pdf.petugas', compact('data', 'petugas'));
+        // $pdf = Pdf::loadView('admin.pdf.petugas', compact('data', 'petugas'));
+        // return $pdf->stream();
         //        dd($petugas);
     }
 
