@@ -18,7 +18,7 @@
             return $individuals->count();
         });
     });
-    $nomorUrut = 1; 
+    
     @endphp
     <h3>NAMA PENGUMPUL DATA : {{strtoupper($petugas->nama)}}</h3>
     <h3>Total Keseluruhan: {{ $totalKeseluruhan }} orang</h3>
@@ -34,6 +34,7 @@
             $totalOrang = $rtGroups->sum(function ($individuals) {
                 return $individuals->count();
             });
+            $nomorUrut = 1; 
         @endphp
          <tr style="font-weight: bold; background-color:bisque">
             <td>{{$nokel ++}}</td>
