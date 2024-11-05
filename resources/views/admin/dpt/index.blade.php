@@ -56,10 +56,10 @@
       </select>
     </div>
     <div class="col-lg-1">
-        <input type="text" name="rt" class="form-control pull-right" placeholder="RT" value="{{request('rt')}}">
+        <input type="text" name="rt" class="form-control" placeholder="RT" value="{{request('rt')}}">
     </div>
     <div class="col-lg-1">
-        <input type="text" name="tps" class="form-control pull-right" placeholder="TPS" value="{{request('tps')}}">
+        <input type="text" name="tps" class="form-control" placeholder="TPS" value="{{request('tps')}}">
     </div>
     <div class="col-lg-1">
       <select class="form-control" name="list">
@@ -71,7 +71,7 @@
     </div>
     <div class="col-lg-3">
       <div class="input-group input-group-md">
-        <input type="text" name="nama" class="form-control pull-right" placeholder="NIK / Nama" value="{{request('nama')}}">
+        <input type="text" name="nama" class="form-control" placeholder="NIK / Nama" value="{{request('nama')}}">
 
         <div class="input-group-btn">
             <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
