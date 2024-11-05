@@ -58,6 +58,7 @@ class PengumpulController extends Controller
             $n = new Pengumpul();
             $n->nama = $req->nama;
             $n->telp = $req->telp;
+            $n->users_id = Auth::user()->id;
             $n->save();
 
             Session::flash('success', 'Berhasil Disimpan');

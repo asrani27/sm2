@@ -9,6 +9,7 @@
     <li class="{{ (request()->is('superadmin')) ? 'active' : '' }}"><a href="/superadmin"><i class="fa fa-home"></i> <span>Beranda</span></a></li>
       @if (Auth::user()->username === 'admin') 
         <li class="{{ (request()->is('superadmin/user*')) ? 'active' : '' }}"><a href="/superadmin/user"><i class="fa fa-users"></i> <span>Data Pengguna Aplikasi</span></a></li>
+       
         <li class="{{ (request()->is('superadmin/pengumpul*')) ? 'active' : '' }}"><a href="/superadmin/pengumpul"><i class="fa fa-users"></i> <span>Petugas Pengumpul Data</span></a></li>
         <li class="treeview {{ (request()->is('superadmin/koordinator*')) ? 'active' : '' }}">
           <a href="#">
@@ -30,6 +31,11 @@
         {{-- <li class="{{ (request()->is('superadmin/export*')) ? 'active' : '' }}"><a href="/superadmin/export"><i class="fa fa-file-excel-o"></i> <span>Export</span></a></li> --}}
         <li><a href="/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
       @else
+
+      @if (Auth::user()->username === 'irul') 
+      <li class="{{ (request()->is('superadmin/user*')) ? 'active' : '' }}"><a href="/superadmin/user"><i class="fa fa-users"></i> <span>Data Pengguna Aplikasi</span></a></li>
+      @else
+      @endif
       <li class="{{ (request()->is('superadmin/pengumpul*')) ? 'active' : '' }}"><a href="/superadmin/pengumpul"><i class="fa fa-users"></i> <span>Petugas Pengumpul Data</span></a></li>
         <li class="{{ (request()->is('superadmin/pilkada*')) ? 'active' : '' }}"><a href="/superadmin/pilkada"><i class="fa fa-users"></i> <span>Data DPT Pilkada</span></a></li>
         

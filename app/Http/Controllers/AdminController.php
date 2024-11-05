@@ -49,8 +49,12 @@ class AdminController extends Controller
             Session::flash('error', 'Tidak bisa di hapus, karena sedang digunakan');
             return back();
         } else {
-            $data = User::find($id)->delete();
-            Session::flash('success', 'Berhasil Dihapus');
+            if (User::find($id)->username == 'admin') {
+                Session::flash('error', 'Akun ini tidak dapat di hapus');
+            } else {
+                $data = User::find($id)->delete();
+                Session::flash('success', 'Berhasil Dihapus');
+            }
             return back();
         }
     }
