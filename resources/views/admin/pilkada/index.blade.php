@@ -43,10 +43,10 @@
       </select>
     </div>
     <div class="col-lg-1">
-        <input type="text" name="rt" class="form-control pull-right" placeholder="RT" value="{{request('rt')}}">
+        <input type="text" name="rt" class="form-control" placeholder="RT" value="{{request('rt')}}">
     </div>
     <div class="col-lg-1">
-        <input type="text" name="tps" class="form-control pull-right" placeholder="TPS" value="{{request('tps')}}">
+        <input type="text" name="tps" class="form-control" placeholder="TPS" value="{{request('tps')}}">
     </div>
     <div class="col-lg-1">
       <select class="form-control" name="list">
