@@ -18,6 +18,7 @@
             return $individuals->count();
         });
     });
+    $nomorUrut = 1; 
     @endphp
     <h3>NAMA PENGUMPUL DATA : {{strtoupper($petugas->nama)}}</h3>
     <h3>Total Keseluruhan: {{ $totalKeseluruhan }} orang</h3>
@@ -53,7 +54,8 @@
                             <div style="flex: 1; margin-right: 20px;">
                                 <ul>
                                     @foreach ($chunk as $index => $individual)
-                                        <li>{{ $loop->iteration }}. {{ $individual['nama'] }}</li>
+                                        <li>{{ $nomorUrut }}. {{ $individual['nama'] }}</li>
+                                        @php $nomorUrut++; @endphp
                                     @endforeach
                                 </ul>
                             </div>
