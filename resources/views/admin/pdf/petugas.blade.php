@@ -48,15 +48,27 @@
             <tr>
                 <td></td>
                 <td>RT {{$rt}} - {{ $individuals->count() }} orang 
-
-                    <table border="0" cellpadding="0" cellspacong="0" style="font-size: 9px;font-weight:bold">
+                    <div style="display: flex;">
                         @foreach ($chunkedIndividuals as $chunk)
-                        @foreach ($chunk as $index => $individual)
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $loop->iteration }}. {{ $individual['nama'] }}</td>
+                            <div style="flex: 1; margin-right: 20px;">
+                                <ul>
+                                    @foreach ($chunk as $index => $individual)
+                                        <li>{{ $loop->iteration }}. {{ $individual['nama'] }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @endforeach
+                    </div>
+                {{-- @foreach ($chunkedIndividuals as $chunk)
+                    <table border="0" cellpadding="0" cellspacong="0" style="font-size: 9px;font-weight:bold">
+                        @foreach ($chunk as $index => $individual)
+                        <tr>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $loop->iteration }}. {{ $individual['nama'] }}</td>
+                        </tr>
                         @endforeach
                     </table>
 
+                @endforeach --}}
                 </td>
                 <td></td>
             </tr>
