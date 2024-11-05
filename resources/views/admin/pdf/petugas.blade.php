@@ -6,6 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Laporan PDF</title>
 </head>
+<style>
+    @media print {
+        footer {
+            display: none; /* Menghilangkan seluruh footer */
+        }
+
+        /* Atau jika Anda hanya ingin menyembunyikan link tertentu */
+        footer a {
+            display: none; /* Menghilangkan hanya link dalam footer */
+        }
+    }
+</style>
 <body>
 
     @php
