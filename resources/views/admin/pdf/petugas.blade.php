@@ -60,7 +60,10 @@
         @php
 
         $nomorUrut = 1; 
-        $chunkedIndividuals = $individuals->chunk(30); // Membagi individu menjadi kelompok 30
+        $totalIndividuals = $individuals->count();
+        $chunkSize = ceil($totalIndividuals / 5); // Hitung ukuran chunk
+        $chunkedIndividuals = $individuals->chunk($chunkSize);
+        
         @endphp
             <tr>
                 <td></td>
