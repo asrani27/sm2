@@ -12,6 +12,10 @@ class Pengumpul extends Model
     protected $guarded = ['id'];
 
 
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'users_id');
+    }
     public function pilkada()
     {
         return $this->hasMany(Pilkada::class, 'pengumpul_id');
