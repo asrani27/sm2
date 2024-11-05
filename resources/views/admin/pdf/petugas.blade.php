@@ -49,16 +49,14 @@
                 <td></td>
                 <td>RT {{$rt}} - {{ $individuals->count() }} orang 
 
-            @foreach ($chunkedIndividuals as $chunk)
                     <table border="0" cellpadding="0" cellspacong="0" style="font-size: 9px;font-weight:bold">
+                        @foreach ($chunkedIndividuals as $chunk)
                         @foreach ($chunk as $index => $individual)
-                        <tr>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $loop->iteration }}. {{ $individual['nama'] }}</td>
-                        </tr>
+                        @endforeach
                         @endforeach
                     </table>
 
-                    @endforeach
                 </td>
                 <td></td>
             </tr>
