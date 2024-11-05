@@ -38,6 +38,20 @@ crossorigin=""/>
                             <input type="text" class="form-control" name="telp" value="{{$data->telp}}"  required>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Admin</label>
+                        <div class="col-sm-10">
+                            <select class="form-control select2" name="users_id">
+                                @foreach ($admin as $item)
+                                    @if ($data->users_id == null)
+                                    <option value="{{$item->id}}" {{Auth::user()->id == $item->id ? 'selected':''}}>{{$item->nama}}</option>
+                                    @else
+                                    <option value="{{$item->id}}" {{$data->users_id == $item->id ? 'selected':''}}>{{$item->nama}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     
                     
                 </div>

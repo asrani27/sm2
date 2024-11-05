@@ -43,7 +43,8 @@ class PengumpulController extends Controller
     public function edit($id)
     {
         $data = Pengumpul::find($id);
-        return view('admin.pengumpul.edit', compact('data'));
+        $admin = User::get();
+        return view('admin.pengumpul.edit', compact('data', 'admin'));
     }
     public function delete($id)
     {
@@ -73,6 +74,7 @@ class PengumpulController extends Controller
         $data = Pengumpul::find($id);
         $data->nama = $req->nama;
         $data->telp = $req->telp;
+        $data->users_id = $req->users_id;
         $data->save();
         Session::flash('success', 'Berhasil Diupdate');
         return redirect('/superadmin/pengumpul');
