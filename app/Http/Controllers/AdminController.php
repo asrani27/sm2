@@ -666,9 +666,15 @@ class AdminController extends Controller
 
         $data = $collection->groupBy('kelurahan')->map(function ($items) {
             return $items->groupBy('rt')->map(function ($groupedByRT) {
-                return $groupedByRT->count();
+                return $groupedByRT->map(function ($individual) {
+                    return [
+                        'nama' => $individual->nama,
+                    ];
+                });
             })->sortKeys();
         });
+
+        //dd($data);
 
         $pdf = Pdf::loadView('admin.pdf.petugas', compact('data', 'petugas'));
         return $pdf->stream();
