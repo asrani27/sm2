@@ -6,6 +6,10 @@ crossorigin=""/>
 <style>
   #map { height: 500px; }
 </style>
+
+  <!-- Select2 -->
+  <link rel="stylesheet" href="/assets/bower_components/select2/dist/css/select2.min.css">
+
 @endpush
 @section('content')
 
@@ -44,9 +48,9 @@ crossorigin=""/>
                             <select class="form-control select2" name="users_id">
                                 @foreach ($admin as $item)
                                     @if ($data->users_id == null)
-                                    <option value="{{$item->id}}" {{Auth::user()->id == $item->id ? 'selected':''}}>{{$item->nama}}</option>
+                                    <option value="{{$item->id}}" {{Auth::user()->id == $item->id ? 'selected':''}}>{{$item->name}}</option>
                                     @else
-                                    <option value="{{$item->id}}" {{$data->users_id == $item->id ? 'selected':''}}>{{$item->nama}}</option>
+                                    <option value="{{$item->id}}" {{$data->users_id == $item->id ? 'selected':''}}>{{$item->name}}</option>
                                     @endif
                                 @endforeach
                             </select>
@@ -70,4 +74,13 @@ crossorigin=""/>
 @endsection
 @push('js')
 
+<!-- Select2 -->
+<script src="/assets/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+  })
+</script>
 @endpush
