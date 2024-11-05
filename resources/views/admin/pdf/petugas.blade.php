@@ -47,7 +47,6 @@
             $totalOrang = $rtGroups->sum(function ($individuals) {
                 return $individuals->count();
             });
-            $nomorUrut = 1; 
         @endphp
          <tr style="font-weight: bold; background-color:bisque">
             <td>{{$nokel ++}}</td>
@@ -57,7 +56,10 @@
 
     
         @foreach ($rtGroups as $rt => $individuals)
+
         @php
+
+        $nomorUrut = 1; 
         $chunkedIndividuals = $individuals->chunk(30); // Membagi individu menjadi kelompok 30
         @endphp
             <tr>
