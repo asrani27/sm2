@@ -35,7 +35,7 @@ class PengumpulController extends Controller
     public function index()
     {
         $data = Pengumpul::orderBy('id', 'DESC')->get();
-        dd($data);
+
         return view('admin.pengumpul.index', compact('data'));
     }
     public function create()
