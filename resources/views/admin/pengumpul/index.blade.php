@@ -64,11 +64,13 @@
                 
                 @foreach ($data as $key => $item)
                 <tr>
-                  <td>{{1 + $key}}</td>
+                  <td>{{$key + 1}}</td>
                   <td>{{$item->nama}}</td>
                   <td>{{$item->telp}}</td>
-                  <td>{{$item->pilkada->count()}}</td>
-                  <td>{{$item->users == null ? '-' : $item->users->name}}</td>
+                  <td></td>
+                  <td></td>
+                  {{-- <td>{{$item->pilkada->count()}}</td>
+                  <td>{{$item->users == null ? '-' : $item->users->name}}</td> --}}
                   <td>
                     <a href="/superadmin/pengumpul/edit/{{$item->id}}" class="btn btn-flat btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>
                     <a href="/superadmin/pengumpul/delete/{{$item->id}}" class="btn btn-flat btn-sm btn-danger" onclick="return confirm('Yakin ingin dihapus?');"><i class="fa fa-trash"></i> Delete</a>
