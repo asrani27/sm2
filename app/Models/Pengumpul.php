@@ -12,7 +12,7 @@ class Pengumpul extends Model
     protected $guarded = ['id'];
 
 
-    public function users()
+    public function admin()
     {
         return $this->belongsTo(User::class, 'users_id');
     }

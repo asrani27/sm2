@@ -68,7 +68,7 @@
                   <td>{{$item->nama}}</td>
                   <td>{{$item->telp}}</td>
                   <td></td>
-                  <td></td>
+                  <td>{{$item->admin == null ? '-' : $item->admin->name}}</td>
                   {{-- <td>{{$item->pilkada->count()}}</td>
                   <td>{{$item->users == null ? '-' : $item->users->name}}</td> --}}
                   <td>
