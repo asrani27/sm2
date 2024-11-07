@@ -34,8 +34,11 @@ class PengumpulController extends Controller
     }
     public function index()
     {
-        $data = Pengumpul::orderBy('id', 'DESC')->get();
-
+        $data = Pengumpul::orderBy('id', 'DESC')->get()->map(function ($item) {
+            $item->jumlahinput = $item->pilkada->count();
+            return $item;
+        });
+        dd($data);
         return view('admin.pengumpul.index', compact('data'));
     }
     public function create()
