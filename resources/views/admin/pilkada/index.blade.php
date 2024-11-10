@@ -106,11 +106,16 @@
                 {{-- <th>Aksi</th> --}}
               </tr>
               @foreach ($data as $key => $item)
-              @if ($item->pengumpul_id != null)
-              <tr style="background-color: #d9f3d9">
+              @if ($item->kunci === 1)
+                <tr style="background-color: #c0ebf9">
               @else
-              <tr>
+                @if ($item->pengumpul_id != null)
+                <tr style="background-color: #d9f3d9">
+                @else
+                <tr>
+                @endif
               @endif
+              
                 <td>{{$data->firstItem() + $key}}</td>
                 <td>{{$item->kecamatan}}</td>
                 <td>{{$item->kelurahan}}</td>
@@ -122,11 +127,15 @@
                 <td>{{$item->tps}}</td>
                 <td>{{$item->pengumpul == null ? null : $item->pengumpul->nama}}</td>
                 <td class="text-center">
-                  @if ($item->pengumpul_id === null)
-                      <a href="/superadmin/pilkada/pendukung/{{$item->id}}" class="btn btn-xs btn-default"><i class="fa fa-check"></i></a>
+
+                  @if ($item->kunci === 1)
                   @else
-                  <a href="/superadmin/pilkada/pendukung/{{$item->id}}" class="btn btn-xs btn-success" onclick="return confirm('data ini sudah terisi, apakah anda ingin mengubah?');"><i class="fa fa-check"></i></a>
-                  <a href="/superadmin/pilkada/pendukung/delete/{{$item->id}}" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fa fa-trash"></i></a>
+                    @if ($item->pengumpul_id === null)
+                        <a href="/superadmin/pilkada/pendukung/{{$item->id}}" class="btn btn-xs btn-default"><i class="fa fa-check"></i></a>
+                    @else
+                    <a href="/superadmin/pilkada/pendukung/{{$item->id}}" class="btn btn-xs btn-success" onclick="return confirm('data ini sudah terisi, apakah anda ingin mengubah?');"><i class="fa fa-check"></i></a>
+                    <a href="/superadmin/pilkada/pendukung/delete/{{$item->id}}" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fa fa-trash"></i></a>
+                    @endif
                   @endif
                 </td>
                 {{-- <td>

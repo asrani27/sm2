@@ -116,10 +116,6 @@
                   <a href="/petugas/pilkada/kunci/{{$item->id}}" class="btn btn-xs btn-primary"><i class="fa fa-lock"></i> Kunci</a>
                   @endif
                 </td>
-                {{-- <td>
-                  <a href="/petugas/dpt/edit/{{$item->id}}" class="btn btn-flat btn-xs btn-primary"><i class="fa fa-edit"></i> Edit</a>
-                  <a href="/petugas/dpt/delete/{{$item->id}}" class="btn btn-flat btn-xs btn-primary" onclick="return confirm('Yakin ingin dihapus?');"><i class="fa fa-trash"></i> Delete</a>
-                </td> --}}
               </tr>
               @endforeach
             </tbody></table>
