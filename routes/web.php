@@ -209,6 +209,9 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::get('superadmin/pendukung/check', [PendukungController::class, 'check']);
     Route::post('superadmin/pendukung/store', [PendukungController::class, 'store']);
 
+    Route::get('superadmin/pilkada/kunci/{id}', [PilkadaController::class, 'kunciData']);
+    Route::get('superadmin/pilkada/bukakunci/{id}', [PilkadaController::class, 'bukaKunci']);
+
     Route::get('superadmin/laporan', [AdminController::class, 'laporan']);
     Route::get('superadmin/laporan/filter', [AdminController::class, 'filter']);
     Route::get('superadmin/laporan/perpetugas', [AdminController::class, 'perpetugas']);

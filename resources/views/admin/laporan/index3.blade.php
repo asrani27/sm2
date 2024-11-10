@@ -100,11 +100,13 @@
         
       </select>
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-3">
       <div class="input-group input-group-md">
         <button tpe="submit" class="btn btn-md btn-primary" name="button" value="filter"><i class="fa fa-search"></i> FILTER</button>
         &nbsp;
         <button tpe="submit" class="btn btn-md btn-primary" name="button" value="csv"><i class="fa fa-file"></i> CSV</button>
+        &nbsp;
+        <button tpe="submit" class="btn btn-md btn-primary" name="button" value="preview"  target="_blank"><i class="fa fa-search"></i> PREVIEW</button>
        </div>
     </div>
     

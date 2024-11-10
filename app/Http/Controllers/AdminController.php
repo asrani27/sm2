@@ -585,7 +585,7 @@ class AdminController extends Controller
                 $filename = str_replace(' ', '', strtoupper(Kelurahan::where('nama', $kelurahan)->first()->kecamatan->nama)) . '_' . str_replace(' ', '', strtoupper($kelurahan)) . '.csv';
                 return Excel::download(new PendukungExport($kelurahan, $tps), $filename, \Maatwebsite\Excel\Excel::CSV);
             }
-        } else {
+        } elseif (request()->get('button') == 'filter') {
             $kecamatan = request()->get('kecamatan');
             $kelurahan = request()->get('kelurahan');
             $list = (int)request()->get('list');
@@ -656,6 +656,47 @@ class AdminController extends Controller
             // $group = $query->groupBy('pengumpul_id');
             //dd($data);
             return view('admin.laporan.index3', compact('data', 'kecamatan', 'gt', 'tc'));
+        } else {
+            $kecamatan = request()->get('kecamatan');
+            $kelurahan = request()->get('kelurahan');
+            $list = (int)request()->get('list');
+            $rt = request()->get('rt');
+            $tps = request()->get('tps');
+            $nama = request()->get('nama');
+
+            $query = Pilkada::query(); // Ganti dengan model yang sesuai
+
+            // Jika ada input kecamatan, tambahkan filter kecamatan
+            if ($kecamatan) {
+                $query->where('kecamatan', 'like', '%' . $kecamatan . '%');
+            }
+
+            // Filter berdasarkan kelurahan jika ada input kelurahan
+            if ($kelurahan) {
+                $query->where('kelurahan', 'like', '%' . $kelurahan . '%');
+            }
+            // Filter berdasarkan kelurahan jika ada input rt
+            if ($rt) {
+                $query->where('rt', 'like', '%' . $rt . '%');
+            }
+            // Filter berdasarkan kelurahan jika ada input tps
+            if ($tps) {
+                $query->where('tps', 'like', '%' . $tps . '%');
+            }
+
+            // Filter berdasarkan nama jika ada input nama
+            if ($nama) {
+                $query->where('nama', 'like', '%' . $nama . '%');
+            }
+
+
+            // Eksekusi query dan ambil hasil
+            $data = $query->get();
+
+
+
+
+            return view('admin.laporan.preview', compact('data'));
         }
     }
 

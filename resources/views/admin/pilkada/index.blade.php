@@ -129,7 +129,14 @@
                 <td class="text-center">
 
                   @if ($item->kunci === 1)
+                      @if (Auth::user()->username === 'admin')
+                      <a href="/superadmin/pilkada/bukakunci/{{$item->id}}" class="btn btn-xs btn-danger"><i class="fa fa-lock"></i> Buka</a>
+                      @endif
                   @else
+
+                      @if (Auth::user()->username === 'admin')
+                      <a href="/superadmin/pilkada/kunci/{{$item->id}}" class="btn btn-xs btn-primary"><i class="fa fa-lock"></i> kunci</a>
+                      @endif
                     @if ($item->pengumpul_id === null)
                         <a href="/superadmin/pilkada/pendukung/{{$item->id}}" class="btn btn-xs btn-default"><i class="fa fa-check"></i></a>
                     @else

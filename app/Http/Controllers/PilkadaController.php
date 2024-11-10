@@ -18,6 +18,24 @@ class PilkadaController extends Controller
         $kecamatan = Kecamatan::get();
         return view('admin.pilkada.index', compact('data', 'kecamatan'));
     }
+    public function bukaKunci($id)
+    {
+        $data = Pilkada::find($id)->update([
+            'kunci' => null,
+        ]);
+
+        Session::flash('success', 'Berhasil');
+        return redirect()->back();
+    }
+    public function kunciData($id)
+    {
+        $data = Pilkada::find($id)->update([
+            'kunci' => 1,
+        ]);
+
+        Session::flash('success', 'Berhasil');
+        return redirect()->back();
+    }
 
     public function deletePendukung($id)
     {
