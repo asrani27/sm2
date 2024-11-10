@@ -52,7 +52,8 @@
                             <select name="role" class="form-control" required>
                                 <option value="">-pilih-</option>
                                 <option value="superadmin" {{$data->roles->first()->name == "superadmin" ? 'selected':''}}>Superadmin</option>
-                                <option value="user" {{$data->roles->first()->name == "user" ? 'selected':''}}>user</option>
+
+                                <option value="petugas" {{$data->roles->first()->name == "petugas" ? 'selected':''}}>Petugas Pemeriksa Data</option>
                             </select>
                         </div>
                     </div>

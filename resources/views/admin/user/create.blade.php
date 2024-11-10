@@ -52,8 +52,8 @@
                             <select name="role" class="form-control" required>
                                 {{-- <option value="">-pilih-</option> --}}
                                 <option value="superadmin">Superadmin</option>
-                                {{-- <option value="user">user</option>
-                                <option value="admin_wa">admin_wa</option> --}}
+                                <option value="petugas">Petugas Pemeriksa Data</option>
+                                {{-- <option value="admin_wa">admin_wa</option>  --}}
                             </select>
                         </div>
                     </div>

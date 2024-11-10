@@ -17,6 +17,7 @@ use App\Http\Controllers\NomorController;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\PendukungController;
 use App\Http\Controllers\PengumpulController;
+use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PilkadaController;
 use App\Http\Controllers\WAController;
 
@@ -218,8 +219,20 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::get('laporan/print', [AdminController::class, 'print']);
 });
 
-Route::group(['middleware' => ['auth', 'role:user']], function () {
+Route::group(['middleware' => ['auth', 'role:petugas']], function () {
+    Route::get('petugas', [PetugasController::class, 'beranda']);
 
+    Route::get('petugas/pilkada', [PetugasController::class, 'pilkada']);
+    Route::get('petugas/pilkada/filter', [PetugasController::class, 'filterPilkada']);
+    Route::get('petugas/pilkada/kunci/{id}', [PetugasController::class, 'kunciData']);
+    Route::get('petugas/pilkada/bukakunci/{id}', [PetugasController::class, 'bukaKunci']);
+
+    Route::get('petugas/laporan', [PetugasController::class, 'laporan']);
+    Route::get('petugas/laporan/filter', [PetugasController::class, 'filter']);
+    Route::get('petugas/laporan/perpetugas', [PetugasController::class, 'perpetugas']);
+    Route::get('petugas/laporan/perkelurahan', [PetugasController::class, 'perkelurahan']);
+});
+Route::group(['middleware' => ['auth', 'role:user']], function () {
     Route::get('user', [HomeController::class, 'user']);
     Route::get('user/sm', [UserController::class, 'sm']);
     Route::get('user/sm/create', [UserController::class, 'sm_create']);

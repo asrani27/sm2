@@ -14,6 +14,8 @@ class LoginController extends Controller
         if (Auth::check()) {
             if (Auth::user()->hasRole('superadmin')) {
                 return redirect('superadmin');
+            } elseif (Auth::user()->hasRole('petugas')) {
+                return redirect('petugas');
             } elseif (Auth::user()->hasRole('user')) {
                 return redirect('user');
             }
@@ -27,6 +29,8 @@ class LoginController extends Controller
         if (Auth::check()) {
             if (Auth::user()->hasRole('superadmin')) {
                 return redirect('superadmin');
+            } elseif (Auth::user()->hasRole('petugas')) {
+                return redirect('petugas');
             } elseif (Auth::user()->hasRole('user')) {
                 return redirect('user');
             }
@@ -53,6 +57,10 @@ class LoginController extends Controller
             if (Auth::user()->hasRole('user')) {
                 Session::flash('success', 'Selamat Datang');
                 return redirect('user');
+            }
+            if (Auth::user()->hasRole('petugas')) {
+                Session::flash('success', 'Selamat Datang');
+                return redirect('petugas');
             }
         } else {
             Session::flash('error', 'username/password salah');

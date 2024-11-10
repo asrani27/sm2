@@ -41,6 +41,12 @@
         
         <li><a href="/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
       @endif
+    @elseif(Auth::user()->hasRole('petugas'))
+    <li class="{{ (request()->is('petugas')) ? 'active' : '' }}"><a href="/petugas"><i class="fa fa-home"></i> <span>Beranda</span></a></li>
+    <li class="{{ (request()->is('petugas/pilkada*')) ? 'active' : '' }}"><a href="/petugas/pilkada"><i class="fa fa-users"></i> <span>Data DPT Pilkada</span></a></li>
+    <li class="{{ (request()->is('petugas/laporan*')) ? 'active' : '' }}"><a href="/petugas/laporan"><i class="fa fa-file"></i> <span>Laporan</span></a></li>
+    <li><a href="/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
+
     @else
         
     <li class="{{ (request()->is('user')) ? 'active' : '' }}"><a href="/user"><i class="fa fa-home"></i> <span>Beranda</span></a></li>
