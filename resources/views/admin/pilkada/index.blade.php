@@ -103,7 +103,7 @@
                 <td></td>
                 <td>
                   <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-lock"></i> Kunci Semua</button><br/>
-                  <input type="checkbox" id="selectAll">
+                  <input type="checkbox" id="selectAll"> Check All
                 </td>
                 
                 {{-- <th>Aksi</th> --}}
