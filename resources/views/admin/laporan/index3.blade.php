@@ -51,9 +51,11 @@
         @endforeach
       </select>
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-4">
       <div class="input-group input-group-md">
         <button tpe="submit" class="btn btn-md btn-primary" name="button" value="filter"><i class="fa fa-search"></i> PREVIEW</button>
+        &nbsp;
+        <button tpe="submit" class="btn btn-md btn-primary" name="button" value="tt"><i class="fa fa-search"></i> PREVIEW TIDAK TERDATA</button>
         
        </div>
     </div>

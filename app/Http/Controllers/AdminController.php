@@ -702,6 +702,7 @@ class AdminController extends Controller
 
     public function perpetugas()
     {
+
         $petugas = Pengumpul::find(request()->get('pengumpul'));
         $collection = Pilkada::where('pengumpul_id', request()->get('pengumpul'))->get();
 
@@ -717,7 +718,11 @@ class AdminController extends Controller
         });
 
 
-        return view('admin.pdf.petugas', compact('data', 'petugas'));
+        if (request()->get('button') == 'tt') {
+            return view('admin.pdf.petugastt', compact('data', 'petugas'));
+        } else {
+            return view('admin.pdf.petugas', compact('data', 'petugas'));
+        }
         // $pdf = Pdf::loadView('admin.pdf.petugas', compact('data', 'petugas'));
         // return $pdf->stream();
         //        dd($petugas);

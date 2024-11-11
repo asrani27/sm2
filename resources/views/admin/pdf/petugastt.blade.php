@@ -40,7 +40,7 @@
             <td>No</td>
             <td>Kelurahan</td>
             <td>Jumlah</td>
-            
+            <td></td>
         </tr>
 
         @foreach ($data as $kelurahan => $rtGroups)
@@ -53,7 +53,7 @@
             <td>{{$nokel ++}}</td>
             <td>{{ $kelurahan }}</td>
             <td>{{ $totalOrang }}</td>
-            
+            <td></td>
          </tr>
 
     
@@ -84,7 +84,23 @@
                     </div>
                 </td>
                 <td></td>
-                
+                <td>
+                    @php
+                        
+                    $tidakterdata = tidakterdata($kelurahan, $rt)->chunk(20);
+                    
+                    @endphp
+                    Tidak terdata :
+                    <div style="display: flex; flex-wrap: wrap;">
+                        @foreach ($tidakterdata as $chunktidakterdata)
+                            <ul style="flex: 1 1 20%; list-style-type: none; padding-left: 0;">
+                                @foreach ($chunktidakterdata as $indextt=> $itemtt)
+                                    <li style="font-size: 10px;">{{ $loop->parent->iteration * 20 - 19 + $indextt }}. {{$itemtt->nama}}</li>
+                                @endforeach
+                            </ul>
+                        @endforeach
+                    </div>
+                </td>
             </tr>
         @endforeach
     @endforeach
