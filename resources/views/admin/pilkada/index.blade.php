@@ -85,6 +85,8 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body table-responsive">
+            <form action="/superadmin/pilkada/kuncisemua" method="POST">
+              @csrf
             <table class="table table-hover table-bordered">
               <tbody>
               <tr style="background-color:bisque">
@@ -99,6 +101,9 @@
                 <th>TPS</th>
                 <th>Pengumpul Data</th>
                 <td></td>
+                <td>
+                  <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-lock"></i> Kunci Semua</button>
+                </td>
                 
                 {{-- <th>Aksi</th> --}}
               </tr>
@@ -142,13 +147,16 @@
                     @endif
                   @endif
                 </td>
+                <td><input type="checkbox" name="ids[]" value="{{ $item->id }}" class="checkbox-item"></td>
                 {{-- <td>
                   <a href="/superadmin/dpt/edit/{{$item->id}}" class="btn btn-flat btn-xs btn-primary"><i class="fa fa-edit"></i> Edit</a>
                   <a href="/superadmin/dpt/delete/{{$item->id}}" class="btn btn-flat btn-xs btn-primary" onclick="return confirm('Yakin ingin dihapus?');"><i class="fa fa-trash"></i> Delete</a>
                 </td> --}}
               </tr>
               @endforeach
-            </tbody></table>
+            </tbody>
+            </table>
+            </form>
           </div>
           <!-- /.box-body -->
         </div>

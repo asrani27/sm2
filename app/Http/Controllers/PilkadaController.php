@@ -20,6 +20,22 @@ class PilkadaController extends Controller
         $jumlahPerPetugas = null;
         return view('admin.pilkada.index', compact('data', 'kecamatan', 'jumlahPerPetugas'));
     }
+    public function kuncisemua(Request $request)
+    {
+        $ids = $request->input('ids');
+        // Cek apakah ada data yang dipilih
+
+        if (empty($ids)) {
+            Session::flash('error', 'Tidak ada data yang dipilih.');
+            return redirect()->back();
+        }
+
+        // Menghapus data berdasarkan ID yang dipilih
+        Pilkada::whereIn('id', $ids)->update(['kunci' => 1]);
+
+        Session::flash('success', 'Berhasil');
+        return redirect()->back();
+    }
     public function bukaKunci($id)
     {
         $data = Pilkada::find($id)->update([
