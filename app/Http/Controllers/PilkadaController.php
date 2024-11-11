@@ -64,6 +64,7 @@ class PilkadaController extends Controller
     {
         $kecamatan = request()->get('kecamatan');
         $kelurahan = request()->get('kelurahan');
+        $petugas = request()->get('petugas');
         $list = (int)request()->get('list');
         $rt = request()->get('rt');
         $tps = request()->get('tps');
@@ -89,6 +90,10 @@ class PilkadaController extends Controller
             $query->where('tps', 'like', '%' . $tps . '%');
         }
 
+        // Filter berdasarkan petugas jika ada input tps
+        if ($petugas) {
+            $query->where('pengumpul_id', 'like', '%' . $petugas . '%');
+        }
         // Filter berdasarkan nama jika ada input nama
         if ($nama) {
             $query->where('nama', 'like', '%' . $nama . '%')->orWhere('nik', 'like', '%' . $nama . '%');
