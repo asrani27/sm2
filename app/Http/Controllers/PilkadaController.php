@@ -17,7 +17,8 @@ class PilkadaController extends Controller
     {
         $data = Pilkada::orderBy('id', 'DESC')->paginate(20);
         $kecamatan = Kecamatan::get();
-        return view('admin.pilkada.index', compact('data', 'kecamatan'));
+        $jumlahPerPetugas = null;
+        return view('admin.pilkada.index', compact('data', 'kecamatan', 'jumlahPerPetugas'));
     }
     public function bukaKunci($id)
     {

@@ -165,12 +165,15 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive">
-          
+          @if ($jumlahPerPetugas != null)
+              
           <ul>
-          @foreach ($jumlahPerPetugas as $key => $item)
-              <li>{{$item['petugas'] == null ? 'no-petugas' : $item['petugas']}} : {{$item['total']}}</li>
-          @endforeach
-          </ul>
+            @foreach ($jumlahPerPetugas as $key => $item)
+                <li>{{$item['petugas'] == null ? 'no-petugas' : $item['petugas']}} : {{$item['total']}}</li>
+            @endforeach
+            </ul>
+          @endif
+          
         </div>
       </div>
   </div>
