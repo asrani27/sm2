@@ -64,6 +64,11 @@ function pengumpul()
     return Pengumpul::get();
 }
 
+function tidakterdata($kelurahan, $rt)
+{
+    return Pilkada::where('kelurahan', $kelurahan)->where('rt', $rt)->get();
+}
+
 function kecamatan()
 {
     return Kecamatan::get();

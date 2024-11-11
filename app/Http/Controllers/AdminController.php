@@ -703,10 +703,11 @@ class AdminController extends Controller
     public function perpetugas()
     {
         $petugas = Pengumpul::find(request()->get('pengumpul'));
-        $collection = Pilkada::where('pengumpul_id', request()->get('pengumpul'))->get(); // Ganti $petugasId dengan nilai yang sesuai
+        $collection = Pilkada::where('pengumpul_id', request()->get('pengumpul'))->get();
 
         $data = $collection->groupBy('kelurahan')->map(function ($items) {
             return $items->groupBy('rt')->map(function ($groupedByRT) {
+
                 return $groupedByRT->map(function ($individual) {
                     return [
                         'nama' => $individual->nama,
@@ -715,7 +716,7 @@ class AdminController extends Controller
             })->sortKeys();
         });
 
-        //dd($data);
+
         return view('admin.pdf.petugas', compact('data', 'petugas'));
         // $pdf = Pdf::loadView('admin.pdf.petugas', compact('data', 'petugas'));
         // return $pdf->stream();
