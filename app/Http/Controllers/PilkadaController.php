@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pilkada;
 use App\Models\Kecamatan;
+use App\Models\Pengumpul;
 use Illuminate\Http\Request;
 use Smalot\PdfParser\Parser;
 use Illuminate\Support\Facades\DB;
@@ -102,8 +103,23 @@ class PilkadaController extends Controller
         // Eksekusi query dan ambil hasil
         $data = $query->paginate($list);
 
+        // $jumlahPerPetugas = $query->select('pengumpul_id', DB::raw('COUNT(*) as total'))
+        //     ->groupBy('pengumpul_id')
+        //     ->get();
+        // dd($jumlahPerPetugas);
 
-        return view('admin.pilkada.index', compact('data', 'kecamatan'));
+        $jumlahPerPetugas = $query->select('pengumpul_id', DB::raw('COUNT(*) as total'))
+            ->groupBy('pengumpul_id')
+            ->get()
+            ->map(function ($item) {
+
+                return [
+                    'petugas' => $item->pengumpul_id == null ? null : Pengumpul::find($item->pengumpul_id)->nama,
+                    'total' => $item->total,
+                ];
+            });
+
+        return view('admin.pilkada.index', compact('data', 'kecamatan', 'jumlahPerPetugas'));
     }
     public function refresh()
     {

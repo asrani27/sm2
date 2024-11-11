@@ -82,18 +82,6 @@
         <div class="box">
           <div class="box-header">
             <i class="ion ion-clipboard"></i><h3 class="box-title">Data DPT Pilkada</h3>
-
-            {{-- <div class="box-tools">
-              <form class="form" method="get" action="/superadmin/dpt/cari">
-                  <div class="input-group input-group-sm hidden-xs" style="width: 350px;">
-                  <input type="text" name="cari" class="form-control pull-right" placeholder="Cari NIK/Nama" value="{{old('cari')}}">
-      
-                  <div class="input-group-btn">
-                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
-                  </div>
-              </form>
-            </div> --}}
           </div>
           <!-- /.box-header -->
           <div class="box-body table-responsive">
@@ -167,6 +155,25 @@
         {{$data->withQueryString()->links()}}
         <!-- /.box -->
       </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+      <div class="box">
+        <div class="box-header">
+          <i class="ion ion-clipboard"></i><h3 class="box-title">Petugas</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive">
+          
+          <ul>
+          @foreach ($jumlahPerPetugas as $key => $item)
+              <li>{{$item['petugas'] == null ? 'no-petugas' : $item['petugas']}} : {{$item['total']}}</li>
+          @endforeach
+          </ul>
+        </div>
+      </div>
+  </div>
 </div>
 
 @if (Auth::user()->username == 'admin')
