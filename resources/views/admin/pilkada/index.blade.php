@@ -102,7 +102,8 @@
                 <th>Pengumpul Data</th>
                 <td></td>
                 <td>
-                  <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-lock"></i> Kunci Semua</button>
+                  <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-lock"></i> Kunci Semua</button><br/>
+                  <input type="checkbox" id="selectAll">
                 </td>
                 
                 {{-- <th>Aksi</th> --}}
@@ -288,5 +289,16 @@
     //Initialize Select2 Elements
     $('.select2').select2()
   })
+</script>
+<script>
+  // Fungsi untuk memilih semua checkbox
+  document.getElementById('selectAll').addEventListener('click', function() {
+      // Dapatkan semua checkbox item
+      let checkboxes = document.querySelectorAll('.checkbox-item');
+      // Ubah status checkbox item sesuai dengan checkbox "Select All"
+      checkboxes.forEach((checkbox) => {
+          checkbox.checked = this.checked;
+      });
+  });
 </script>
 @endpush
