@@ -87,15 +87,15 @@
                 <td>
                     @php
                         
-                    $items = tidakterdata($kelurahan, $rt)->chunk(20);
+                    $tidakterdata = tidakterdata($kelurahan, $rt)->chunk(20);
                     
                     @endphp
                     Tidak terdata :
                     <div style="display: flex; flex-wrap: wrap;">
-                        @foreach ($items as $chunk)
+                        @foreach ($tidakterdata as $chunktidakterdata)
                             <ul style="flex: 1 1 20%; list-style-type: none; padding-left: 0;">
-                                @foreach ($chunk as $index=> $item)
-                                    <li style="font-size: 10px;">{{ $loop->parent->iteration * 20 - 19 + $index }}. {{$item->nama}}</li>
+                                @foreach ($chunktidakterdata as $indextt=> $itemtt)
+                                    <li style="font-size: 10px;">{{ $loop->parent->iteration * 20 - 19 + $indextt }}. {{$itemtt->nama}}</li>
                                 @endforeach
                             </ul>
                         @endforeach
