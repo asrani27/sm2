@@ -49,7 +49,7 @@
         <form class="form-horizontal" method="post" action="/superadmin/suara/{{$kecamatan->id}}/{{$kelurahan->id}}">
             @csrf
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="nomor_tps" placeholder="nomor TPS"  onkeypress="return hanyaAngka(event)"/>
+                <input type="text" class="form-control" name="nomor_tps" placeholder="nomor TPS" minlength="3" maxlength="3"  onkeypress="return hanyaAngka(event)"/>
             </div>
             <div class="col-sm-4">
                 <button type="submit" class="btn btn-flat btn-primary"><i class="fa fa-plus"></i> Tambah TPS</button> <br /><br />
