@@ -45,19 +45,19 @@ crossorigin=""/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Suara 1</label>
+                        <label class="col-sm-2 control-label">Jumlah Suara Paslon 1</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="nomor_1" value="{{$data->nomor_1}}"  required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Suara 2</label>
+                        <label class="col-sm-2 control-label">Jumlah Suara Paslon 2</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="nomor_2" value="{{$data->nomor_2}}"  required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Suara 3</label>
+                        <label class="col-sm-2 control-label">Jumlah Suara Paslon 3</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="nomor_3" value="{{$data->nomor_3}}"  required>
                         </div>
