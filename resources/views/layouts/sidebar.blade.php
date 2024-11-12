@@ -8,6 +8,7 @@
         
     <li class="{{ (request()->is('superadmin')) ? 'active' : '' }}"><a href="/superadmin"><i class="fa fa-home"></i> <span>Beranda</span></a></li>
       @if (Auth::user()->username === 'admin') 
+      <li class="{{ (request()->is('superadmin/paslon*')) ? 'active' : '' }}"><a href="/superadmin/paslon"><i class="fa fa-users"></i> <span>Data Paslon</span></a></li>
         <li class="{{ (request()->is('superadmin/user*')) ? 'active' : '' }}"><a href="/superadmin/user"><i class="fa fa-users"></i> <span>Data Pengguna Aplikasi</span></a></li>
        
         <li class="{{ (request()->is('superadmin/pengumpul*')) ? 'active' : '' }}"><a href="/superadmin/pengumpul"><i class="fa fa-users"></i> <span>Petugas Pengumpul Data</span></a></li>
