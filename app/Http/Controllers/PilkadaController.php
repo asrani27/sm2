@@ -22,6 +22,7 @@ class PilkadaController extends Controller
     }
     public function kuncisemua(Request $request)
     {
+
         $ids = $request->input('ids');
         // Cek apakah ada data yang dipilih
 
@@ -31,7 +32,11 @@ class PilkadaController extends Controller
         }
 
         // Menghapus data berdasarkan ID yang dipilih
-        Pilkada::whereIn('id', $ids)->update(['kunci' => 1]);
+        if ($request->button == 'buka') {
+            Pilkada::whereIn('id', $ids)->update(['kunci' => null]);
+        } else {
+            Pilkada::whereIn('id', $ids)->update(['kunci' => 1]);
+        }
 
         Session::flash('success', 'Berhasil');
         return redirect()->back();

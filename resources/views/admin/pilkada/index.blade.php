@@ -102,7 +102,8 @@
                 <th>Pengumpul Data</th>
                 <td></td>
                 <td>
-                  <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-lock"></i> Kunci Semua</button><br/>
+                  <button type="submit" class="btn btn-danger btn-xs" name="button" value="kunci"><i class="fa fa-lock"></i> Kunci</button>
+                  <button type="submit" class="btn btn-success btn-xs" name="button" value="buka"><i class="fa fa-unlock"></i> Buka</button><br/>
                   <input type="checkbox" id="selectAll"> Check All
                 </td>
                 
