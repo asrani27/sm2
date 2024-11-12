@@ -78,12 +78,12 @@ crossorigin=""/>
 
         <form class="form-horizontal" method="post" action="/superadmin/koordinator/tps/detail/{{$data->id}}">
             @csrf
-        <div class="col-sm-2">
-            <input type="text" class="form-control" name="nomor_tps" placeholder="nomor TPS"  onkeypress="return hanyaAngka(event)"/>
-        </div>
-        <div class="col-sm-4">
-            <button type="submit" class="btn btn-flat btn-primary"><i class="fa fa-plus"></i> Tambah TPS</button> <br /><br />
-        </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="nomor_tps" placeholder="nomor TPS"  onkeypress="return hanyaAngka(event)"/>
+            </div>
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-flat btn-primary"><i class="fa fa-plus"></i> Tambah TPS</button> <br /><br />
+            </div>
         </form>
     </div>
             

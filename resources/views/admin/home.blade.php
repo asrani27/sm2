@@ -4,34 +4,51 @@
 @endpush
 @section('content')
 
+@include('admin.paslon')
+
+
 <div class="row">
-  @foreach (paslon() as $item)
-      
-  <div class="col-md-4">
-    <!-- Widget: user widget style 1 -->
-    <div class="box box-widget widget-user">
-      <!-- Add the bg color to the header using any of the bg-* classes -->
-      <div class="widget-user-header text-white text-right" style="background: url('/storage/paslon/{{$item->filename}}') center center; background-size:100% 100%; height:300px;border-radius:.25rem; padding:0px;box-shadow: -1px -53px 89px 2px rgba(0,0,0,0.8) inset; -webkit-box-shadow: -1px -53px 89px 2px rgba(0,0,0,0.8) inset; -moz-box-shadow: -1px -53px 89px 2px rgba(0,0,0,0.8) inset;">    
-      </div>
-      
-      <div class="box-footer">
-        <div class="row">
-          <div class="col-sm-12 border-right">
-            <div class="description-block">
-              <h1 class="description-headr">0</h1>
-              <span class="description-text">Suara</span>
-            </div>
-            <!-- /.description-block -->
-          </div>
+  <div class="col-md-12">
+      <div class="box box-primary">
+        <div class="box-header">
+          <i class="ion ion-clipboard"></i><h3 class="box-title">Data Kecamatan</h3>
+
+          {{-- <div class="box-tools">
+            <a href="/superadmin/kecamatan/create" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+          </div> --}}
         </div>
-        <!-- /.row -->
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <tbody><tr>
+              <th>No</th>
+              <th>Nama Kecamatan</th>
+              <th>Paslon 1</th>
+              <th>Paslon 2</th>
+              <th>Paslon 3</th>
+              
+              <th>Aksi</th>
+            </tr>
+            @foreach (kecamatan() as $key => $item)
+            <tr>
+              <td>{{1 + $key}}</td>
+              <td>{{$item->nama}}</td>
+              <td>{{$item->suaratps->sum('nomor_1')}}</td>
+              <td>{{$item->suaratps->sum('nomor_2')}}</td>
+              <td>{{$item->suaratps->sum('nomor_3')}}</td>
+              <td>
+                <a href="/superadmin/suara/{{$item->id}}" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-eye"></i> detail</a>
+              </td>
+            </tr>
+            @endforeach
+          </tbody></table>
+        </div>
+        <!-- /.box-body -->
       </div>
+      <!-- /.box -->
     </div>
-    <!-- /.widget-user -->
-  </div>
-  @endforeach
-  <!-- /.col -->
 </div>
+
 {{-- <a href="/superadmin/refresh" class="btn btn-md btn-danger"><i class="fa fa-refresh"></i>&nbsp;Refresh</a><br/><br/>
 <div class="row">
   <div class="col-md-8">

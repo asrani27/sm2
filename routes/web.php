@@ -19,6 +19,7 @@ use App\Http\Controllers\PendukungController;
 use App\Http\Controllers\PengumpulController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PilkadaController;
+use App\Http\Controllers\SuaraController;
 use App\Http\Controllers\WAController;
 
 Route::get('/', function () {
@@ -84,6 +85,12 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::get('superadmin/dpt/deletefile/{id}', [DPTController::class, 'delete_file']);
     Route::get('superadmin/dpt/tarikdpt', [DPTController::class, 'tarik_dpt']);
     Route::get('superadmin/dpt/cari', [DPTController::class, 'cari']);
+
+    Route::get('superadmin/suara/{kecamatan}', [SuaraController::class, 'detail_kelurahan']);
+    Route::get('superadmin/suara/{kecamatan}/{kelurahan}', [SuaraController::class, 'detail_tps']);
+    Route::post('superadmin/suara/{kecamatan}/{kelurahan}', [SuaraController::class, 'store_tps']);
+    Route::get('superadmin/suara/{kecamatan}/{kelurahan}/{tps}', [SuaraController::class, 'isi_suara']);
+    Route::post('superadmin/suara/{kecamatan}/{kelurahan}/{tps}', [SuaraController::class, 'store_suara']);
 
     Route::get('superadmin/pendaftar', [PendaftarController::class, 'index']);
     Route::get('superadmin/pendaftar/create', [PendaftarController::class, 'create']);

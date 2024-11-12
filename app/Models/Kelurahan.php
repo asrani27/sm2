@@ -20,4 +20,9 @@ class Kelurahan extends Model
     {
         return $this->hasMany(TPS::class, 'kelurahan_id');
     }
+
+    public function suaratps()
+    {
+        return $this->hasMany(Suara::class, 'kelurahan_id');
+    }
 }

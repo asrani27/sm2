@@ -1,16 +1,36 @@
 <?php
 
 use App\Models\Tkrk;
+use App\Models\Suara;
 use App\Models\Paslon;
 use App\Models\Pilkada;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Pengumpul;
 
+function totalSuara($nomor)
+{
+    if ($nomor == 1) {
+        return Suara::sum('nomor_1');
+    }
+    if ($nomor == 2) {
+        return Suara::sum('nomor_2');
+    }
+    if ($nomor == 3) {
+        return Suara::sum('nomor_3');
+    }
+}
+
 function paslon()
 {
     return Paslon::get();
 }
+
+function suaraKelurahan($kelurahan)
+{
+    return Suara::where('kelurahan_id', $kelurahan)->get();
+}
+
 function totalBjmTimur()
 {
     return Pilkada::where('kecamatan', 'BANJARMASIN TIMUR')->count();
