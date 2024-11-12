@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Models\TPS;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Paslon;
 use App\Models\Petugas;
 use App\Models\Pilkada;
 use App\Models\Kecamatan;
@@ -405,6 +406,83 @@ class AdminController extends Controller
         $data->save();
         Session::flash('success', 'Berhasil Diupdate');
         return redirect('/superadmin/koordinator/kelurahan');
+    }
+
+
+    public function paslon()
+    {
+        $data = Paslon::orderBy('id', 'DESC')->paginate(15);
+        return view('admin.paslon.index', compact('data'));
+    }
+    public function paslon_create()
+    {
+        $kel = Kelurahan::get();
+        return view('admin.paslon.create', compact('kel'));
+    }
+    public function paslon_edit($id)
+    {
+        $data = Paslon::find($id);
+        $kel = Kelurahan::get();
+        return view('admin.paslon.edit', compact('data', 'kel'));
+    }
+    public function paslon_delete($id)
+    {
+        $data = Paslon::find($id)->delete();
+        Session::flash('success', 'Berhasil Dihapus');
+        return back();
+    }
+    public function paslon_store(Request $req)
+    {
+        if ($req->hasFile('file')) {
+            // Validasi file yang di-upload
+            $req->validate([
+                'file' => 'mimes:jpeg,jpg,png|max:4096', // Maksimal 2MB
+            ]);
+            // Simpan file di folder "public/images"
+            $path = $req->file('file')->store('public/paslon');
+            $filename = basename($path);
+        } else {
+            $filename = Paslon::find($id)->filename;
+        }
+
+
+        $check = Paslon::where('nomor', $req->nomor)->first();
+        if ($check == null) {
+            $n = new paslon();
+            $n->nama = $req->nama;
+            $n->nomor = $req->nomor;
+            $n->filename = $filename;
+            $n->save();
+
+            Session::flash('success', 'Berhasil Disimpan');
+            return redirect('/superadmin/paslon');
+        } else {
+            Session::flash('error', 'nomor paslin ini sudah ada');
+            return back();
+        }
+    }
+    public function paslon_update(Request $req, $id)
+    {
+
+        if ($req->hasFile('file')) {
+            // Validasi file yang di-upload
+            $req->validate([
+                'file' => 'mimes:jpeg,jpg,png|max:4096', // Maksimal 2MB
+            ]);
+            // Simpan file di folder "public/images"
+            $path = $req->file('file')->store('public/paslon');
+            $filename = basename($path);
+        } else {
+            $filename = Paslon::find($id)->filename;
+        }
+
+        $data = Paslon::find($id);
+        $data->nama = $req->nama;
+        $data->nomor = $req->nomor;
+        $data->filename = $filename;
+        $data->save();
+        Session::flash('success', 'Berhasil Diupdate');
+        return redirect('/superadmin/paslon');
     }
 
     public function rt()

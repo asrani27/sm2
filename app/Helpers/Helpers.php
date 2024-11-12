@@ -1,11 +1,16 @@
 <?php
 
 use App\Models\Tkrk;
+use App\Models\Paslon;
 use App\Models\Pilkada;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Pengumpul;
 
+function paslon()
+{
+    return Paslon::get();
+}
 function totalBjmTimur()
 {
     return Pilkada::where('kecamatan', 'BANJARMASIN TIMUR')->count();

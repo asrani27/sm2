@@ -140,6 +140,13 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::post('superadmin/kelurahan/edit/{id}', [AdminController::class, 'kelurahan_update']);
     Route::get('superadmin/kelurahan/delete/{id}', [AdminController::class, 'kelurahan_delete']);
 
+    Route::get('superadmin/paslon', [AdminController::class, 'paslon']);
+    Route::get('superadmin/paslon/create', [AdminController::class, 'paslon_create']);
+    Route::post('superadmin/paslon/create', [AdminController::class, 'paslon_store']);
+    Route::get('superadmin/paslon/edit/{id}', [AdminController::class, 'paslon_edit']);
+    Route::post('superadmin/paslon/edit/{id}', [AdminController::class, 'paslon_update']);
+    Route::get('superadmin/paslon/delete/{id}', [AdminController::class, 'paslon_delete']);
+
     Route::get('superadmin/rt', [AdminController::class, 'rt']);
     Route::get('superadmin/rt/create', [AdminController::class, 'rt_create']);
     Route::post('superadmin/rt/create', [AdminController::class, 'rt_store']);
