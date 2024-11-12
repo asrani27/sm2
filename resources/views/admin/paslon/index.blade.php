@@ -19,6 +19,7 @@
             <table class="table table-hover">
               <tbody><tr>
                 <th>No</th>
+                <th>Gambar</th>
                 <th>Nomor Paslon</th>
                 <th>Nama Paslon</th>
                 <th>Aksi</th>
@@ -26,6 +27,7 @@
               @foreach ($data as $key => $item)
               <tr>
                 <td>{{$data->firstItem() + $key}}</td>
+                <td><img src="/storage/paslon/{{$item->filename}}" width="150px" height="150px"></td>
                 <td>{{$item->nomor}}</td>
                 <td>{{$item->nama}}</td>
                 <td>
