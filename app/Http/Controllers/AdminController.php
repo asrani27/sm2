@@ -784,20 +784,36 @@ class AdminController extends Controller
         $petugas = Pengumpul::find(request()->get('pengumpul'));
         $collection = Pilkada::where('pengumpul_id', request()->get('pengumpul'))->get();
 
-        $data = $collection->groupBy('kelurahan')->map(function ($items) {
-            return $items->groupBy('rt')->map(function ($groupedByRT) {
 
-                return $groupedByRT->map(function ($individual) {
-                    return [
-                        'nama' => $individual->nama,
-                    ];
-                });
-            })->sortKeys();
-        });
+        if (request()->get('button') === 'tps') {
+            $data = $collection->groupBy('kelurahan')->map(function ($items) {
+                return $items->groupBy('tps')->map(function ($groupedByTPS) {
+
+                    return $groupedByTPS->map(function ($individual) {
+                        return [
+                            'nama' => $individual->nama,
+                        ];
+                    });
+                })->sortKeys();
+            });
+        } else {
+            $data = $collection->groupBy('kelurahan')->map(function ($items) {
+                return $items->groupBy('rt')->map(function ($groupedByRT) {
+
+                    return $groupedByRT->map(function ($individual) {
+                        return [
+                            'nama' => $individual->nama,
+                        ];
+                    });
+                })->sortKeys();
+            });
+        }
 
 
         if (request()->get('button') == 'tt') {
             return view('admin.pdf.petugastt', compact('data', 'petugas'));
+        } elseif (request()->get('button') == 'tps') {
+            return view('admin.pdf.petugastps', compact('data', 'petugas'));
         } else {
             return view('admin.pdf.petugas', compact('data', 'petugas'));
         }

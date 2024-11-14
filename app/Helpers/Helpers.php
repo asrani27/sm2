@@ -89,6 +89,10 @@ function pengumpul()
     return Pengumpul::get();
 }
 
+function tidakterdatatps($kelurahan, $tps)
+{
+    return Pilkada::where('kelurahan', $kelurahan)->where('tps', $tps)->where('pengumpul_id', null)->get();
+}
 function tidakterdata($kelurahan, $rt)
 {
     return Pilkada::where('kelurahan', $kelurahan)->where('rt', $rt)->where('pengumpul_id', null)->get();

@@ -56,6 +56,8 @@
         <button tpe="submit" class="btn btn-md btn-primary" name="button" value="filter"><i class="fa fa-search"></i> PREVIEW</button>
         &nbsp;
         <button tpe="submit" class="btn btn-md btn-primary" name="button" value="tt"><i class="fa fa-search"></i> PREVIEW TIDAK TERDATA</button>
+        &nbsp;
+        <button tpe="submit" class="btn btn-md btn-primary" name="button" value="tps"><i class="fa fa-search"></i> PREVIEW TPS</button>
         
        </div>
     </div>
