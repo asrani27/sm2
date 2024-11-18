@@ -48,9 +48,9 @@
               <td></td>
               <td>TOTAL</td>
               <td>{{$totalTPS}}</td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>{{$nomor1}}</td>
+              <td>{{$nomor2}}</td>
+              <td>{{$nomor3}}</td>
               <td></td>
             </tr>
           </tbody></table>

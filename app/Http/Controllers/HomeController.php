@@ -46,7 +46,7 @@ class HomeController extends Controller
             return $item;
         })->sortByDesc('dibawai');
 
-        return view('admin.home', compact('kec', 'dpt', 'kel', 'sahabat', 'data', 'kecamatan', 'totalTPS'));
+        return view('admin.home', compact('kec', 'dpt', 'kel', 'sahabat', 'data', 'kecamatan', 'totalTPS', 'nomor1', 'nomor2', 'nomor3'));
     }
 
     public function user()
