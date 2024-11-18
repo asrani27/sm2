@@ -37,6 +37,8 @@ class SuaraController extends Controller
             $n->kecamatan_id = $kecamatan;
             $n->kelurahan_id = $kelurahan;
             $n->tps = $req->nomor_tps;
+            $n->saksi = $req->saksi;
+            $n->telp = $req->telp;
             $n->nomor_1 = 0;
             $n->nomor_2 = 0;
             $n->nomor_3 = 0;
