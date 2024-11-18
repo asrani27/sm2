@@ -48,11 +48,11 @@ class ImportDPTCommand extends Command
         $tengah = File::allFiles(public_path('dpttengah'));
         $utara = File::allFiles(public_path('dptutara'));
         $basirihselatan = File::allFiles(public_path('basirihselatan'));
-        $sungaiandai = File::allFiles(public_path('sungaiandai'));
+        $sungaiandai = File::allFiles(public_path('sungaiandaitps40'));
         foreach ($sungaiandai as $file) {
 
             $this->info("Memproses file: " . $file->getFilename());
-            $path = base_path('public/sungaiandai/' . $file->getRelativePathname());
+            $path = base_path('public/sungaiandaitps40/' . $file->getRelativePathname());
             $spreadsheet = IOFactory::load($path);
             $worksheet = $spreadsheet->getActiveSheet();
             $data = $worksheet->toArray();
