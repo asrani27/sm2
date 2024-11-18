@@ -115,7 +115,7 @@ class PilkadaController extends Controller
 
         // Filter berdasarkan petugas jika ada input tps
         if ($petugas) {
-            $query->where('pengumpul_id', 'like', '%' . $petugas . '%');
+            $query->where('pengumpul_id', $petugas);
         }
         // Filter berdasarkan nama jika ada input nama
         if ($nama) {
