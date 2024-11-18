@@ -37,8 +37,6 @@ class SuaraController extends Controller
             $n->kecamatan_id = $kecamatan;
             $n->kelurahan_id = $kelurahan;
             $n->tps = $req->nomor_tps;
-            $n->saksi = $req->saksi;
-            $n->telp = $req->telp;
             $n->nomor_1 = 0;
             $n->nomor_2 = 0;
             $n->nomor_3 = 0;
@@ -61,6 +59,8 @@ class SuaraController extends Controller
     public function store_suara(Request $req, $kecamatan, $kelurahan, $tps)
     {
         $data = Suara::find($tps);
+        $data->saksi = $req->saksi;
+        $data->telp = $req->telp;
         $data->nomor_1 = $req->nomor_1;
         $data->nomor_2 = $req->nomor_2;
         $data->nomor_3 = $req->nomor_3;
