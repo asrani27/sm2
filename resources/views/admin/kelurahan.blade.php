@@ -43,10 +43,10 @@
               </td>
             </tr>
             @endforeach
-            <tr>
+            <tr style="background-color: rgb(251, 213, 185); font-weight:bold">
               <td></td>
               <td>TOTAL</td>
-              <td></td>
+              <td>{{$totalTPS}}</td>
               <td></td>
               <td></td>
               <td></td>

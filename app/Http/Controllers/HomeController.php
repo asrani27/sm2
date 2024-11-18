@@ -17,7 +17,16 @@ class HomeController extends Controller
 {
     public function superadmin()
     {
-        $kecamatan = Kecamatan::get();
+
+        // Mengambil data Kecamatan dengan jumlah TPS melalui relasi Kelurahan
+        $kecamatan = Kecamatan::with(['kelurahan' => function ($query) {
+            $query->withCount('suaratps');
+        }])->get();
+
+        $totalTPS = 0;
+        foreach ($kecamatan as $k) {
+            $totalTPS += $k->kelurahan->sum('suaratps_count');
+        }
 
         $kec = [];
         $kel = [];
@@ -28,7 +37,8 @@ class HomeController extends Controller
             $item->dibawai = Pendaftar::where('pendaftar_id', $item->id)->count();
             return $item;
         })->sortByDesc('dibawai');
-        return view('admin.home', compact('kec', 'dpt', 'kel', 'sahabat', 'data', 'kecamatan'));
+
+        return view('admin.home', compact('kec', 'dpt', 'kel', 'sahabat', 'data', 'kecamatan', 'totalTPS'));
     }
 
     public function user()

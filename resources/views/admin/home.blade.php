@@ -23,16 +23,19 @@
             <tbody><tr>
               <th>No</th>
               <th>Nama Kecamatan</th>
+              <th>Jumlah TPS</th>
               <th>Paslon 1</th>
               <th>Paslon 2</th>
               <th>Paslon 3</th>
               
               <th>Aksi</th>
             </tr>
-            @foreach (kecamatan() as $key => $item)
+            @foreach ($kecamatan as $key => $item)
+            
             <tr>
               <td>{{1 + $key}}</td>
               <td>{{$item->nama}}</td>
+              <td>{{$item->kelurahan->sum('suaratps_count') }}</td>
               <td>{{$item->suaratps->sum('nomor_1')}}</td>
               <td>{{$item->suaratps->sum('nomor_2')}}</td>
               <td>{{$item->suaratps->sum('nomor_3')}}</td>
@@ -41,6 +44,15 @@
               </td>
             </tr>
             @endforeach
+            <tr style="background-color: rgb(251, 213, 185); font-weight:bold">
+              <td></td>
+              <td>TOTAL</td>
+              <td>{{$totalTPS}}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
           </tbody></table>
         </div>
         <!-- /.box-body -->
