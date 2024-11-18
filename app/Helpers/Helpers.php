@@ -27,7 +27,7 @@ function totalSuara($nomor)
 
 function paslon()
 {
-    return Paslon::get();
+    return Paslon::orderBy('id', 'DESC')->get();
 }
 
 function suaraKelurahan($kelurahan)
