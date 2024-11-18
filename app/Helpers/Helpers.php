@@ -8,6 +8,10 @@ use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Pengumpul;
 
+function totalSuaraMasuk()
+{
+    return Suara::sum('nomor_1') + Suara::sum('nomor_2') + Suara::sum('nomor_3');
+}
 function totalSuara($nomor)
 {
     if ($nomor == 1) {
