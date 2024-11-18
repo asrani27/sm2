@@ -43,6 +43,15 @@
               </td>
             </tr>
             @endforeach
+            <tr>
+              <td></td>
+              <td>TOTAL</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
           </tbody></table>
         </div>
         <!-- /.box-body -->

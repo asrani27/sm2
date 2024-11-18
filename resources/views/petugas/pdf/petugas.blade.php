@@ -73,7 +73,7 @@
                             <div style="flex: 1; margin-right: 20px;">
                                 <ul>
                                     @foreach ($chunk as $index => $individual)
-                                        <li style="font-size: 10px">{{ $nomorUrut }}. {{ $individual['nama'] }}</li>
+                                        <li style="font-size: 14px">{{ $nomorUrut }}. {{ $individual['nama'] }}</li>
                                         @php $nomorUrut++; @endphp
                                     @endforeach
                                 </ul>
