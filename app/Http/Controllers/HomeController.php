@@ -24,10 +24,18 @@ class HomeController extends Controller
         }])->get();
 
         $totalTPS = 0;
+
+        $nomor1 = 0;
+        $nomor2 = 0;
+        $nomor3 = 0;
         foreach ($kecamatan as $k) {
             $totalTPS += $k->kelurahan->sum('suaratps_count');
         }
-
+        foreach ($kecamatan as $k) {
+            $nomor1 += $k->suaratps->sum('nomor_1');
+            $nomor2 += $k->suaratps->sum('nomor_2');
+            $nomor3 += $k->suaratps->sum('nomor_3');
+        }
         $kec = [];
         $kel = [];
         $dpt = $kecamatan->sum('dpt');
