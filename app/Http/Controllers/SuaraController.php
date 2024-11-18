@@ -77,6 +77,8 @@ class SuaraController extends Controller
         $data->nomor_1 = $req->nomor_1;
         $data->nomor_2 = $req->nomor_2;
         $data->nomor_3 = $req->nomor_3;
+        $data->sah = $req->sah;
+        $data->tidak_sah = $req->tidak_sah;
         $data->save();
         Session::flash('success', 'berhasil');
         return redirect('/superadmin/suara/' . $kecamatan . '/' . $kelurahan);

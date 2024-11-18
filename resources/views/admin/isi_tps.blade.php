@@ -72,6 +72,18 @@ crossorigin=""/>
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-sm-2 control-label"> Suara SAH</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="sah" value="{{$data->sah}}"  required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"> Suara Tidak Sah</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="tidak_sah" value="{{$data->tidak_sah}}"  required>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">File</label>
                         <div class="col-sm-10">
                             <input type="file" class="form-control" name="file">
