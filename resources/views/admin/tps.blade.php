@@ -71,6 +71,7 @@
             <tbody><tr>
               <th>No</th>
               <th>Nomor TPS</th>
+              <th>Saksi & Telp</th>
               <th>Paslon 1</th>
               <th>Paslon 2</th>
               <th>Paslon 3</th>
@@ -81,6 +82,10 @@
             <tr>
               <td>{{1 + $key}}</td>
               <td>{{$item->tps}}</td>
+              <td>
+                {{$item->saksi}} <br/>
+                {{$item->telp}}
+              </td>
               <td>{{$item->nomor_1}}</td>
               <td>{{$item->nomor_2}}</td>
               <td>{{$item->nomor_3}}</td>
