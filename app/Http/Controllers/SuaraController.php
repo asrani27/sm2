@@ -12,8 +12,11 @@ class SuaraController extends Controller
 {
     public function detail_kelurahan($kecamatan)
     {
+        $totalTPS = Kelurahan::where('kecamatan_id', $kecamatan)->get()->sum(function ($item) {
+            return $item->suaratps->count();
+        });
         $data = Kelurahan::where('kecamatan_id', $kecamatan)->get();
-        return view('admin.kelurahan', compact('kecamatan', 'data'));
+        return view('admin.kelurahan', compact('kecamatan', 'data', 'totalTPS'));
     }
 
     public function detail_tps($kecamatan, $kelurahan)
