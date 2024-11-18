@@ -11,6 +11,12 @@
 </div>
 <hr>
 <div class="row">
+  <div class="col-lg-3">
+  <a href="/superadmin/cetak-pengumpuldata" class="btn btn-md btn-primary"><i class="fa fa-print"></i> PENGUMPUL DATA</a>
+  </div>
+</div>
+<hr>
+<div class="row">
   <form method="get" action="/superadmin/laporan/perkelurahan" target="_blank">
     @csrf
     <div class="col-lg-3">

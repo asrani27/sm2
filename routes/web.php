@@ -176,6 +176,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::post('superadmin/surat/edit/{id}', [AdminController::class, 'surat_update']);
     Route::get('superadmin/surat/delete/{id}', [AdminController::class, 'surat_delete']);
 
+    Route::get('superadmin/cetak-pengumpuldata', [PengumpulController::class, 'pdf']);
     Route::get('superadmin/pengumpul', [PengumpulController::class, 'index']);
     Route::post('superadmin/pilkada/pengumpul', [PengumpulController::class, 'set_pengumpul']);
     Route::get('superadmin/pengumpul/create', [PengumpulController::class, 'create']);

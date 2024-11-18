@@ -70,6 +70,12 @@ class PengumpulController extends Controller
             return back();
         }
     }
+    public function pdf()
+    {
+        $data = Pengumpul::withCount('pilkada')->orderBy('id', 'DESC')->get();
+        $pdf = Pdf::loadView('admin.pdf.pengumpul', compact('data'));
+        return $pdf->stream();
+    }
     public function update(Request $req, $id)
     {
         $data = Pengumpul::find($id);
