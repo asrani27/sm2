@@ -44,6 +44,7 @@
       @endif
     @elseif(Auth::user()->hasRole('petugas'))
     <li class="{{ (request()->is('petugas')) ? 'active' : '' }}"><a href="/petugas"><i class="fa fa-home"></i> <span>Beranda</span></a></li>
+    <li class="{{ (request()->is('superadmin/pengumpul*')) ? 'active' : '' }}"><a href="/superadmin/pengumpul"><i class="fa fa-users"></i> <span>Petugas Pengumpul Data</span></a></li>
     <li class="{{ (request()->is('superadmin/pilkada*')) ? 'active' : '' }}"><a href="/superadmin/pilkada"><i class="fa fa-users"></i> <span>Data DPT Pilkada</span></a></li>
     {{-- <li class="{{ (request()->is('petugas/pilkada*')) ? 'active' : '' }}"><a href="/petugas/pilkada"><i class="fa fa-users"></i> <span>Data DPT Pilkada</span></a></li> --}}
     <li class="{{ (request()->is('petugas/laporan*')) ? 'active' : '' }}"><a href="/petugas/laporan"><i class="fa fa-file"></i> <span>Laporan</span></a></li>
