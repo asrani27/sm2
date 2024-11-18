@@ -39,7 +39,7 @@ Route::get('/reload-captcha', [LoginController::class, 'reloadCaptcha']);
 Route::get('/logout', [LogoutController::class, 'logout']);
 
 
-Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
+Route::group(['middleware' => ['auth', 'role:superadmin|petugas']], function () {
     Route::get('superadmin', [HomeController::class, 'superadmin']);
     Route::get('superadmin/gp', [GantiPasswordController::class, 'index']);
     Route::post('superadmin/gp', [GantiPasswordController::class, 'update']);
