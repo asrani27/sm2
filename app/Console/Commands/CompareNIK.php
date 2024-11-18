@@ -73,7 +73,7 @@ class CompareNIK extends Command
             }
         }
 
-        DB::table('dpt_pilkada')->whereNull('nik')->orderBy('id')->chunk(100, function ($dpt_pilkada) use ($nikMapping) {
+        DB::table('dpt_pilkada')->where('tps', '040')->whereNull('nik')->orderBy('id')->chunk(10, function ($dpt_pilkada) use ($nikMapping) {
             foreach ($dpt_pilkada as $item) {
                 $key = "{$item->nama}_{$item->kelurahan}_{$item->usia}_{$item->rt}";
 
