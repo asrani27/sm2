@@ -23,6 +23,12 @@ class SuaraController extends Controller
         $kelurahan = Kelurahan::find($kelurahan);
         return view('admin.tps', compact('kecamatan', 'kelurahan', 'data'));
     }
+    public function hapus_tps($kecamatan, $kelurahan, $tps)
+    {
+        Suara::find($tps)->delete();
+        Session::flash('success', 'berhasil');
+        return back();
+    }
     public function store_tps(Request $req, $kecamatan, $kelurahan)
     {
         $check = Suara::where('kecamatan_id', $kecamatan)->where('kelurahan_id', $kelurahan)->where('tps', $req->nomor_tps)->first();

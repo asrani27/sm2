@@ -23,6 +23,7 @@
             <tbody><tr>
               <th>No</th>
               <th>Nama Kelurahan</th>
+              <th>Jumlah TPS</th>
               <th>Paslon 1</th>
               <th>Paslon 2</th>
               <th>Paslon 3</th>
@@ -33,6 +34,7 @@
             <tr>
               <td>{{1 + $key}}</td>
               <td>{{$item->nama}}</td>
+              <td>{{$item->suaratps->count()}}</td>
               <td>{{$item->suaratps->sum('nomor_1')}}</td>
               <td>{{$item->suaratps->sum('nomor_2')}}</td>
               <td>{{$item->suaratps->sum('nomor_3')}}</td>

@@ -89,6 +89,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::get('superadmin/suara/{kecamatan}', [SuaraController::class, 'detail_kelurahan']);
     Route::get('superadmin/suara/{kecamatan}/{kelurahan}', [SuaraController::class, 'detail_tps']);
     Route::post('superadmin/suara/{kecamatan}/{kelurahan}', [SuaraController::class, 'store_tps']);
+    Route::get('superadmin/hapus/{kecamatan}/{kelurahan}/{tps}', [SuaraController::class, 'hapus_tps']);
     Route::get('superadmin/suara/{kecamatan}/{kelurahan}/{tps}', [SuaraController::class, 'isi_suara']);
     Route::post('superadmin/suara/{kecamatan}/{kelurahan}/{tps}', [SuaraController::class, 'store_suara']);
 
