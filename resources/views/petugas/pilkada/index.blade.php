@@ -10,7 +10,7 @@
 <div class="row">
   <form method="get" action="/petugas/pilkada/filter">
     @csrf
-    <div class="col-lg-3">
+    <div class="col-lg-2">
       <select class="form-control select2" name="kecamatan">
         <option value="">-kecamatan-</option>
         @foreach (kecamatan() as $item)
@@ -18,7 +18,7 @@
         @endforeach
       </select>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-2">
       <select class="form-control select2" name="kelurahan">
         <option value="">-kelurahan-</option>
         @foreach (kelurahan() as $item)
@@ -38,6 +38,15 @@
         <option value="25" {{request('list') == '25' ? 'selected':''}}>25</option>
         <option value="50" {{request('list') == '50' ? 'selected':''}}>50</option>
         <option value="100" {{request('list') == '100' ? 'selected':''}}>100</option>
+      </select>
+    </div>
+
+    <div class="col-lg-2">
+      <select class="form-control select2" name="petugas">
+        <option value="">-petugas-</option>
+        @foreach (pengumpul() as $item)
+            <option value="{{$item->id}}" {{request('petugas') == $item->id ? 'selected':''}}>{{$item->nama}}</option>
+        @endforeach
       </select>
     </div>
     <div class="col-lg-3">

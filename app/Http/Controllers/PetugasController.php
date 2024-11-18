@@ -40,6 +40,7 @@ class PetugasController extends Controller
         $kecamatan = request()->get('kecamatan');
         $kelurahan = request()->get('kelurahan');
         $list = (int)request()->get('list');
+        $petugas = request()->get('petugas');
         $rt = request()->get('rt');
         $tps = request()->get('tps');
         $nama = request()->get('nama');
@@ -64,6 +65,10 @@ class PetugasController extends Controller
             $query->where('tps', 'like', '%' . $tps . '%');
         }
 
+        // Filter berdasarkan petugas jika ada input tps
+        if ($petugas) {
+            $query->where('pengumpul_id', 'like', '%' . $petugas . '%');
+        }
         // Filter berdasarkan nama jika ada input nama
         if ($nama) {
             $query->where('nama', 'like', '%' . $nama . '%')->orWhere('nik', 'like', '%' . $nama . '%');
