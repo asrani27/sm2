@@ -12,7 +12,7 @@
 <hr>
 <div class="row">
   <div class="col-lg-3">
-  <a href="/superadmin/cetak-pengumpuldata" class="btn btn-md btn-primary"><i class="fa fa-print"></i> PENGUMPUL DATA</a>
+  <a href="/superadmin/cetak-pengumpuldata" class="btn btn-md btn-primary" target="_blank"><i class="fa fa-print"></i> PENGUMPUL DATA</a>
   </div>
 </div>
 <hr>
