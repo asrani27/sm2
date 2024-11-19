@@ -3,7 +3,44 @@
   <link rel="stylesheet" href="/assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 @endpush
 @section('content')
+<div class="row">
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="info-box bg-green">
+      <span class="info-box-icon"><i class="fa fa-users"></i></span>
 
+      <div class="info-box-content">
+        <span class="info-box-text">TOTAL SUARA TERPERCAYA</span>
+        <span class="info-box-number">92,050</span>
+
+        <div class="progress">
+          <div class="progress-bar" style="width: 20%"></div>
+        </div>
+        <span class="progress-description">
+              
+        </span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+  </div>
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="info-box bg-red">
+      <span class="info-box-icon"><i class="fa fa-users"></i></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">TOTAL SUARA TIDAK TERPERCAYA</span>
+        <span class="info-box-number">92,050</span>
+
+        <div class="progress">
+          <div class="progress-bar" style="width: 20%"></div>
+        </div>
+        <span class="progress-description">
+              
+        </span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+  </div>
+</div>
 <div class="row">
     <div class="col-md-12">
         <div class="box">
@@ -29,7 +66,12 @@
               <tbody>
                 
                 @foreach ($data as $key => $item)
-                <tr>
+                @if ($item->valid === 1)
+                    <tr style="background-color: rgb(209, 244, 211)">
+                @else
+                    <tr style="background-color: rgb(237, 209, 209)">
+                    
+                @endif
                   <td>{{$key + 1}}</td>
                   <td>{{$item->nama}}</td>
                   <td>{{$item->telp}}</td>
@@ -38,7 +80,7 @@
                   
                   <td>
                     <a href="/superadmin/terpercaya/valid/{{$item->id}}" class="btn btn-flat btn-sm btn-success"><i class="fa fa-check"></i> Valid</a>
-                    <a href="/superadmin/terpercaya/novalid/{{$item->id}}" class="btn btn-flat btn-sm btn-danger" onclick="return confirm('Yakin ingin dihapus?');"><i class="fa fa-trash"></i> Tidak Valid</a>
+                    <a href="/superadmin/terpercaya/novalid/{{$item->id}}" class="btn btn-flat btn-sm btn-danger"><i class="fa fa-trash"></i> Tidak Valid</a>
                   </td>
                 </tr>
                 @endforeach
