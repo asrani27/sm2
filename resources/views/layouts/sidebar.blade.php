@@ -11,6 +11,7 @@
       <li class="{{ (request()->is('superadmin/paslon*')) ? 'active' : '' }}"><a href="/superadmin/paslon"><i class="fa fa-users"></i> <span>Data Paslon</span></a></li>
         <li class="{{ (request()->is('superadmin/user*')) ? 'active' : '' }}"><a href="/superadmin/user"><i class="fa fa-users"></i> <span>Data Pengguna Aplikasi</span></a></li>
        
+        <li class="{{ (request()->is('superadmin/terpercaya*')) ? 'active' : '' }}"><a href="/superadmin/terpercaya"><i class="fa fa-users"></i> <span>Data Terpercaya</span></a></li>
         <li class="{{ (request()->is('superadmin/pengumpul*')) ? 'active' : '' }}"><a href="/superadmin/pengumpul"><i class="fa fa-users"></i> <span>Petugas Pengumpul Data</span></a></li>
         <li class="treeview {{ (request()->is('superadmin/koordinator*')) ? 'active' : '' }}">
           <a href="#">

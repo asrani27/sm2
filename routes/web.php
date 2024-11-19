@@ -20,6 +20,7 @@ use App\Http\Controllers\PengumpulController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\PilkadaController;
 use App\Http\Controllers\SuaraController;
+use App\Http\Controllers\ValidController;
 use App\Http\Controllers\WAController;
 
 Route::get('/', function () {
@@ -175,6 +176,10 @@ Route::group(['middleware' => ['auth', 'role:superadmin|petugas']], function () 
     Route::get('superadmin/surat/edit/{id}', [AdminController::class, 'surat_edit']);
     Route::post('superadmin/surat/edit/{id}', [AdminController::class, 'surat_update']);
     Route::get('superadmin/surat/delete/{id}', [AdminController::class, 'surat_delete']);
+
+    Route::get('superadmin/terpercaya', [ValidController::class, 'index']);
+    Route::get('superadmin/terpercaya/valid/{id}', [ValidController::class, 'valid']);
+    Route::get('superadmin/terpercaya/novalid/{id}', [ValidController::class, 'novalid']);
 
     Route::get('superadmin/cetak-pengumpuldata', [PengumpulController::class, 'pdf']);
     Route::get('superadmin/pengumpul', [PengumpulController::class, 'index']);
