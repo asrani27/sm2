@@ -35,7 +35,9 @@
         {{-- <li class="{{ (request()->is('superadmin/export*')) ? 'active' : '' }}"><a href="/superadmin/export"><i class="fa fa-file-excel-o"></i> <span>Export</span></a></li> --}}
         <li><a href="/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
       @else
-
+      @if (Auth::user()->username === 'adminkota') 
+      
+      @else
       @if (Auth::user()->username === 'irul') 
       <li class="{{ (request()->is('superadmin/user*')) ? 'active' : '' }}"><a href="/superadmin/user"><i class="fa fa-users"></i> <span>Data Pengguna Aplikasi</span></a></li>
       @else
