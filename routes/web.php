@@ -23,6 +23,8 @@ use App\Http\Controllers\PengumpulController;
 use App\Http\Controllers\LupaPasswordController;
 use App\Http\Controllers\ValidPilkadaController;
 use App\Http\Controllers\GantiPasswordController;
+use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\SaksiController;
 use App\Http\Controllers\SaksiTpsController;
 
@@ -46,6 +48,12 @@ Route::get('/logout', [LogoutController::class, 'logout']);
 Route::group(['middleware' => ['auth', 'role:saksi']], function () {
     Route::get('saksi', [SaksiTpsController::class, 'index']);
     Route::post('saksi/tps/suara', [SaksiTpsController::class, 'store']);
+});
+Route::group(['middleware' => ['auth', 'role:kelurahan']], function () {
+    Route::get('kelurahan', [KelurahanController::class, 'index']);
+});
+Route::group(['middleware' => ['auth', 'role:kecamatan']], function () {
+    Route::get('kecamatan', [KecamatanController::class, 'index']);
 });
 Route::group(['middleware' => ['auth', 'role:superadmin|petugas']], function () {
     Route::get('superadmin', [HomeController::class, 'superadmin']);
