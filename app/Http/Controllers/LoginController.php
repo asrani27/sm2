@@ -20,6 +20,10 @@ class LoginController extends Controller
                 return redirect('user');
             } elseif (Auth::user()->hasRole('saksi')) {
                 return redirect('saksi');
+            } elseif (Auth::user()->hasRole('kecamatan')) {
+                return redirect('kecamatan');
+            } elseif (Auth::user()->hasRole('kelurahan')) {
+                return redirect('kelurahan');
             }
         }
 
@@ -37,6 +41,10 @@ class LoginController extends Controller
                 return redirect('user');
             } elseif (Auth::user()->hasRole('saksi')) {
                 return redirect('saksi');
+            } elseif (Auth::user()->hasRole('kecamatan')) {
+                return redirect('kecamatan');
+            } elseif (Auth::user()->hasRole('kelurahan')) {
+                return redirect('kelurahan');
             }
         }
 
@@ -69,6 +77,14 @@ class LoginController extends Controller
             if (Auth::user()->hasRole('saksi')) {
                 Session::flash('success', 'Selamat Datang');
                 return redirect('saksi');
+            }
+            if (Auth::user()->hasRole('kecamatan')) {
+                Session::flash('success', 'Selamat Datang');
+                return redirect('kecamatan');
+            }
+            if (Auth::user()->hasRole('kelurahan')) {
+                Session::flash('success', 'Selamat Datang');
+                return redirect('kelurahan');
             }
         } else {
             Session::flash('error', 'username/password salah');
