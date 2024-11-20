@@ -200,7 +200,7 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <span style="font-size:16px; font-weight:bold">{{$data->count()}} / {{number_format(totalDPT())}}</span>
+        <span style="font-size:16px; font-weight:bold">{{$data->total()}} / {{number_format(totalDPT())}}</span>
       </div>
       <!-- /.box-body -->
     </div>
