@@ -93,6 +93,14 @@ function pengumpulvalid()
     return Pengumpul::where('valid', 1)->get();
 }
 
+function datavalid()
+{
+    $valid_id = Pengumpul::where('valid', 1)->pluck('id');
+
+    $data = Pilkada::whereIn('pengumpul_id', $valid_id)->get();
+    return $data;
+}
+
 function pengumpul()
 {
     return Pengumpul::get();

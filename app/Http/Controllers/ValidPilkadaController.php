@@ -14,7 +14,6 @@ class ValidPilkadaController extends Controller
 {
     public function index()
     {
-
         $valid_id = Pengumpul::where('valid', 1)->pluck('id');
 
         $data = Pilkada::whereIn('pengumpul_id', $valid_id)->orderBy('id', 'DESC')->paginate(20);

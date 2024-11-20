@@ -228,7 +228,7 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <span style="font-size:16px; font-weight:bold">{{$data->where('kecamatan','BANJARMASIN BARAT')->count()}} / {{number_format(totalBjmBarat())}}</span>
+        <span style="font-size:16px; font-weight:bold">{{datavalid()->where('kecamatan','BANJARMASIN BARAT')->count()}} / {{number_format(totalBjmBarat())}}</span>
       </div>
       <!-- /.box-body -->
     </div>
@@ -242,7 +242,7 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <span style="font-size:16px; font-weight:bold">{{$data->where('kecamatan','BANJARMASIN TENGAH')->count()}} /{{number_format(totalBjmTengah())}}</span>
+        <span style="font-size:16px; font-weight:bold">{{datavalid()->where('kecamatan','BANJARMASIN TENGAH')->count()}} /{{number_format(totalBjmTengah())}}</span>
       </div>
       <!-- /.box-body -->
     </div>
@@ -256,7 +256,7 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <span style="font-size:16px; font-weight:bold">{{$data->where('kecamatan','BANJARMASIN UTARA')->count()}} /{{number_format(totalBjmUtara())}}</span>
+        <span style="font-size:16px; font-weight:bold">{{datavalid()->where('kecamatan','BANJARMASIN UTARA')->count()}} /{{number_format(totalBjmUtara())}}</span>
       </div>
       <!-- /.box-body -->
     </div>
@@ -270,7 +270,7 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <span style="font-size:16px; font-weight:bold">{{$data->where('kecamatan','BANJARMASIN SELATAN')->count()}} /{{number_format(totalBjmSelatan())}}</span>
+        <span style="font-size:16px; font-weight:bold">{{datavalid()->where('kecamatan','BANJARMASIN SELATAN')->count()}} /{{number_format(totalBjmSelatan())}}</span>
       </div>
       <!-- /.box-body -->
     </div>
