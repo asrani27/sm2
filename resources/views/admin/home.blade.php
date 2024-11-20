@@ -61,180 +61,87 @@
     </div>
 </div>
 
-{{-- <a href="/superadmin/refresh" class="btn btn-md btn-danger"><i class="fa fa-refresh"></i>&nbsp;Refresh</a><br/><br/>
-<div class="row">
-  <div class="col-md-8">
-  <div class="box">  
-      <div class="box-body no-padding ">  
-        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-      </div>
-  </div>
-  </div>
-  <div class="col-md-4">
-  <div class="box">  
-      <div class="box-body no-padding ">  
-        <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
-      </div>
-  </div>
-  </div>
 
-</div>
-<div class="row">
-  
-  <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box">
-      <span class="info-box-icon bg-blue"><i class="fa fa-users"></i></span>
-
-      <div class="info-box-content">
-        <span class="info-box-text">Total DPT Kota Banjarmasin</span>
-        <span class="info-box-number">{{number_format($kecamatan->sum('dpt'))}}</span>
-      </div>
-      <!-- /.info-box-content -->
-    </div>
-    <!-- /.info-box -->
-  </div>
-  
-  @foreach ($kecamatan as $item)
-      
-  <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="info-box">
-      <span class="info-box-icon bg-blue"><i class="fa fa-users"></i></span>
-
-      <div class="info-box-content">
-        <span class="info-box-text">DPT {{strtoupper($item->nama)}}</span>
-        <span class="info-box-number">{{number_format($item->dpt)}}</span>
-      </div>
-      <!-- /.info-box-content -->
-    </div>
-    <!-- /.info-box -->
-  </div>
-  @endforeach
-  
-</div> --}}
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
 
 @endsection
 @push('js')
 
 <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+<script type="text/javascript">
 
-<script>
-
-  var kecamatan = {!!json_encode($kecamatan)!!}
-  var dpt = {!!json_encode($dpt)!!}
-  var sahabat = {!!json_encode($sahabat)!!}
-  
-  </script>
-
-<script>
+var paslon1 = {!!json_encode($paslon1)!!}
+var paslon2 = {!!json_encode($paslon2)!!}
+var paslon3 = {!!json_encode($paslon3)!!}
   window.onload = function () {
   
   var chart = new CanvasJS.Chart("chartContainer", {
-    exportEnabled: true,
     animationEnabled: true,
     title:{
-      text: "DPT Per Kecamatan"
-    },
-    subtitles: [{
-      text: "Prediksi Data Sahabat Dengan Data DPT"
-    }], 
-    axisX: {
-      title: "Kecamatan"
+      text: "Data Dalam Bentuk Grafik"
     },
     axisY: {
-      title: "DPT Terdaftar",
-      titleFontColor: "#4F81BC",
-      lineColor: "#4F81BC",
-      labelFontColor: "#4F81BC",
-      tickColor: "#4F81BC",
+      title: "Suara",
       includeZero: true
-    },
-    axisY2: {
-      title: "Data Sahabat",
-      titleFontColor: "#C0504E",
-      lineColor: "#C0504E",
-      labelFontColor: "#C0504E",
-      tickColor: "#C0504E",
-      includeZero: true
-    },
-    toolTip: {
-      shared: true
     },
     legend: {
-      cursor: "pointer",
-      itemclick: toggleDataSeries
+      cursor:"pointer",
+      itemclick : toggleDataSeries
+    },
+    toolTip: {
+      shared: true,
+      content: toolTipFormatter
     },
     data: [{
-      type: "column",
-      name: "DPT Terdaftar",
-      showInLegend: true,      
-      yValueFormatString: "#,##0.# Org",
-      dataPoints: [
-        { label: "BJM BARAT",  y: kecamatan[0].dpt },
-        { label: "BJM SELATAN", y: kecamatan[1].dpt },
-        { label: "BJM TIMUR", y: kecamatan[2].dpt },
-        { label: "BJM TENGAH",  y: kecamatan[3].dpt },
-        { label: "BJM UTARA",  y: kecamatan[4].dpt }
-      ]
+      type: "bar",
+      showInLegend: true,
+      name: "Paslon 1",
+      color: "#91c9ec",
+      dataPoints: paslon1
     },
     {
-      type: "column",
-      name: "Sahabat",
-      axisYType: "secondary",
+      type: "bar",
       showInLegend: true,
-      yValueFormatString: "#,##0.# Org",
-      dataPoints: [
-        { label: "BJM BARAT",  y: kecamatan[0].sahabat },
-        { label: "BJM SELATAN", y: kecamatan[1].sahabat },
-        { label: "BJM TIMUR", y: kecamatan[2].sahabat },
-        { label: "BJM TENGAH",  y: kecamatan[3].sahabat },
-        { label: "BJM UTARA",  y: kecamatan[4].sahabat }
-      ]
+      name: "Paslon 2",
+      color: "#e8867f",
+      dataPoints: paslon2
+    },
+    {
+      type: "bar",
+      showInLegend: true,
+      name: "Paslon 3",
+      color: "silver",
+      dataPoints: paslon3
     }]
   });
   chart.render();
   
+  function toolTipFormatter(e) {
+    var str = "";
+    var total = 0 ;
+    var str3;
+    var str2 ;
+    for (var i = 0; i < e.entries.length; i++){
+      var str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\">" + e.entries[i].dataSeries.name + "</span>: <strong>"+  e.entries[i].dataPoint.y + "</strong> <br/>" ;
+      total = e.entries[i].dataPoint.y + total;
+      str = str.concat(str1);
+    }
+    str2 = "<strong>" + e.entries[0].dataPoint.label + "</strong> <br/>";
+    str3 = "<span style = \"color:Tomato\">Total: </span><strong>" + total + "</strong><br/>";
+    return (str2.concat(str)).concat(str3);
+  }
+  
   function toggleDataSeries(e) {
     if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
       e.dataSeries.visible = false;
-    } else {
+    }
+    else {
       e.dataSeries.visible = true;
     }
-    e.chart.render();
+    chart.render();
   }
   
-
-  var chart2 = new CanvasJS.Chart("chartContainer2", {
-	exportEnabled: true,
-	animationEnabled: true,
-	title:{
-		text: "DPT Kota Banjarmasin"
-	},
-	legend:{
-		cursor: "pointer",
-		itemclick: explodePie
-	},
-	data: [{
-		type: "pie",
-		showInLegend: true,
-		toolTipContent: "{name}: <strong>{y}</strong>",
-		indexLabel: "{name} - {y}",
-		dataPoints: [
-			{ y: dpt, name: "DPT Terdaftar ", exploded: true },
-			{ y: sahabat, name: "Sahabat " },
-		]
-	}]
-});
-chart2.render();
-}
-
-function explodePie (e) {
-	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
-		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
-	} else {
-		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
-	}
-	e.chart2.render();
-
   }
   </script>
+  
 @endpush

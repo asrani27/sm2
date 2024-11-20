@@ -32,10 +32,31 @@ class HomeController extends Controller
             $totalTPS += $k->kelurahan->sum('suaratps_count');
         }
         foreach ($kecamatan as $k) {
+
             $nomor1 += $k->suaratps->sum('nomor_1');
             $nomor2 += $k->suaratps->sum('nomor_2');
             $nomor3 += $k->suaratps->sum('nomor_3');
         }
+
+        $paslon1 = $kecamatan->map(function ($item) {
+            $param['y'] = $item->suaratps->sum('nomor_1');
+            $param['label'] = $item->nama;
+            return $param;
+        })->toArray();
+
+        $paslon2 = $kecamatan->map(function ($item) {
+            $param['y'] = $item->suaratps->sum('nomor_2');
+            $param['label'] = $item->nama;
+            return $param;
+        })->toArray();
+
+        $paslon3 = $kecamatan->map(function ($item) {
+            $param['y'] = $item->suaratps->sum('nomor_3');
+            $param['label'] = $item->nama;
+            return $param;
+        })->toArray();
+
+
         $kec = [];
         $kel = [];
         $dpt = $kecamatan->sum('dpt');
@@ -46,7 +67,7 @@ class HomeController extends Controller
             return $item;
         })->sortByDesc('dibawai');
 
-        return view('admin.home', compact('kec', 'dpt', 'kel', 'sahabat', 'data', 'kecamatan', 'totalTPS', 'nomor1', 'nomor2', 'nomor3'));
+        return view('admin.home', compact('paslon1', 'paslon2', 'paslon3', 'kec', 'dpt', 'kel', 'sahabat', 'data', 'kecamatan', 'totalTPS', 'nomor1', 'nomor2', 'nomor3'));
     }
 
     public function user()
