@@ -101,6 +101,24 @@ function datavalid()
     return $data;
 }
 
+
+function tpsmasuk($id)
+{
+
+    $data = Suara::where('kelurahan_id', $id)->get()->map(function ($item) {
+        if ($item->nomor_1 === 0 && $item->nomor_2 === 0 && $item->nomor_3 === 0) {
+            $result = 0;
+        } else {
+            $result = 1;
+        }
+        $item->masuk = $result;
+        return $item;
+    });
+
+
+    return $data->where('masuk', 1);
+}
+
 function pengumpul()
 {
     return Pengumpul::get();

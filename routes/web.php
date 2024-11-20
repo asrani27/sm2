@@ -51,9 +51,14 @@ Route::group(['middleware' => ['auth', 'role:saksi']], function () {
 });
 Route::group(['middleware' => ['auth', 'role:kelurahan']], function () {
     Route::get('kelurahan', [KelurahanController::class, 'index']);
+    Route::get('kelurahan/edit/{id}', [KelurahanController::class, 'edit']);
+    Route::post('kelurahan/tps/suara/{id}', [KelurahanController::class, 'store']);
 });
 Route::group(['middleware' => ['auth', 'role:kecamatan']], function () {
     Route::get('kecamatan', [KecamatanController::class, 'index']);
+    Route::get('kecamatan/kelurahan/{id}', [KecamatanController::class, 'kelurahan']);
+    Route::get('kecamatan/kelurahan/{id}/edittps/{id_tps}', [KecamatanController::class, 'edit']);
+    Route::post('kecamatan/tps/suara/{id}', [KecamatanController::class, 'store']);
 });
 Route::group(['middleware' => ['auth', 'role:superadmin|petugas']], function () {
     Route::get('superadmin', [HomeController::class, 'superadmin']);

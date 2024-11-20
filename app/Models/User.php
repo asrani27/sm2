@@ -58,4 +58,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Suara::class, 'suara_id');
     }
+
+    public function listtps()
+    {
+        return $this->belongsTo(Suara::class, 'kelurahan_id');
+    }
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class, 'kecamatan_id');
+    }
 }

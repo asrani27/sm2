@@ -3,15 +3,11 @@
 
 @endpush
 @section('content')
-
-@include('admin.paslon')
-
-
 <div class="row">
   <div class="col-md-12">
       <div class="box box-primary">
         <div class="box-header">
-          <i class="ion ion-clipboard"></i><h3 class="box-title">Data Kelurahan</h3>
+          <i class="ion ion-clipboard"></i><h3 class="box-title">Data Kelurahan Kecamatan {{Auth::user()->kecamatan->nama}}</h3>
 
           {{-- <div class="box-tools">
             <a href="/superadmin/kecamatan/create" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
@@ -28,29 +24,29 @@
               <th>Paslon 2</th>
               <th>Paslon 3</th>
               
-              <th>Aksi</th>
+              {{-- <th>Aksi</th> --}}
             </tr>
             @foreach ($data as $key => $item)
-            <tr>
-              <td>{{1 + $key}}</td>
-              <td>{{$item->nama}}</td>
-              <td>{{$item->suaratps->count()}}</td>
+            <tr style="font-size: 18px">
+              <td>
+                <a href="/kecamatan/kelurahan/{{$item->id}}" class="btn btn-flat btn-xs btn-primary"><i class="fa fa-eye"></i></a>
+              </td>
+              <td>{{1 + $key}}. {{$item->nama}}
+               
+              </td>
+              <td style="font-weight: bold"> {{tpsmasuk($item->id)->count()}} / {{$item->suaratps->count()}}</td>
               <td>{{$item->suaratps->sum('nomor_1')}}</td>
               <td>{{$item->suaratps->sum('nomor_2')}}</td>
               <td>{{$item->suaratps->sum('nomor_3')}}</td>
-              <td>
-                <a href="/superadmin/suara/{{$kecamatan}}/{{$item->id}}" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-eye"></i> detail</a>
-              </td>
             </tr>
             @endforeach
-            <tr style="background-color: rgb(251, 213, 185); font-weight:bold">
+            <tr style="background-color: rgb(251, 213, 185); font-weight:bold;font-size:20px">
               <td></td>
               <td>TOTAL</td>
-              <td>{{$totalTPS}}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>{{$data->sum('tpsmasuk')}} / {{$totalTPS}}</td>
+              <td>{{$data->sum('nomor_1')}}</td>
+              <td>{{$data->sum('nomor_2')}}</td>
+              <td>{{$data->sum('nomor_3')}}</td>
             </tr>
           </tbody>
           </table>
