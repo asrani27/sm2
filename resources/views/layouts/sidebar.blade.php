@@ -29,6 +29,7 @@
         </li>
         <li class="{{ (request()->is('superadmin/dpt*')) ? 'active' : '' }}"><a href="/superadmin/dpt"><i class="fa fa-users"></i> <span>Data DPT Pileg</span></a></li>
         <li class="{{ (request()->is('superadmin/pilkada*')) ? 'active' : '' }}"><a href="/superadmin/pilkada"><i class="fa fa-users"></i> <span>Data DPT Pilkada</span></a></li>
+        <li class="{{ (request()->is('superadmin/validpilkada*')) ? 'active' : '' }}"><a href="/superadmin/validpilkada"><i class="fa fa-users"></i> <span>Data DPT Pilkada Valid</span></a></li>
         <li class="{{ (request()->is('superadmin/laporan*')) ? 'active' : '' }}"><a href="/superadmin/laporan"><i class="fa fa-file"></i> <span>Laporan</span></a></li>
         {{-- <li class="{{ (request()->is('superadmin/export*')) ? 'active' : '' }}"><a href="/superadmin/export"><i class="fa fa-file-excel-o"></i> <span>Export</span></a></li> --}}
         <li><a href="/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>

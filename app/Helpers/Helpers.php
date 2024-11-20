@@ -88,6 +88,11 @@ function newKrk()
     return Tkrk::where('status', 0)->count();
 }
 
+function pengumpulvalid()
+{
+    return Pengumpul::where('valid', 1)->get();
+}
+
 function pengumpul()
 {
     return Pengumpul::get();

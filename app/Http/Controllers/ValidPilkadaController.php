@@ -6,19 +6,21 @@ use App\Models\Pilkada;
 use App\Models\Kecamatan;
 use App\Models\Pengumpul;
 use Illuminate\Http\Request;
-use Smalot\PdfParser\Parser;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class PilkadaController extends Controller
+class ValidPilkadaController extends Controller
 {
     public function index()
     {
-        $data = Pilkada::orderBy('id', 'DESC')->paginate(20);
+
+        $valid_id = Pengumpul::where('valid', 1)->pluck('id');
+
+        $data = Pilkada::whereIn('pengumpul_id', $valid_id)->orderBy('id', 'DESC')->paginate(20);
         $kecamatan = Kecamatan::get();
         $jumlahPerPetugas = null;
-        return view('admin.pilkada.index', compact('data', 'kecamatan', 'jumlahPerPetugas'));
+        return view('admin.validpilkada.index', compact('data', 'kecamatan', 'jumlahPerPetugas'));
     }
     public function kuncisemua(Request $request)
     {
@@ -93,6 +95,10 @@ class PilkadaController extends Controller
 
         $query = Pilkada::query(); // Ganti dengan model yang sesuai
 
+        $valid_id = Pengumpul::where('valid', 1)->pluck('id');
+
+        $query->whereIn('pengumpul_id', $valid_id);
+
         // Jika ada input kecamatan, tambahkan filter kecamatan
         if ($kecamatan) {
             $query->where('kecamatan', 'like', '%' . $kecamatan . '%');
@@ -139,7 +145,7 @@ class PilkadaController extends Controller
                 ];
             });
 
-        return view('admin.pilkada.index', compact('data', 'kecamatan', 'jumlahPerPetugas'));
+        return view('admin.validpilkada.index', compact('data', 'kecamatan', 'jumlahPerPetugas'));
     }
     public function refresh()
     {
@@ -167,7 +173,7 @@ class PilkadaController extends Controller
         $data = pilkada::where('nik', 'LIKE', '%' . $keyword . '%')->orWhere('nama', 'LIKE', '%' . $keyword . '%')->paginate(10);
         request()->flash();
         $kecamatan = Kecamatan::get();
-        return view('admin.pilkada.index', compact('data', 'kecamatan'));
+        return view('admin.validpilkada.index', compact('data', 'kecamatan'));
     }
     public function upload(Request $req)
     {
@@ -254,7 +260,7 @@ class PilkadaController extends Controller
     public function upload_pilkada()
     {
         $data = Filepilkada::paginate(20);
-        return view('admin.pilkada.upload', compact('data'));
+        return view('admin.validpilkada.upload', compact('data'));
     }
     public function delete_file($id)
     {

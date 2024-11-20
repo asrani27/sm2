@@ -2,26 +2,27 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WAController;
+use App\Http\Controllers\DPTController;
+use App\Http\Controllers\GrupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NomorController;
+use App\Http\Controllers\SuaraController;
+use App\Http\Controllers\ValidController;
 use App\Http\Controllers\DaftarController;
-use App\Http\Controllers\DPTController;
 use App\Http\Controllers\GabungController;
 use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\LupaPasswordController;
-use App\Http\Controllers\GantiPasswordController;
-use App\Http\Controllers\GrupController;
-use App\Http\Controllers\NomorController;
+use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\PilkadaController;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\PendukungController;
 use App\Http\Controllers\PengumpulController;
-use App\Http\Controllers\PetugasController;
-use App\Http\Controllers\PilkadaController;
-use App\Http\Controllers\SuaraController;
-use App\Http\Controllers\ValidController;
-use App\Http\Controllers\WAController;
+use App\Http\Controllers\LupaPasswordController;
+use App\Http\Controllers\ValidPilkadaController;
+use App\Http\Controllers\GantiPasswordController;
 
 Route::get('/', function () {
     return view('beranda');
@@ -64,6 +65,12 @@ Route::group(['middleware' => ['auth', 'role:superadmin|petugas']], function () 
     Route::get('superadmin/wa/kirim/{id}', [WAController::class, 'kirim']);
     Route::post('superadmin/wa/create', [WAController::class, 'store']);
     Route::get('superadmin/wa/delete/{id}', [WAController::class, 'delete']);
+
+    Route::get('superadmin/validpilkada', [ValidPilkadaController::class, 'index']);
+    Route::post('superadmin/validpilkada/kuncisemua', [ValidPilkadaController::class, 'kuncisemua']);
+    Route::get('superadmin/validpilkada/filter', [ValidPilkadaController::class, 'filter']);
+    Route::get('superadmin/validpilkada/pendukung/{id}', [ValidPilkadaController::class, 'pendukung']);
+    Route::get('superadmin/validpilkada/pendukung/delete/{id}', [ValidPilkadaController::class, 'deletePendukung']);
 
     Route::get('superadmin/pilkada', [PilkadaController::class, 'index']);
     Route::post('superadmin/pilkada/kuncisemua', [PilkadaController::class, 'kuncisemua']);
