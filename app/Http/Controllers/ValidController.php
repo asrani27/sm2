@@ -32,6 +32,31 @@ class ValidController extends Controller
 
         return back();
     }
+    public function filter()
+    {
+
+        $valid_id = Pengumpul::where('valid', 1)->pluck('id');
+        $total_valid = Pilkada::whereIn('pengumpul_id', $valid_id)->count();
+
+        $novalid_id = Pengumpul::where('valid', null)->pluck('id');
+        $total_novalid = Pilkada::whereIn('pengumpul_id', $novalid_id)->count();
+
+        $nama = request()->get('nama');
+
+        $query = Pengumpul::query(); // Ganti dengan model yang sesuai
+
+        $query->withCount('pilkada');
+
+        // Jika ada input kecamatan, tambahkan filter kecamatan
+        if ($nama) {
+            $query->where('nama', 'like', '%' . $nama . '%');
+        }
+
+        $data = $query->get();
+
+        return view('admin.valid.index', compact('data', 'total_valid', 'total_novalid'));
+    }
+
     public function valid2($id)
     {
         Pengumpul::find($id)->update(['valid' => 1]);

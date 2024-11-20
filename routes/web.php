@@ -178,6 +178,7 @@ Route::group(['middleware' => ['auth', 'role:superadmin|petugas']], function () 
     Route::get('superadmin/surat/delete/{id}', [AdminController::class, 'surat_delete']);
 
     Route::get('superadmin/terpercaya', [ValidController::class, 'index']);
+    Route::get('superadmin/terpercaya/filter', [ValidController::class, 'filter']);
     Route::post('superadmin/terpercaya/valid', [ValidController::class, 'valid']);
     Route::get('superadmin/terpercaya/valid/{id}', [ValidController::class, 'valid2']);
     Route::get('superadmin/terpercaya/novalid/{id}', [ValidController::class, 'novalid']);

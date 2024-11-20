@@ -42,6 +42,22 @@
   </div>
 </div>
 <div class="row">
+  <form method="get" action="/superadmin/terpercaya/filter">
+    @csrf
+    
+    <div class="col-lg-3">
+      <div class="input-group input-group-md">
+        <input type="text" name="nama" class="form-control" placeholder="Nama" value="{{request('nama')}}">
+
+        <div class="input-group-btn">
+            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+        </div>
+        </div>
+    </div>
+  </form>
+</div>
+<br/>
+<div class="row">
     <div class="col-md-12">
         <div class="box">
           <div class="box-header">
