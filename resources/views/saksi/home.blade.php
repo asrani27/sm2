@@ -88,7 +88,7 @@ crossorigin=""/>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i> Simpan Data</button>
+                    <button type="submit" class="btn btn-primary btn-block pull-right"><i class="fa fa-save"></i> Simpan Data</button>
                 </div>
                 <!-- /.box-footer -->
             </form>

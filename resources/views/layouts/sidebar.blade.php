@@ -53,6 +53,9 @@
     <li class="{{ (request()->is('petugas/laporan*')) ? 'active' : '' }}"><a href="/petugas/laporan"><i class="fa fa-file"></i> <span>Laporan</span></a></li>
     <li><a href="/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
 
+    @elseif(Auth::user()->hasRole('saksi'))
+    <li class="{{ (request()->is('saksi')) ? 'active' : '' }}"><a href="/saksi"><i class="fa fa-home"></i> <span>Beranda</span></a></li>
+    <li><a href="/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
     @else
         
     <li class="{{ (request()->is('user')) ? 'active' : '' }}"><a href="/user"><i class="fa fa-home"></i> <span>Beranda</span></a></li>
