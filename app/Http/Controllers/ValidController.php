@@ -32,6 +32,11 @@ class ValidController extends Controller
 
         return back();
     }
+    public function valid2($id)
+    {
+        Pengumpul::find($id)->update(['valid' => 1]);
+        return back();
+    }
     public function novalid($id)
     {
         Pengumpul::find($id)->update(['valid' => null]);
