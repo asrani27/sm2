@@ -5,11 +5,8 @@
     <li class="header">MENU UTAMA</li>
     
     @if (Auth::user()->hasRole('superadmin'))
-      @if (Auth::user()->username === 'adminkota') 
       <li class="{{ (request()->is('superadmin')) ? 'active' : '' }}"><a href="/superadmin"><i class="fa fa-home"></i> <span>Beranda</span></a></li>
-      @else
-      <li class="{{ (request()->is('superadmin')) ? 'active' : '' }}"><a href="/superadmin"><i class="fa fa-home"></i> <span>Beranda</span></a></li>
-      @endif
+      
       @if (Auth::user()->username === 'admin') 
       <li class="{{ (request()->is('superadmin/paslon*')) ? 'active' : '' }}"><a href="/superadmin/paslon"><i class="fa fa-users"></i> <span>Data Paslon</span></a></li>
         <li class="{{ (request()->is('superadmin/user*')) ? 'active' : '' }}"><a href="/superadmin/user"><i class="fa fa-users"></i> <span>Data Pengguna Aplikasi</span></a></li>
