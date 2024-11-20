@@ -23,6 +23,8 @@ use App\Http\Controllers\PengumpulController;
 use App\Http\Controllers\LupaPasswordController;
 use App\Http\Controllers\ValidPilkadaController;
 use App\Http\Controllers\GantiPasswordController;
+use App\Http\Controllers\SaksiController;
+use App\Http\Controllers\SaksiTpsController;
 
 Route::get('/', function () {
     return view('beranda');
@@ -41,6 +43,10 @@ Route::get('/reload-captcha', [LoginController::class, 'reloadCaptcha']);
 Route::get('/logout', [LogoutController::class, 'logout']);
 
 
+Route::group(['middleware' => ['auth', 'role:saksi']], function () {
+    Route::get('saksi', [SaksiTpsController::class, 'index']);
+    Route::post('saksi/tps/suara', [SaksiTpsController::class, 'store']);
+});
 Route::group(['middleware' => ['auth', 'role:superadmin|petugas']], function () {
     Route::get('superadmin', [HomeController::class, 'superadmin']);
     Route::get('superadmin/gp', [GantiPasswordController::class, 'index']);
@@ -108,6 +114,8 @@ Route::group(['middleware' => ['auth', 'role:superadmin|petugas']], function () 
     Route::get('superadmin/pendaftar/delete/{id}', [PendaftarController::class, 'delete']);
     Route::get('superadmin/pendaftar/edit/{id}', [PendaftarController::class, 'edit']);
     Route::post('superadmin/pendaftar/edit/{id}', [PendaftarController::class, 'update']);
+
+    Route::get('superadmin/saksi', [SaksiController::class, 'index']);
 
     Route::get('superadmin/user', [AdminController::class, 'user']);
     Route::get('superadmin/user/create', [AdminController::class, 'user_create']);

@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(pendaftar::class, 'pendaftar_id');
     }
+
+    public function suaratps()
+    {
+        return $this->belongsTo(Suara::class, 'suara_id');
+    }
 }
