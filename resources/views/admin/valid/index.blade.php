@@ -52,7 +52,10 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            <table id="example1" class="table table-bordered table-striped">
+
+            <form action="/superadmin/terpercaya/valid" method="POST">
+              @csrf
+            <table class="table table-bordered table-striped">
               <thead>
               <tr>
                 <th>No</th>
@@ -60,7 +63,12 @@
                 <th>Telp</th>
                 <th>Jumlah Data yg dikumpulkan</th>
                 <th>Admin Yg Membuat</th>
-                <th>Aksi</th>
+                
+                <th>
+                  <button type="submit" class="btn btn-success btn-xs" name="button" value="valid"><i class="fa fa-check"></i> Valid</button>
+                  <button type="submit" class="btn btn-danger btn-xs" name="button" value="novalid"><i class="fa fa-times"></i> Tidak Valid</button><br/>
+                  <input type="checkbox" id="selectAll"> Check All
+                </th>
               </tr>
               </thead>
               <tbody>
@@ -78,14 +86,16 @@
                   <td>{{$item->pilkada_count}}</td>
                   <td>{{$item->admin == null ? '-' : $item->admin->name}}</td>
                   
-                  <td>
+                  {{-- <td>
                     <a href="/superadmin/terpercaya/valid/{{$item->id}}" class="btn btn-flat btn-sm btn-success"><i class="fa fa-check"></i> Valid</a>
-                    <a href="/superadmin/terpercaya/novalid/{{$item->id}}" class="btn btn-flat btn-sm btn-danger"><i class="fa fa-trash"></i> Tidak Valid</a>
-                  </td>
+                    <a href="/superadmin/terpercaya/novalid/{{$item->id}}" class="btn btn-flat btn-sm btn-danger"><i class="fa fa-times"></i> Tidak Valid</a>
+                  </td> --}}
+                  <td><input type="checkbox" name="ids[]" value="{{ $item->id }}" class="checkbox-item"></td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
+            </form>
           </div>
           <!-- /.box-body -->
         </div>
@@ -112,5 +122,17 @@
       'autoWidth'   : false
     })
   })
+</script>
+
+<script>
+  // Fungsi untuk memilih semua checkbox
+  document.getElementById('selectAll').addEventListener('click', function() {
+      // Dapatkan semua checkbox item
+      let checkboxes = document.querySelectorAll('.checkbox-item');
+      // Ubah status checkbox item sesuai dengan checkbox "Select All"
+      checkboxes.forEach((checkbox) => {
+          checkbox.checked = this.checked;
+      });
+  });
 </script>
 @endpush

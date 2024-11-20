@@ -21,9 +21,15 @@ class ValidController extends Controller
         return view('admin.valid.index', compact('data', 'total_valid', 'total_novalid'));
     }
 
-    public function valid($id)
+    public function valid(Request $req)
     {
-        Pengumpul::find($id)->update(['valid' => 1]);
+
+        if ($req->button === 'valid') {
+            Pengumpul::whereIn('id', $req->ids)->update(['valid' => 1]);
+        } else {
+            Pengumpul::whereIn('id', $req->ids)->update(['valid' => null]);
+        }
+
         return back();
     }
     public function novalid($id)
