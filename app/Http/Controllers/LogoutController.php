@@ -12,6 +12,6 @@ class LogoutController extends Controller
     {
         Auth::logout();
         Session::flash('success', 'Anda Telah Keluar Dari Aplikasi');
-        return redirect('/');
+        return redirect('/login');
     }
 }
