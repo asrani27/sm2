@@ -29,7 +29,7 @@ use App\Http\Controllers\SaksiController;
 use App\Http\Controllers\SaksiTpsController;
 
 Route::get('/', function () {
-    return view('beranda');
+    return view('login');
 });
 
 Route::get('login', [LoginController::class, 'index'])->name('login');
