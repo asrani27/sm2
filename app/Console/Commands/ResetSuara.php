@@ -45,10 +45,10 @@ class ResetSuara extends Command
             'sah' => 0,
             'tidak_sah' => 0,
         ]);
-        if ($data) {
-            return response()->json(['message' => 'Data berhasil diperbarui.'], 200);
+        if ($data > 0) {
+            $this->info('Data berhasil diperbarui.');
         } else {
-            return response()->json(['message' => 'Tidak ada data yang diperbarui.'], 400);
+            $this->warn('Tidak ada data yang diperbarui.');
         }
     }
 }
