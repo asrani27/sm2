@@ -44,6 +44,7 @@ class SuaraController extends Controller
     }
     public function store_tps(Request $req, $kecamatan, $kelurahan)
     {
+
         $check = Suara::where('kecamatan_id', $kecamatan)->where('kelurahan_id', $kelurahan)->where('tps', $req->nomor_tps)->first();
         if ($check == null) {
             $n = new Suara();
@@ -71,6 +72,19 @@ class SuaraController extends Controller
 
     public function store_suara(Request $req, $kecamatan, $kelurahan, $tps)
     {
+
+        if ($req->hasFile('file')) {
+            // Validasi file yang di-upload
+            $req->validate([
+                'file' => 'mimes:jpeg,jpg,png|max:8096', // Maksimal 2MB
+            ]);
+            // Simpan file di folder "public/images"
+            $path = $req->file('file')->store('public/suara');
+            $filename = basename($path);
+        } else {
+            $filename = Suara::find($tps)->filename;
+        }
+
         $data = Suara::find($tps);
         $data->saksi = $req->saksi;
         $data->telp = $req->telp;
@@ -79,6 +93,7 @@ class SuaraController extends Controller
         $data->nomor_3 = $req->nomor_3;
         $data->sah = $req->sah;
         $data->tidak_sah = $req->tidak_sah;
+        $data->filename = $filename;
         $data->save();
         Session::flash('success', 'berhasil');
         return redirect('/superadmin/suara/' . $kecamatan . '/' . $kelurahan);

@@ -23,7 +23,7 @@ crossorigin=""/>
                 <h3 class="box-title">Isi Data</h3>
             </div>
             <!-- /.box-header -->
-            <form class="form-horizontal" method="post" action="/superadmin/suara/{{$kecamatan->id}}/{{$kelurahan->id}}/{{$data->id}}">
+            <form class="form-horizontal" method="post" action="/superadmin/suara/{{$kecamatan->id}}/{{$kelurahan->id}}/{{$data->id}}"  enctype="multipart/form-data">
                 @csrf
                 <div class="box-body">
                     <div class="form-group">
@@ -83,13 +83,13 @@ crossorigin=""/>
                             <input type="text" class="form-control" name="tidak_sah" value="{{$data->tidak_sah}}"  required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">File</label>
+                    {{-- <div class="form-group">
+                        <label class="col-sm-2 control-label">File (maks 5 MB)</label>
                         <div class="col-sm-10">
                             <input type="file" class="form-control" name="file">
                         </div>
                     </div>
-                    
+                     --}}
                     
                 </div>
                 <!-- /.box-body -->

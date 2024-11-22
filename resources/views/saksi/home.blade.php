@@ -23,7 +23,7 @@ crossorigin=""/>
                 <h3 class="box-title">Isi Data Di Bawah Ini</h3>
             </div>
             <!-- /.box-header -->
-            <form class="form-horizontal" method="post" action="/saksi/tps/suara">
+            <form class="form-horizontal" method="post" action="/saksi/tps/suara" enctype="multipart/form-data">
                 @csrf
                 <div class="box-body">
                     <div class="form-group">
@@ -86,7 +86,7 @@ crossorigin=""/>
                         </div>
                     </div>
                     {{-- <div class="form-group">
-                        <label class="col-sm-2 control-label">File</label>
+                        <label class="col-sm-2 control-label">File (Optional maks 5MB)</label>
                         <div class="col-sm-10">
                             <input type="file" class="form-control" name="file">
                         </div>
