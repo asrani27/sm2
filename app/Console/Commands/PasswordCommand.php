@@ -63,16 +63,19 @@ class PasswordCommand extends Command
                 'password' => Hash::make('timur03')
             ]);
         }
+
         foreach ($baratUser as $item) {
             $item->update([
                 'password' => Hash::make('barat03')
             ]);
         }
+
         foreach ($selatanUser as $item) {
             $item->update([
                 'password' => Hash::make('selatan03')
             ]);
         }
+
         foreach ($utaraUser as $item) {
             $item->update([
                 'password' => Hash::make('utara03')
