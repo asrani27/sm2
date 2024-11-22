@@ -56,33 +56,33 @@ crossorigin=""/>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Jumlah Suara Paslon 1</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nomor_1" value="{{$data->nomor_1}}"  required onkeypress="return hanyaAngka(event)"/>
+                            <input type="text" class="form-control" name="nomor_1" value="{{$data->nomor_1 == 0 ? null : $data->nomor_1}}"  onkeypress="return hanyaAngka(event)"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Jumlah Suara Paslon 2</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nomor_2" value="{{$data->nomor_2}}"  required onkeypress="return hanyaAngka(event)"/>
+                            <input type="text" class="form-control" name="nomor_2" value="{{$data->nomor_2 == 0 ? null : $data->nomor_2}}"  onkeypress="return hanyaAngka(event)"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Jumlah Suara Paslon 3</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nomor_3" value="{{$data->nomor_3}}"  required onkeypress="return hanyaAngka(event)"/>
+                            <input type="text" class="form-control" name="nomor_3" value="{{$data->nomor_3 == 0 ? null : $data->nomor_3}}"  onkeypress="return hanyaAngka(event)"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label"> Suara SAH</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="sah" value="{{$data->sah}}"  required onkeypress="return hanyaAngka(event)"/>
+                            <input type="text" class="form-control" name="sah" value="{{$data->sah == 0 ? null : $data->sah}}"  onkeypress="return hanyaAngka(event)"/>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label class="col-sm-2 control-label"> Suara Tidak Sah</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="tidak_sah" value="{{$data->tidak_sah}}"  required onkeypress="return hanyaAngka(event)"/>
+                            <input type="text" class="form-control" name="tidak_sah" value="{{$data->tidak_sah == 0 ? null : $data->tidak_sah}}"  onkeypress="return hanyaAngka(event)"/>
                         </div>
                     </div>
                     {{-- <div class="form-group">
