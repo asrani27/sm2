@@ -52,32 +52,32 @@ class PasswordCommand extends Command
         $selatanUser = User::whereIn('kelurahan_id', $selatan)->get();
         $utaraUser = User::whereIn('kelurahan_id', $utara)->get();
 
-        foreach ($tengahUser as $item) {
-            $item->update([
+        foreach ($tengahUser as $itemTengah) {
+            $itemTengah->update([
                 'password' => Hash::make('tengah03')
             ]);
         }
 
-        foreach ($timurUser as $item) {
-            $item->update([
+        foreach ($timurUser as $itemTimur) {
+            $itemTimur->update([
                 'password' => Hash::make('timur03')
             ]);
         }
 
-        foreach ($baratUser as $item) {
-            $item->update([
+        foreach ($baratUser as $itemBarat) {
+            $itemBarat->update([
                 'password' => Hash::make('barat03')
             ]);
         }
 
-        foreach ($selatanUser as $item) {
-            $item->update([
+        foreach ($selatanUser as $itemSelatan) {
+            $itemSelatan->update([
                 'password' => Hash::make('selatan03')
             ]);
         }
 
-        foreach ($utaraUser as $item) {
-            $item->update([
+        foreach ($utaraUser as $itemUtara) {
+            $itemUtara->update([
                 'password' => Hash::make('utara03')
             ]);
         }
