@@ -50,7 +50,7 @@ crossorigin=""/>
                             <input type="text" class="form-control" name="saksi" value="{{$data->saksi}}" placeholder="nama saksi" required>
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="telp" value="{{$data->telp}}" minlength="12" placeholder="no telp" required>
+                            <input type="text" class="form-control" name="telp" value="{{$data->telp}}" minlength="10" placeholder="no telp" required>
                         </div>
                     </div>
                     <div class="form-group">
