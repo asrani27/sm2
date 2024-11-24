@@ -47,8 +47,8 @@
                   <td>{{$item->admin == null ? '-' : $item->admin->name}}</td>
                   
                   <td>
-                    <a href="/superadmin/pengumpul/edit/{{$item->id}}/{{request()->get('page')}}" class="btn btn-flat btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>
-                    <a href="/superadmin/pengumpul/delete/{{$item->id}}/{{request()->get('page')}}" class="btn btn-flat btn-sm btn-danger" onclick="return confirm('Yakin ingin dihapus?');"><i class="fa fa-trash"></i> Delete</a>
+                    <a href="/superadmin/pengumpul/edit/{{$item->id}}/{{request()->get('page', 1)}}" class="btn btn-flat btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>
+                    <a href="/superadmin/pengumpul/delete/{{$item->id}}/{{request()->get('page', 1)}}" class="btn btn-flat btn-sm btn-danger" onclick="return confirm('Yakin ingin dihapus?');"><i class="fa fa-trash"></i> Delete</a>
                   </td>
                 </tr>
                 @endforeach
