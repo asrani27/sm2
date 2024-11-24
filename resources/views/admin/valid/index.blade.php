@@ -103,7 +103,7 @@
                   <td>{{$item->admin == null ? '-' : $item->admin->name}}</td>
                   
                   <td>
-                    <a href="/superadmin/terpercaya/preview/{{$item->id}}" class="btn btn-flat btn-xs btn-primary"><i class="fa fa-search"></i> preview</a>
+                    <a href="/superadmin/terpercaya/preview/{{$item->id}}" class="btn btn-flat btn-xs btn-primary" target="_blank"><i class="fa fa-search"></i> preview</a>
                     <a href="/superadmin/terpercaya/valid/{{$item->id}}" class="btn btn-flat btn-xs btn-success"><i class="fa fa-check"></i> Valid</a>
                     <a href="/superadmin/terpercaya/novalid/{{$item->id}}" class="btn btn-flat btn-xs btn-danger"><i class="fa fa-times"></i> Tidak Valid</a>
                   </td>
