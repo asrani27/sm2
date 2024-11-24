@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pengumpul;
 use App\Models\Pilkada;
+use App\Models\Pengumpul;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ValidController extends Controller
 {
@@ -20,7 +21,14 @@ class ValidController extends Controller
         $data = Pengumpul::withCount('pilkada')->orderBy('id', 'DESC')->get();
         return view('admin.valid.index', compact('data', 'total_valid', 'total_novalid'));
     }
+    public function preview($id)
+    {
 
+        $data = Pengumpul::find($id)->pilkada;
+
+        $pdf = Pdf::loadView('admin.valid.preview', compact('data'));
+        return $pdf->stream();
+    }
     public function valid(Request $req)
     {
 
