@@ -214,12 +214,13 @@ Route::group(['middleware' => ['auth', 'role:superadmin|petugas']], function () 
 
     Route::get('superadmin/cetak-pengumpuldata', [PengumpulController::class, 'pdf']);
     Route::get('superadmin/pengumpul', [PengumpulController::class, 'index']);
+    Route::get('superadmin/pengumpul/search', [PengumpulController::class, 'search']);
     Route::post('superadmin/pilkada/pengumpul', [PengumpulController::class, 'set_pengumpul']);
     Route::get('superadmin/pengumpul/create', [PengumpulController::class, 'create']);
     Route::post('superadmin/pengumpul/create', [PengumpulController::class, 'store']);
-    Route::get('superadmin/pengumpul/edit/{id}', [PengumpulController::class, 'edit']);
-    Route::post('superadmin/pengumpul/edit/{id}', [PengumpulController::class, 'update']);
-    Route::get('superadmin/pengumpul/delete/{id}', [PengumpulController::class, 'delete']);
+    Route::get('superadmin/pengumpul/edit/{id}/{page}', [PengumpulController::class, 'edit']);
+    Route::post('superadmin/pengumpul/edit/{id}/{page}', [PengumpulController::class, 'update']);
+    Route::get('superadmin/pengumpul/delete/{id}/{page}', [PengumpulController::class, 'delete']);
 
     Route::get('superadmin/pemeriksaan', [AdminController::class, 'pemeriksaan']);
     Route::get('superadmin/pemeriksaan/create', [AdminController::class, 'pemeriksaan_create']);

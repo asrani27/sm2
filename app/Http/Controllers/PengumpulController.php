@@ -35,24 +35,31 @@ class PengumpulController extends Controller
     }
     public function index()
     {
-        $data = Pengumpul::withCount('pilkada')->orderBy('id', 'DESC')->get();
+        $data = Pengumpul::withCount('pilkada')->orderBy('id', 'DESC')->paginate(2);
+        return view('admin.pengumpul.index', compact('data'));
+    }
+    public function search()
+    {
+        $keyword = request()->get('search');
+        $data = Pengumpul::where('nama', 'like', '%' . $keyword . '%')->paginate(2)->appends(request()->except('page'));
+        request()->flash();
         return view('admin.pengumpul.index', compact('data'));
     }
     public function create()
     {
         return view('admin.pengumpul.create');
     }
-    public function edit($id)
+    public function edit($id, $page)
     {
         $data = Pengumpul::find($id);
         $admin = User::get();
-        return view('admin.pengumpul.edit', compact('data', 'admin'));
+        return view('admin.pengumpul.edit', compact('data', 'admin', 'page'));
     }
-    public function delete($id)
+    public function delete($id, $page)
     {
         Pengumpul::find($id)->delete();
         Session::flash('success', 'Berhasil Dihapus');
-        return back();
+        return redirect('/superadmin/pengumpul?page=' . $page);
     }
     public function store(Request $req)
     {
@@ -77,7 +84,7 @@ class PengumpulController extends Controller
         $pdf = Pdf::loadView('admin.pdf.pengumpul', compact('data'));
         return $pdf->stream();
     }
-    public function update(Request $req, $id)
+    public function update(Request $req, $id, $page)
     {
         $data = Pengumpul::find($id);
         $data->nama = $req->nama;
@@ -85,6 +92,6 @@ class PengumpulController extends Controller
         $data->users_id = $req->users_id;
         $data->save();
         Session::flash('success', 'Berhasil Diupdate');
-        return redirect('/superadmin/pengumpul');
+        return redirect('/superadmin/pengumpul?page=' . $page);
     }
 }

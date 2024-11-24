@@ -3,8 +3,18 @@
   <link rel="stylesheet" href="/assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 @endpush
 @section('content')
-
+<form class="form-horizontal" method="get" action="/superadmin/pengumpul/search">    
+  @csrf
+  <div class="col-sm-4">
+      <input type="text" class="form-control" name="search" value="{{old('search')}}" placeholder="nama" required>
+  </div>
+  <div class="col-sm-2">
+      <button type="submit" class="btn btn-flat btn-primary btn-block"><i class="fa fa-search"></i> Cari</button> <br><br>
+  </div>
+</form>
 <div class="row">
+  <div class="col-md-12">
+  </div>
     <div class="col-md-12">
         <div class="box">
           <div class="box-header">
@@ -15,7 +25,7 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="example" class="table table-bordered table-striped">
               <thead>
               <tr>
                 <th>No</th>
@@ -30,15 +40,15 @@
                 
                 @foreach ($data as $key => $item)
                 <tr>
-                  <td>{{$key + 1}}</td>
+                  <td>{{$data->firstItem() + $key}}</td>
                   <td>{{$item->nama}}</td>
                   <td>{{$item->telp}}</td>
                   <td>{{$item->pilkada_count}}</td>
                   <td>{{$item->admin == null ? '-' : $item->admin->name}}</td>
                   
                   <td>
-                    <a href="/superadmin/pengumpul/edit/{{$item->id}}" class="btn btn-flat btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>
-                    <a href="/superadmin/pengumpul/delete/{{$item->id}}" class="btn btn-flat btn-sm btn-danger" onclick="return confirm('Yakin ingin dihapus?');"><i class="fa fa-trash"></i> Delete</a>
+                    <a href="/superadmin/pengumpul/edit/{{$item->id}}/{{request()->get('page')}}" class="btn btn-flat btn-sm btn-success"><i class="fa fa-edit"></i> Edit</a>
+                    <a href="/superadmin/pengumpul/delete/{{$item->id}}/{{request()->get('page')}}" class="btn btn-flat btn-sm btn-danger" onclick="return confirm('Yakin ingin dihapus?');"><i class="fa fa-trash"></i> Delete</a>
                   </td>
                 </tr>
                 @endforeach
@@ -47,6 +57,7 @@
           </div>
           <!-- /.box-body -->
         </div>
+        {{$data->links()}}
     </div>
 </div>
 

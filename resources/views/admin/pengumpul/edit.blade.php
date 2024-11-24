@@ -27,7 +27,7 @@ crossorigin=""/>
                 <h3 class="box-title">Edit Data</h3>
             </div>
             <!-- /.box-header -->
-            <form class="form-horizontal" method="post" action="/superadmin/pengumpul/edit/{{$data->id}}">
+            <form class="form-horizontal" method="post" action="/superadmin/pengumpul/edit/{{$data->id}}/{{$page}}">
                 @csrf
                 <div class="box-body">
                     <div class="form-group">
