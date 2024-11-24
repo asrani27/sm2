@@ -35,13 +35,13 @@ class PengumpulController extends Controller
     }
     public function index()
     {
-        $data = Pengumpul::withCount('pilkada')->orderBy('id', 'DESC')->paginate(2);
+        $data = Pengumpul::withCount('pilkada')->orderBy('id', 'DESC')->paginate(10);
         return view('admin.pengumpul.index', compact('data'));
     }
     public function search()
     {
         $keyword = request()->get('search');
-        $data = Pengumpul::where('nama', 'like', '%' . $keyword . '%')->paginate(2)->appends(request()->except('page'));
+        $data = Pengumpul::where('nama', 'like', '%' . $keyword . '%')->paginate(10)->appends(request()->except('page'));
         request()->flash();
         return view('admin.pengumpul.index', compact('data'));
     }
