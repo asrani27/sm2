@@ -11,7 +11,7 @@
     <br/><br/>
   <table class="table table-hover table-bordered" border="1" cellpadding="5" cellspacing="0" style="font-size: 12px">
     <tbody>
-    <tr style="background-color:bisque">
+    <tr>
       <th>No</th>
       <th>Kecamatan</th>
       <th>Kelurahan</th>
@@ -26,11 +26,7 @@
       {{-- <th>Aksi</th> --}}
     </tr>
     @foreach ($data as $key => $item)
-    @if ($item->pengumpul != null)
-    <tr style="background-color: #d9f3d9">
-    @else
     <tr>
-    @endif
       <td>{{1 + $key}}</td>
       <td>{{$item->kecamatan}}</td>
       <td>{{$item->kelurahan}}</td>
