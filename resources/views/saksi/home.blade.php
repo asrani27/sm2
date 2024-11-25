@@ -75,14 +75,14 @@ crossorigin=""/>
                     <div class="form-group">
                         <label class="col-sm-2 control-label"> Suara SAH.</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="sah" value="{{$data->sah == 0 ? null : $data->sah}}"  onkeypress="return hanyaAngka(event)"/>
+                            <input type="text" class="form-control" name="sah" value="{{$data->sah == 0 ? null : $data->sah}}" inputmode="numeric" onkeypress="return hanyaAngka(event)"/>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label class="col-sm-2 control-label"> Suara Tidak Sah</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="tidak_sah" value="{{$data->tidak_sah == 0 ? null : $data->tidak_sah}}"  onkeypress="return hanyaAngka(event)"/>
+                            <input type="text" class="form-control" name="tidak_sah" value="{{$data->tidak_sah == 0 ? null : $data->tidak_sah}}" inputmode="numeric" onkeypress="return hanyaAngka(event)"/>
                         </div>
                     </div>
                     {{-- <div class="form-group">
