@@ -6,6 +6,22 @@
 
 @include('admin.paslon')
 
+<div class="row">
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-green"><i class="fa fa-file"></i></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">TPS MASUK / TOTAL TPS</span>
+        <span class="info-box-number">{{totaltpsmasuk()}} / {{$totalTPS}}</span>
+        <strong style="font-size: 20px">{{number_format((totaltpsmasuk() / $totalTPS * 100), 2)}} % SUARA MASUK</strong>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+  
+</div>
 
 <div class="row">
   <div class="col-md-12">
