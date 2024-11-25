@@ -59,14 +59,14 @@ crossorigin=""/>
                             </td>
                             </tr>
                             @endforeach
-                            <tr style="background-color: rgb(251, 213, 185); font-weight:bold;font-size:20px">
+                            {{-- <tr style="background-color: rgb(251, 213, 185); font-weight:bold;font-size:20px">
                             <td></td>
                             <td>TOTAL</td>
                             <td>{{$data->sum('nomor_1')}}</td>
                             <td>{{$data->sum('nomor_2')}}</td>
                             <td>{{$data->sum('nomor_3')}}</td>
                             <td></td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>                  
                 </div>
