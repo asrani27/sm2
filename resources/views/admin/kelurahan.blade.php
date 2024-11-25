@@ -31,10 +31,11 @@
               <th>Aksi</th>
             </tr>
             @foreach ($data as $key => $item)
+            
             <tr>
               <td>{{1 + $key}}</td>
               <td>{{$item->nama}}</td>
-              <td>{{$item->suaratps->count()}}</td>
+              <td>{{$item->tpsmasuk}} / {{$item->jumlah_tps}}</td>
               <td>{{$item->suaratps->sum('nomor_1')}}</td>
               <td>{{$item->suaratps->sum('nomor_2')}}</td>
               <td>{{$item->suaratps->sum('nomor_3')}}</td>
@@ -46,7 +47,7 @@
             <tr style="background-color: rgb(251, 213, 185); font-weight:bold">
               <td></td>
               <td>TOTAL</td>
-              <td>{{$totalTPS}}</td>
+              <td>{{$data->sum('tpsmasuk')}} / {{$data->sum('jumlah_tps')}}</td>
               <td></td>
               <td></td>
               <td></td>

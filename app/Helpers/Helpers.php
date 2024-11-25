@@ -100,7 +100,36 @@ function datavalid()
     $data = Pilkada::whereIn('pengumpul_id', $valid_id)->get();
     return $data;
 }
+function totaltpsmasuk()
+{
+    $data = Suara::get()->map(function ($item) {
+        if ($item->nomor_1 === 0 && $item->nomor_2 === 0 && $item->nomor_3 === 0) {
+            $result = 0;
+        } else {
+            $result = 1;
+        }
+        $item->masuk = $result;
+        return $item;
+    });
 
+
+    return $data->where('masuk', 1)->count();
+}
+function tpsmasukkecamatan($id)
+{
+    $data = Suara::where('kecamatan_id', $id)->get()->map(function ($item) {
+        if ($item->nomor_1 === 0 && $item->nomor_2 === 0 && $item->nomor_3 === 0) {
+            $result = 0;
+        } else {
+            $result = 1;
+        }
+        $item->masuk = $result;
+        return $item;
+    });
+
+
+    return $data->where('masuk', 1);
+}
 
 function tpsmasuk($id)
 {

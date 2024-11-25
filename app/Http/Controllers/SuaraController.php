@@ -12,9 +12,16 @@ class SuaraController extends Controller
 {
     public function detail_kelurahan($kecamatan)
     {
-        $totalTPS = Kelurahan::where('kecamatan_id', $kecamatan)->get()->sum(function ($item) {
-            return $item->suaratps->count();
+
+        $data = Kelurahan::where('kecamatan_id', $kecamatan)->get()->map(function ($item) {
+
+            $item->tpsmasuk = tpsmasuk($item->id)->count();
+
+            $item->jumlah_tps = $item->suaratps->count();
+
+            return $item;
         });
+
 
         $nomor1 = 0;
         $nomor2 = 0;
@@ -25,8 +32,8 @@ class SuaraController extends Controller
         //     $nomor2 += $k->suaratps->sum('nomor_2');
         //     $nomor3 += $k->suaratps->sum('nomor_3');
         // }
-        $data = Kelurahan::where('kecamatan_id', $kecamatan)->get();
-        return view('admin.kelurahan', compact('kecamatan', 'data', 'totalTPS'));
+
+        return view('admin.kelurahan', compact('kecamatan', 'data'));
     }
 
     public function detail_tps($kecamatan, $kelurahan)

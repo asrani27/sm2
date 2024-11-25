@@ -35,7 +35,7 @@
             <tr>
               <td>{{1 + $key}}</td>
               <td>{{$item->nama}}</td>
-              <td>{{$item->kelurahan->sum('suaratps_count') }}</td>
+              <td>{{tpsmasukkecamatan($item->id)->count()}} / {{$item->kelurahan->sum('suaratps_count') }}</td>
               <td>{{$item->suaratps->sum('nomor_1')}}</td>
               <td>{{$item->suaratps->sum('nomor_2')}}</td>
               <td>{{$item->suaratps->sum('nomor_3')}}</td>
@@ -47,7 +47,7 @@
             <tr style="background-color: rgb(251, 213, 185); font-weight:bold">
               <td></td>
               <td>TOTAL</td>
-              <td>{{$totalTPS}}</td>
+              <td>{{totaltpsmasuk()}} / {{$totalTPS}}</td>
               <td>{{$nomor1}}</td>
               <td>{{$nomor2}}</td>
               <td>{{$nomor3}}</td>
