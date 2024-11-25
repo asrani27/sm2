@@ -73,7 +73,7 @@ crossorigin=""/>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label"> Suara SAH</label>
+                        <label class="col-sm-2 control-label"> Suara SAH.</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="sah" value="{{$data->sah == 0 ? null : $data->sah}}"  onkeypress="return hanyaAngka(event)"/>
                         </div>
