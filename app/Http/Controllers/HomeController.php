@@ -28,6 +28,7 @@ class HomeController extends Controller
         $nomor1 = 0;
         $nomor2 = 0;
         $nomor3 = 0;
+
         foreach ($kecamatan as $k) {
             $totalTPS += $k->kelurahan->sum('suaratps_count');
         }
