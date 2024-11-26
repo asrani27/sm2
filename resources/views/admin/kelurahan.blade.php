@@ -27,6 +27,8 @@
               <th>Paslon 1</th>
               <th>Paslon 2</th>
               <th>Paslon 3</th>
+              <th>Suara SAH</th>
+              <th>Suara Tidak SAH</th>
               
               <th>Aksi</th>
             </tr>
@@ -39,6 +41,8 @@
               <td>{{$item->suaratps->sum('nomor_1')}}</td>
               <td>{{$item->suaratps->sum('nomor_2')}}</td>
               <td>{{$item->suaratps->sum('nomor_3')}}</td>
+              <td>{{$item->suaratps->sum('nomor_1') + $item->suaratps->sum('nomor_2') + $item->suaratps->sum('nomor_3')}}</td>
+              <td>{{$item->suaratps->sum('tidak_sah')}}</td>
               <td>
                 <a href="/superadmin/suara/{{$kecamatan}}/{{$item->id}}" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-eye"></i> detail</a>
               </td>
