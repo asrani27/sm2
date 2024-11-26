@@ -76,6 +76,8 @@
               <th>Paslon 1</th>
               <th>Paslon 2</th>
               <th>Paslon 3</th>
+              <th>Suara SAH</th>
+              <th>Suara Tidak SAH</th>
               
               <th>Aksi</th>
             </tr>
@@ -94,6 +96,8 @@
               <td>{{$item->nomor_1}}</td>
               <td>{{$item->nomor_2}}</td>
               <td>{{$item->nomor_3}}</td>
+              <td>{{$item->nomor_1+$item->nomor_2+$item->nomor_3}}</td>
+              <td>{{$item->tidak_sah}}</td>
               <td>
                 <a href="/superadmin/suara/{{$kecamatan->id}}/{{$kelurahan->id}}/{{$item->id}}" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i> isi</a>
                 <a href="/superadmin/hapus/{{$kecamatan->id}}/{{$kelurahan->id}}/{{$item->id}}" class="btn btn-flat btn-sm btn-danger"  onclick="return confirm('Yakin ingin dihapus?');"><i class="fa fa-trash"></i> delete</a>
