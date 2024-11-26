@@ -12,7 +12,7 @@
           <div class="row">
             <div class="col-sm-12 border-right">
               <div class="description-block">
-                <h1 class="description-headr">{{totalSuara($item->nomor)}} Suara</h1>
+                <h1 class="description-headr">{{number_format(totalSuara($item->nomor))}} Suara</h1>
                 <h3 class="description-text"><strong>
                   @if(totalSuaraMasuk() === 0)
                   0
