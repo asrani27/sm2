@@ -38,17 +38,25 @@ class ResetSuara extends Command
      */
     public function handle()
     {
-        $data = Suara::query()->update([
-            'nomor_1' => 0,
-            'nomor_2' => 0,
-            'nomor_3' => 0,
-            'sah' => 0,
-            'tidak_sah' => 0,
-        ]);
-        if ($data > 0) {
-            $this->info('Data berhasil diperbarui.');
-        } else {
-            $this->warn('Tidak ada data yang diperbarui.');
-        }
+        Suara::get()->map(function ($item) {
+            $item->saksi_lama = $item->saksi;
+            $item->telp_lama = $item->telp;
+            $item->save();
+            return $item;
+        });
+
+        $this->info('Data berhasil diperbarui.');
+        // $data = Suara::query()->update([
+        //     'nomor_1' => 0,
+        //     'nomor_2' => 0,
+        //     'nomor_3' => 0,
+        //     'sah' => 0,
+        //     'tidak_sah' => 0,
+        // ]);
+        // if ($data > 0) {
+        //     $this->info('Data berhasil diperbarui.');
+        // } else {
+        //     $this->warn('Tidak ada data yang diperbarui.');
+        // }
     }
 }
