@@ -28,6 +28,7 @@ class HomeController extends Controller
         $nomor1 = 0;
         $nomor2 = 0;
         $nomor3 = 0;
+        $tidaksah = 0;
 
         foreach ($kecamatan as $k) {
             $totalTPS += $k->kelurahan->sum('suaratps_count');
@@ -37,6 +38,7 @@ class HomeController extends Controller
             $nomor1 += $k->suaratps->sum('nomor_1');
             $nomor2 += $k->suaratps->sum('nomor_2');
             $nomor3 += $k->suaratps->sum('nomor_3');
+            $tidaksah += $k->suaratps->sum('tidak_sah');
         }
 
         $paslon1 = $kecamatan->map(function ($item) {
@@ -68,7 +70,7 @@ class HomeController extends Controller
             return $item;
         })->sortByDesc('dibawai');
 
-        return view('admin.home', compact('paslon1', 'paslon2', 'paslon3', 'kec', 'dpt', 'kel', 'sahabat', 'data', 'kecamatan', 'totalTPS', 'nomor1', 'nomor2', 'nomor3'));
+        return view('admin.home', compact('paslon1', 'paslon2', 'paslon3', 'kec', 'dpt', 'kel', 'sahabat', 'data', 'kecamatan', 'totalTPS', 'nomor1', 'nomor2', 'nomor3', 'tidaksah'));
     }
 
     public function user()

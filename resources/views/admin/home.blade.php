@@ -71,6 +71,8 @@
               <td>{{$nomor1}}</td>
               <td>{{$nomor2}}</td>
               <td>{{$nomor3}}</td>
+              <td>{{$nomor1+$nomor2+$nomor3}}</td>
+              <td>{{$tidaksah}}</td>
               <td></td>
             </tr>
           </tbody></table>
