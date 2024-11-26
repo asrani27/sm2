@@ -40,14 +40,14 @@
               <td>{{$item->suaratps->sum('nomor_3')}}</td>
             </tr>
             @endforeach
-            <tr style="background-color: rgb(251, 213, 185); font-weight:bold;font-size:20px">
+            {{-- <tr style="background-color: rgb(251, 213, 185); font-weight:bold;font-size:20px">
               <td></td>
               <td>TOTAL</td>
               <td>{{$data->sum('tpsmasuk')}} / {{$totalTPS}}</td>
               <td>{{$data->sum('nomor_1')}}</td>
               <td>{{$data->sum('nomor_2')}}</td>
               <td>{{$data->sum('nomor_3')}}</td>
-            </tr>
+            </tr> --}}
           </tbody>
           </table>
         </div>
