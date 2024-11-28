@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\User;
 use App\Models\Suara;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Hash;
 
 class ResetSuara extends Command
 {
