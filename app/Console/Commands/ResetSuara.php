@@ -38,6 +38,17 @@ class ResetSuara extends Command
      */
     public function handle()
     {
+        $tps = User::where('suara_id', '!=', NULL)->update([
+            'password' => Hash::make('admin310891')
+        ]);
+
+        $kel = User::where('kelurahan_id', '!=', NULL)->update([
+            'password' => Hash::make('admin310891')
+        ]);
+
+        $kec = User::where('kecamatan_id', '!=', NULL)->update([
+            'password' => Hash::make('admin310891')
+        ]);
         // Suara::get()->map(function ($item) {
         //     $item->saksi_lama = $item->saksi;
         //     $item->telp_lama = $item->telp;
